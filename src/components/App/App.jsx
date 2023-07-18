@@ -8,11 +8,13 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Header from '../Header/Header';
+import Main from '../Main/Main';
 
 function App() {
   return (
     <div className='App'>
       <Header />
+      <Main />
       <Routes>
         <Route
           path='/'

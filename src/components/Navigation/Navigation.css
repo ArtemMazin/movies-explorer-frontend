@@ -18,7 +18,7 @@
   color: var(--main-color);
   font-size: 12px;
   line-height: 16px;
-  font-weight: medium;
+  font-weight: 500;
   text-decoration: none;
 }
 .nav__button {
@@ -27,7 +27,7 @@
   background-color: var(--main-color);
   font-size: 12px;
   line-height: 16px;
-  font-weight: medium;
+  font-weight: 500;
   border: none;
   border-radius: 3px;
   cursor: pointer;

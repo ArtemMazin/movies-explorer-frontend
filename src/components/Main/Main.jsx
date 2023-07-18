@@ -1,7 +1,13 @@
 import React from 'react';
+import Promo from './Promo/Promo';
+import './Main.css';
 
 const Main = () => {
-  return <div></div>;
+  return (
+    <main className='main'>
+      <Promo className='promo' />
+    </main>
+  );
 };
 
 export default Main;
