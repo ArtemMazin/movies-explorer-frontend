@@ -1,0 +1,22 @@
+.about-me {
+  padding: 110px 70px 100px;
+}
+.about-me__content {
+  padding: 66px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+.about-me__description {
+  max-width: 600px;
+}
+.about-me__title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+}
+.about-me__text {
+}
+.about-me__link {
+}
+.about-me__avatar {
+}

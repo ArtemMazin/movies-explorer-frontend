@@ -36,7 +36,7 @@
   font-weight: 400;
   font-size: 50px;
   line-height: 58px;
-  letter-spacing: -0.05px;
+  letter-spacing: -0.7px;
 }
 .description {
   display: flex;
@@ -45,14 +45,12 @@
 }
 .description__title {
   margin: 0;
-  letter-spacing: -0.05px;
 }
 .description__text {
   margin: 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  letter-spacing: -0.05px;
 }
 .section-name {
   margin: 0;
@@ -60,7 +58,7 @@
   border-bottom: var(--main-color) solid 1px;
   font-weight: 400;
   font-size: 22px;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.7px;
 }
 .black-button {
   color: var(--bg-main-color);
