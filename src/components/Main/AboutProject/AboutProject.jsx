@@ -6,15 +6,15 @@ const AboutProject = () => {
     <section className='about-project'>
       <h2 className='section-name'>О проекте</h2>
       <div className='about-project__content'>
-        <article>
-          <h2 className='about-project__title'>Дипломный проект включал 5 этапов</h2>
-          <p className='about-project__text'>
+        <article className='description'>
+          <h2 className='description__title about-project__title'>Дипломный проект включал 5 этапов</h2>
+          <p className='description__text about-project__text'>
             Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.
           </p>
         </article>
-        <article>
-          <h2 className='about-project__title'>На выполнение диплома ушло 5 недель</h2>
-          <p className='about-project__text'>
+        <article className='description'>
+          <h2 className='description__title about-project__title'>На выполнение диплома ушло 5 недель</h2>
+          <p className='description__text about-project__text'>
             У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.
           </p>
         </article>

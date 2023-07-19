@@ -8,15 +8,9 @@
 }
 
 .about-project__title {
-  margin: 0 0 26px 0;
   font-weight: 400;
   font-size: 20px;
-}
-.about-project__text {
-  margin: 0;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
+  letter-spacing: -0.8px;
 }
 
 .about-project__timeline {
@@ -45,7 +39,7 @@
 }
 .about-project__timeline-text {
   margin: 0;
-  color: #a0a0a0;
+  color: var(--text-gray-color);
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
