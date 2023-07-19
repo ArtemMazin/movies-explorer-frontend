@@ -31,33 +31,3 @@
   padding: 0;
   max-width: 1280px;
 }
-.main-title {
-  margin: 0;
-  font-weight: 400;
-  font-size: 50px;
-  line-height: 58px;
-  letter-spacing: -0.7px;
-}
-
-.description__title {
-  margin: 0 0 26px 0;
-}
-.description__text {
-  margin: 0;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-}
-.section-name {
-  margin: 0;
-  padding-bottom: 23px;
-  border-bottom: var(--main-color) solid 1px;
-  font-weight: 400;
-  font-size: 22px;
-  letter-spacing: -0.7px;
-}
-.black-button {
-  color: var(--bg-main-color);
-  background-color: var(--main-color);
-  border: none;
-}

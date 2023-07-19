@@ -2,15 +2,27 @@
   padding: 110px 70px;
 }
 .about-project__content {
+  margin: 0;
   padding: 70px 0 110px 0;
   display: flex;
-  gap: 48px;
+  gap: 40px;
+  list-style-type: none;
+}
+.about-project__description {
+  max-width: 550px;
 }
 
 .about-project__title {
+  margin: 0 0 26px 0;
   font-weight: 400;
   font-size: 20px;
   letter-spacing: -0.8px;
+}
+.about-project__text {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .about-project__timeline {
@@ -33,6 +45,11 @@
   border: none;
   font-size: 14px;
   font-weight: 400;
+}
+.about-project__timeline-button_left {
+  color: var(--bg-main-color);
+  background-color: var(--main-color);
+  border: none;
 }
 .about-project__timeline-button_right {
   background-color: #f2f2f2;

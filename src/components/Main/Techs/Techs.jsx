@@ -1,14 +1,15 @@
 import React from 'react';
+import SectionName from '../SectionName/SectionName';
 import './Techs.css';
 
 const Techs = () => {
   return (
     <section className='techs'>
-      <h2 className='section-name'>Технологии</h2>
+      <SectionName>Технологии</SectionName>
       <div className='techs__content'>
-        <article className='description techs__description'>
-          <h2 className='description__title main-title techs__title'>7 технологий</h2>
-          <p className='description__text techs__text'>
+        <article className='techs__description'>
+          <h2 className='techs__title'>7 технологий</h2>
+          <p className='techs__text'>
             На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.
           </p>
         </article>

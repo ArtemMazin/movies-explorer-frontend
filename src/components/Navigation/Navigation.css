@@ -27,5 +27,8 @@
   line-height: 16px;
   font-weight: 500;
   border-radius: 3px;
+  color: var(--bg-main-color);
+  background-color: var(--main-color);
+  border: none;
   cursor: pointer;
 }

@@ -4,6 +4,12 @@
   justify-content: space-between;
   background-color: var(--bg-hero-color);
 }
+.promo__title {
+  margin: 0;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+}
 
 .promo__description {
   max-width: 640px;

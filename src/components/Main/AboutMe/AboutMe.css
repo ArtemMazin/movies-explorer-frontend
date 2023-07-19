@@ -11,13 +11,23 @@
   padding: 18px 0 0 0;
 }
 .about-me__title {
+  margin: 0;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.7px;
+}
+.about-me__subtitle {
+  margin: 0 0 26px 0;
   font-size: 18px;
   font-weight: 500;
   line-height: 20px;
 }
 .about-me__text {
   margin: 0 0 99px 0;
+  font-size: 14px;
   line-height: 22px;
+  font-weight: 400;
 }
 .about-me__link {
   text-decoration: none;
