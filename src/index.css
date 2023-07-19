@@ -38,13 +38,9 @@
   line-height: 58px;
   letter-spacing: -0.7px;
 }
-.description {
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-}
+
 .description__title {
-  margin: 0;
+  margin: 0 0 26px 0;
 }
 .description__text {
   margin: 0;

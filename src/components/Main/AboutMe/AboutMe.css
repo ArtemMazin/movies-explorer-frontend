@@ -7,7 +7,8 @@
   justify-content: space-between;
 }
 .about-me__description {
-  max-width: 600px;
+  max-width: 599px;
+  padding: 18px 0 0 0;
 }
 .about-me__title {
   font-size: 18px;
@@ -15,8 +16,21 @@
   line-height: 20px;
 }
 .about-me__text {
+  margin: 0 0 99px 0;
+  line-height: 22px;
 }
 .about-me__link {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--main-color);
 }
+
 .about-me__avatar {
+  max-width: 270px;
+  max-height: 327px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
 }
