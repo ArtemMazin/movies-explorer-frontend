@@ -23,12 +23,9 @@
 }
 .nav__button {
   padding: 8px 20px;
-  color: var(--bg-main-color);
-  background-color: var(--main-color);
   font-size: 12px;
   line-height: 16px;
   font-weight: 500;
-  border: none;
   border-radius: 3px;
   cursor: pointer;
 }

@@ -16,10 +16,10 @@ function App() {
       <Header />
       <Main />
       <Routes>
-        <Route
+        {/* <Route
           path='/'
           element={<AboutProject />}
-        />
+        /> */}
         <Route
           path='/movies'
           element={<Movies />}

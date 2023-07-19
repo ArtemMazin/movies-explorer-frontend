@@ -22,7 +22,7 @@ const Navigation = () => {
         </Link>
         <button
           type='button'
-          className='nav__button'>
+          className='black-button nav__button'>
           Войти
         </button>
       </div>
