@@ -26,9 +26,14 @@
   opacity: 0.5;
 }
 .promo__button {
-  padding: 10px 20px;
-  background-color: var(--bg-hero-color);
+  padding: 10px 18px;
+  max-width: 130px;
+  display: block;
+  box-sizing: border-box;
+  color: var(--main-color);
   border: rgba(0, 0, 0, 0.6) solid 1px;
+  text-decoration: none;
+  text-align: center;
   border-radius: 3px;
   font-weight: 500;
   font-size: 12px;

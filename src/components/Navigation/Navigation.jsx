@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
+import NavigationPromo from './NavigationPromo/NavigationPromo';
 import './Navigation.css';
 
 const Navigation = () => {
@@ -9,23 +10,11 @@ const Navigation = () => {
       <Link to={'/'}>
         <img
           src={logo}
-          alt='Логотип проекта: Место'
-          className='header__logo'
+          alt='Логотип проекта: Movies-Explorer'
+          className='nav__logo'
         />
       </Link>
-
-      <div className='nav__menu'>
-        <Link
-          to={'/signup'}
-          className='nav__link'>
-          Регистрация
-        </Link>
-        <button
-          type='button'
-          className='nav__button'>
-          Войти
-        </button>
-      </div>
+      <NavigationPromo />
     </nav>
   );
 };
