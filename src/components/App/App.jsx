@@ -9,16 +9,18 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
 
 function App() {
   return (
     <div className='App'>
       <Header />
       <Main />
+      <Footer />
       <Routes>
         {/* <Route
           path='/'
-          element={<AboutProject />}
+          element={<Main />}
         /> */}
         <Route
           path='/movies'

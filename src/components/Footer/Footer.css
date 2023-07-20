@@ -1,0 +1,35 @@
+.footer {
+  padding: 79px 70px 0 70px;
+}
+.footer__description {
+  margin: 0;
+  padding: 0 0 20px 0;
+  color: var(--text-gray-color);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  border-bottom: var(--border-color) solid 1px;
+}
+.footer__row {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.footer__copyright {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+}
+.footer__links {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+}
+.footer__link {
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  color: var(--main-color);
+}

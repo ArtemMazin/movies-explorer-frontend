@@ -25,7 +25,7 @@
   font-size: 14px;
   line-height: 20px;
   text-align: center;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.56px;
 }
 .techs__skills {
   margin: 0;
@@ -43,5 +43,6 @@
   border-radius: 10px;
   font-weight: 400;
   font-size: 14px;
+  letter-spacing: -0.56px;
   background-color: var(--border-color);
 }
