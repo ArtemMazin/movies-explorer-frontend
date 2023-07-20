@@ -1,10 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import NavigationPromo from './NavigationPromo/NavigationPromo';
 import './Navigation.css';
+import NavigationMovies from './NavigationMovies/NavigationMovies';
 
 const Navigation = () => {
+  const location = useLocation();
+
   return (
     <nav className='nav'>
       <Link to={'/'}>
@@ -14,7 +17,7 @@ const Navigation = () => {
           className='nav__logo'
         />
       </Link>
-      <NavigationPromo />
+      {location.pathname === '/' ? <NavigationPromo /> : <NavigationMovies />}
     </nav>
   );
 };

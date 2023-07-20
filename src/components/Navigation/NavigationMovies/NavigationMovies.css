@@ -1,0 +1,35 @@
+.nav-movies {
+  display: flex;
+}
+.nav-movies__links {
+  margin: 0 50px 0 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style-type: none;
+}
+.nav-movies__link {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  text-decoration: none;
+  color: var(--main-color);
+}
+.nav-movies__button {
+  padding: 8px 10px;
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  border-radius: 50px;
+  border: 2px solid rgba(170, 170, 170, 0.2);
+  background-color: var(--main-bg-color);
+}
+.nav-movies__button-svg {
+  width: 12px;
+  height: 14px;
+  background: url(../../../images/account-svg.svg);
+}

@@ -3,3 +3,6 @@
   padding: 17px 70px;
   background-color: var(--bg-hero-color);
 }
+.header_white {
+  background-color: var(--main-bg-color);
+}

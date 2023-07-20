@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import React from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
-import AboutProject from '../Main/AboutProject/AboutProject';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
@@ -15,13 +14,11 @@ function App() {
   return (
     <div className='App'>
       <Header />
-      <Main />
-      <Footer />
       <Routes>
-        {/* <Route
+        <Route
           path='/'
           element={<Main />}
-        /> */}
+        />
         <Route
           path='/movies'
           element={<Movies />}
@@ -43,6 +40,7 @@ function App() {
           element={<Register />}
         />
       </Routes>
+      <Footer />
     </div>
   );
 }
