@@ -1,0 +1,36 @@
+.card__image {
+  margin: 0 0 14px 0;
+  width: 270px;
+  height: 151px;
+}
+.card__description {
+  margin: 0 0 14px 0;
+  padding: 0 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.card__name {
+  width: 206px;
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  font-weight: 500;
+}
+.card__duration {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-gray-color);
+}
+.card__checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: -3px -4px 0 0;
+  width: 28px;
+  height: 28px;
+  align-self: flex-start;
+  background: url('../../../images/favorite-checkbox.svg') no-repeat;
+  transition: 0.5s;
+}
+.card__checkbox:checked {
+  background: url('../../../images/favorite-checkbox-active.svg') no-repeat;
+}

@@ -4,8 +4,8 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
 const SearchForm = () => {
   return (
-    <form className='search-form'>
-      <div className='search-form__row'>
+    <section className='search-form'>
+      <form className='search-form__row'>
         <input
           type='text'
           placeholder='Фильм'
@@ -14,10 +14,10 @@ const SearchForm = () => {
         <button
           type='button'
           className='search-form__button'></button>
-      </div>
+      </form>
 
       <FilterCheckbox />
-    </form>
+    </section>
   );
 };
 

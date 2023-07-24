@@ -11,11 +11,11 @@
   -moz-appearance: none;
   width: 36px;
   height: 20px;
-  background: url('../../../images/checkbox.svg') no-repeat;
+  background: url('../../../images/checkbox-off.svg') no-repeat;
   transition: 0.5s;
 }
 .filter-checkbox__input:checked {
-  background: url('../../../images/checkbox-off.svg') no-repeat;
+  background: url('../../../images/checkbox.svg') no-repeat;
 }
 .filter-checkbox__text {
   margin: 0 0 0 12px;

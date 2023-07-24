@@ -1,0 +1,21 @@
+.movies__list {
+  margin: 0;
+  padding: 70px 70px 30px 70px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 32px;
+  list-style-type: none;
+}
+.movies__button {
+  display: block;
+  padding: 0;
+  margin: 50px auto 80px auto;
+  width: 320px;
+  height: 36px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--bg-input-color);
+}

@@ -5,8 +5,8 @@ import { initialCards } from '../../../utils/constants';
 
 const MoviesCardList = () => {
   return (
-    <div>
-      <ul>
+    <section className='movies'>
+      <ul className='movies__list'>
         {initialCards.map((card, i) => (
           <MoviesCard
             card={card}
@@ -14,8 +14,12 @@ const MoviesCardList = () => {
           />
         ))}
       </ul>
-      <button type='button'></button>
-    </div>
+      <button
+        className='movies__button'
+        type='button'>
+        Ещё
+      </button>
+    </section>
   );
 };
 
