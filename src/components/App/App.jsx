@@ -6,14 +6,11 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
-import Header from '../Header/Header';
 import Main from '../Main/Main';
-import Footer from '../Footer/Footer';
 
 function App() {
   return (
     <div className='App'>
-      <Header />
       <Routes>
         <Route
           path='/'
@@ -40,7 +37,6 @@ function App() {
           element={<Register />}
         />
       </Routes>
-      <Footer />
     </div>
   );
 }

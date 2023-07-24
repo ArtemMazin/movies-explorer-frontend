@@ -1,0 +1,25 @@
+.filter-checkbox {
+  padding: 28px 0 39px 0;
+  margin: 0 0 10px 0;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.filter-checkbox__input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 36px;
+  height: 20px;
+  background: url('../../../images/checkbox.svg') no-repeat;
+  transition: 0.5s;
+}
+.filter-checkbox__input:checked {
+  background: url('../../../images/checkbox-off.svg') no-repeat;
+}
+.filter-checkbox__text {
+  margin: 0 0 0 12px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
