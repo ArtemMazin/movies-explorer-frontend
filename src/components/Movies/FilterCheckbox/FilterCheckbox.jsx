@@ -12,7 +12,7 @@ const FilterCheckbox = () => {
       />
 
       <label
-        for='tumb'
+        // for='tumb'
         className='filter-checkbox__text'>
         Короткометражки
       </label>
