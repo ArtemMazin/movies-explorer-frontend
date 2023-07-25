@@ -13,6 +13,7 @@
   height: 20px;
   background: url('../../../images/checkbox-off.svg') no-repeat;
   transition: 0.5s;
+  cursor: pointer;
 }
 .filter-checkbox__input:checked {
   background: url('../../../images/checkbox.svg') no-repeat;
