@@ -1,7 +1,10 @@
 import React from 'react';
 import './MoviesCard.css';
+import { useLocation } from 'react-router-dom';
 
 const MoviesCard = ({ card }) => {
+  const location = useLocation();
+
   return (
     <li className='card'>
       <img
@@ -14,12 +17,18 @@ const MoviesCard = ({ card }) => {
           <h2 className='card__name'>{card.nameRU}</h2>
           <p className='card__duration'>{card.duration}</p>
         </div>
-        <input
-          className='card__checkbox'
-          type='checkbox'
-          name='favorite_checkbox'
-          id='favorite_checkbox'
-        />
+        {location.pathname === '/movies' ? (
+          <input
+            className='card__checkbox'
+            type='checkbox'
+            name='favorite_checkbox'
+            id='favorite_checkbox'
+          />
+        ) : (
+          <button
+            className='card__delete-btn'
+            type='button'></button>
+        )}
       </div>
     </li>
   );

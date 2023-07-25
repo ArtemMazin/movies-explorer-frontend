@@ -43,3 +43,11 @@
   background: url('../../../images/favorite-checkbox-active.svg') no-repeat;
   background-position: 50% 30%;
 }
+.card__delete-btn {
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: url('../../../images/delete-btn.svg') no-repeat;
+  cursor: pointer;
+}
