@@ -9,7 +9,7 @@ const MoviesCardList = () => {
 
   return (
     <section className='movies'>
-      {location.pathname === '/movies' ? (
+      {location.pathname === '/movies' || location.pathname === '/movies/' ? (
         <>
           <ul className='movies__list'>
             {initialCards.map((card, i) => (

@@ -16,6 +16,9 @@
   text-decoration: none;
   color: var(--main-color);
 }
+.nav-movies__profile-link {
+  text-decoration: none;
+}
 .nav-movies__button {
   padding: 8px 10px;
   width: 100px;

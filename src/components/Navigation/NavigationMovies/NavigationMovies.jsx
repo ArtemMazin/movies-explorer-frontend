@@ -21,12 +21,16 @@ const NavigationMovies = () => {
           </Link>
         </li>
       </ul>
-      <button
-        type='button'
-        className='nav-movies__button'>
-        <div className='nav-movies__button-svg'></div>
-        Аккаунт
-      </button>
+      <Link
+        to={'/profile'}
+        className='nav-movies__profile-link'>
+        <button
+          type='button'
+          className='nav-movies__button'>
+          <div className='nav-movies__button-svg'></div>
+          Аккаунт
+        </button>
+      </Link>
     </div>
   );
 };
