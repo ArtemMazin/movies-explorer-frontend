@@ -27,6 +27,7 @@
   border-radius: 50px;
   border: 2px solid rgba(170, 170, 170, 0.2);
   background-color: var(--main-bg-color);
+  cursor: pointer;
 }
 .nav-movies__button-svg {
   width: 12px;

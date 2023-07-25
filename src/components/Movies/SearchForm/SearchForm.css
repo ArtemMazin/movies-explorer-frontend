@@ -28,4 +28,5 @@
   height: 44px;
   border: none;
   background: url(../../../images/search-icon.svg);
+  cursor: pointer;
 }

@@ -11,10 +11,20 @@ const Footer = () => {
         <nav>
           <ul className='footer__links'>
             <li>
-              <Link className='footer__link'>Яндекс.Практикум</Link>
+              <Link
+                to={'https://practicum.yandex.ru/'}
+                target='blank'
+                className='footer__link'>
+                Яндекс.Практикум
+              </Link>
             </li>
             <li>
-              <Link className='footer__link'>Github</Link>
+              <Link
+                to={'https://github.com/ArtemMazin'}
+                target='blank'
+                className='footer__link'>
+                Github
+              </Link>
             </li>
           </ul>
         </nav>

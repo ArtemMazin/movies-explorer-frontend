@@ -17,6 +17,8 @@
   background-color: var(--bg-main-color);
   color: var(--main-color);
   height: 100%;
+  margin-left: calc(100vw - 100%);
+  margin-right: 0;
   font-family: 'Inter', Arial, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

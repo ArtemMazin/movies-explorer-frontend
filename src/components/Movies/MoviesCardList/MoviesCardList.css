@@ -18,4 +18,5 @@
   border: none;
   border-radius: 6px;
   background-color: var(--bg-input-color);
+  cursor: pointer;
 }
