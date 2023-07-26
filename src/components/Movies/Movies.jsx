@@ -6,12 +6,14 @@ import MoviesCardList from './MoviesCardList/MoviesCardList';
 
 const Movies = () => {
   return (
-    <main>
+    <>
       <Header />
-      <SearchForm />
-      <MoviesCardList />
+      <main>
+        <SearchForm />
+        <MoviesCardList />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 };
 

@@ -7,12 +7,14 @@ import './SavedMovies.css';
 
 const SavedMovies = () => {
   return (
-    <main className='main'>
+    <div className='saved-movies'>
       <Header />
-      <SearchForm />
-      <MoviesCardList />
+      <main>
+        <SearchForm />
+        <MoviesCardList />
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 };
 
