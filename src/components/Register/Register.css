@@ -1,0 +1,46 @@
+.register {
+  margin: 0 auto;
+  padding: 70px 0;
+  max-width: 396px;
+}
+.register__header {
+}
+.register__logo {
+  margin: 0 0 40px 0;
+}
+.register__title {
+  margin: 0 0 40px 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.register__main {
+}
+.register__form {
+}
+.register__label {
+  font-size: 10px;
+  font-weight: 400;
+}
+.register__input {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border: none;
+}
+.register__submit-btn {
+  padding: 14px 0;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 3px;
+  color: var(--bg-main-color);
+  background-color: var(--main-color);
+  border: none;
+  cursor: pointer;
+}
+.register__span {
+}
+.register__login-link {
+  text-decoration: none;
+}
