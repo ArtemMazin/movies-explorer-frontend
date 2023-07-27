@@ -1,9 +1,13 @@
-import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import './Register.css';
 
 const Register = () => {
+  const [name, setName] = useState('Виталий');
+  const [email, setEmail] = useState('pochta@yandex.ru');
+  const [password, setPassword] = useState('••••••••••••••');
+
   return (
     <div className='register'>
       <header className='register__header'>
@@ -20,38 +24,54 @@ const Register = () => {
         <form
           action=''
           className='register__form'>
-          <label className='register__label'>
-            Имя
-            <input
-              type='text'
-              className='register__input'
-            />
-          </label>
-          <label className='register__label'>
-            E-mail
-            <input
-              type='text'
-              className='register__input'
-            />
-          </label>
-          <label className='register__label'>
-            Пароль
-            <input
-              type='text'
-              className='register__input'
-            />
-          </label>
+          <div className='register__inputs'>
+            <label>
+              <span className='register__input-name'>Имя</span>
+              <input
+                type='text'
+                className='register__input'
+                placeholder='Введите имя'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <span className='register__error-message'></span>
+            </label>
+            <label>
+              <span className='register__input-name'>E-mail</span>
+              <input
+                type='text'
+                className='register__input'
+                placeholder='Введите e-mail'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <span className='register__error-message'></span>
+            </label>
+            <label>
+              <span className='register__input-name'>Пароль</span>
+              <input
+                type='text'
+                className='register__input register__input_error'
+                placeholder='Введите пароль'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <span className='register__error-message'>Что-то пошло не так...</span>
+            </label>
+          </div>
           <button
             type='submit'
             className='register__submit-btn'>
             Зарегистрироваться
           </button>
-          <span className='register__span'>Уже зарегистрированы?</span>
-          <Link
-            to={'/signin'}
-            className='register__login-link'>
-            Войти
-          </Link>
+          <div className='register__nav'>
+            <span className='register__span'>Уже зарегистрированы?</span>
+            <Link
+              to={'/signin'}
+              className='register__login-link'>
+              Войти
+            </Link>
+          </div>
         </form>
       </main>
     </div>
