@@ -1,9 +1,10 @@
 import React from 'react';
 import './FormHeader.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../../images/logo.svg';
 
 const FormHeader = () => {
+  const location = useLocation();
   return (
     <header className='form-header'>
       <Link to={'/'}>
@@ -13,7 +14,7 @@ const FormHeader = () => {
           className='form-header__logo'
         />
       </Link>
-      <h1 className='form-header__title'>Добро пожаловать!</h1>
+      <h1 className='form-header__title'>{location.pathname === '/signup' ? 'Добро пожаловать!' : 'Рады видеть!'}</h1>
     </header>
   );
 };

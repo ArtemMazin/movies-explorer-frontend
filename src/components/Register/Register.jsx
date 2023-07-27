@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './Register.css';
-import FormLabel from './FormLabel/FormLabel';
-import FormButtons from './FormButtons/FormButtons';
-import FormHeader from './FormHeader/FormHeader';
+import FormLabel from '../FormAuth/FormLabel/FormLabel';
+import FormButtons from '../FormAuth/FormButtons/FormButtons';
+import FormHeader from '../FormAuth/FormHeader/FormHeader';
 
 const Register = () => {
   const [name, setName] = useState('Виталий');
@@ -12,10 +12,8 @@ const Register = () => {
   return (
     <div className='register'>
       <FormHeader />
-      <main className='register__main'>
-        <form
-          action=''
-          className='register__form'>
+      <main>
+        <form action=''>
           <div className='register__inputs'>
             <FormLabel
               value={name}
@@ -38,11 +36,7 @@ const Register = () => {
               errorMassage={'Что-то пошло не так...'}
             />
           </div>
-          <FormButtons
-            nameButton={'Зарегистрироваться'}
-            span={'Уже зарегистрированы?'}
-            nameLink={'Войти'}
-          />
+          <FormButtons />
         </form>
       </main>
     </div>

@@ -2,21 +2,23 @@ import React from 'react';
 import './FormButtons.css';
 import { Link, useLocation } from 'react-router-dom';
 
-const FormButtons = ({ nameButton, span, nameLink }) => {
+const FormButtons = () => {
   const location = useLocation();
   return (
     <div className='form-buttons'>
       <button
         type='submit'
         className='form-buttons__submit'>
-        {nameButton}
+        {location.pathname === '/signup' ? 'Зарегистрироваться' : 'Войти'}
       </button>
       <div className='form-buttons__nav'>
-        <span className='form-buttons__span'>{span}</span>
+        <span className='form-buttons__span'>
+          {location.pathname === '/signup' ? 'Уже зарегистрированы?' : 'Ещё не зарегистрированы?'}
+        </span>
         <Link
           to={location.pathname === '/signup' ? '/signin' : '/signup'}
           className='form-buttons__link'>
-          {nameLink}
+          {location.pathname === '/signup' ? 'Войти' : 'Регистрация'}
         </Link>
       </div>
     </div>

@@ -1,0 +1,9 @@
+.login {
+  margin: 0 auto;
+  padding: 70px 0;
+  max-width: 396px;
+}
+
+.login__inputs {
+  margin: 0 0 157px 0;
+}
