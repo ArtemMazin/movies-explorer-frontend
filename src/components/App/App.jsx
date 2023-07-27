@@ -7,6 +7,7 @@ import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Main from '../Main/Main';
+import Page404 from '../Page404/Page404';
 
 function App() {
   return (
@@ -35,6 +36,10 @@ function App() {
         <Route
           path='/signup'
           element={<Register />}
+        />
+        <Route
+          path='*'
+          element={<Page404 />}
         />
       </Routes>
     </div>
