@@ -13,7 +13,7 @@ const Register = () => {
     <div className='register'>
       <FormHeader />
       <main>
-        <form action=''>
+        <form>
           <div className='register__inputs'>
             <FormLabel
               value={name}

@@ -9,6 +9,10 @@
   background-color: var(--main-color);
   border: none;
   cursor: pointer;
+  transition: var(--transition);
+}
+.form-buttons__submit:hover {
+  opacity: var(--opacity-button);
 }
 .form-buttons__nav {
   text-align: center;
@@ -24,4 +28,8 @@
   font-size: 14px;
   font-weight: 400;
   color: var(--main-color);
+  transition: var(--transition);
+}
+.form-buttons__link:hover {
+  opacity: var(--opacity-link);
 }

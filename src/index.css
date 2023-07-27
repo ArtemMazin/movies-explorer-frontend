@@ -11,6 +11,10 @@
   --bg-main-color: #fff;
   --bg-input-color: #f9f9f9;
   --bg-hero-color: #f3c1f8;
+
+  --transition: 0.5s;
+  --opacity-link: 0.7;
+  --opacity-button: 0.8;
 }
 
 .body {

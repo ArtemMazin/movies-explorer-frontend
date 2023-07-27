@@ -9,6 +9,10 @@
   line-height: 16px;
   font-weight: 500;
   text-decoration: none;
+  transition: var(--transition);
+}
+.nav-promo__link:hover {
+  opacity: var(--opacity-link);
 }
 .nav-promo__button {
   padding: 8px 20px;
@@ -20,4 +24,8 @@
   background-color: var(--main-color);
   border: none;
   cursor: pointer;
+  transition: var(--transition);
+}
+.nav-promo__button:hover {
+  opacity: var(--opacity-button);
 }

@@ -12,7 +12,7 @@ const Login = () => {
     <div className='login'>
       <FormHeader />
       <main>
-        <form action=''>
+        <form>
           <div className='login__inputs'>
             <FormLabel
               value={email}

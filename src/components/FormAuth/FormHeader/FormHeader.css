@@ -3,6 +3,10 @@
 }
 .form-header__logo {
   margin: 0 0 40px 0;
+  transition: var(--transition);
+}
+.form-header__logo:hover {
+  opacity: var(--opacity-link);
 }
 .form-header__title {
   margin: 0;

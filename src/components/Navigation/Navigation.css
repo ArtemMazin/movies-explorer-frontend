@@ -7,4 +7,8 @@
   width: 38px;
   height: 38px;
   cursor: pointer;
+  transition: var(--transition);
+}
+.nav__logo:hover {
+  opacity: var(--opacity-link);
 }

@@ -34,6 +34,10 @@
   font-size: 14px;
   font-weight: 500;
   color: var(--main-color);
+  transition: var(--transition);
+}
+.about-me__link:hover {
+  opacity: var(--opacity-link);
 }
 
 .about-me__avatar {

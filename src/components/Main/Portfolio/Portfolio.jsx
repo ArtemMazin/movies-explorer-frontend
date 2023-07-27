@@ -9,16 +9,19 @@ const Portfolio = () => {
       <nav>
         <ul className='portfolio__links'>
           <li className='portfolio__row'>
-            <Link className='portfolio__link'>Статичный сайт</Link>
-            <button className='portfolio__button'>&#8599;</button>
+            <Link className='portfolio__link'>
+              Статичный сайт <span className='portfolio__arrow'>&#8599;</span>
+            </Link>
           </li>
           <li className='portfolio__row'>
-            <Link className='portfolio__link'>Адаптивный сайт</Link>
-            <button className='portfolio__button'>&#8599;</button>
+            <Link className='portfolio__link'>
+              Адаптивный сайт <span className='portfolio__arrow'>&#8599;</span>
+            </Link>
           </li>
           <li className='portfolio__row'>
-            <Link className='portfolio__link'>Одностраничное приложение</Link>
-            <button className='portfolio__button'>&#8599;</button>
+            <Link className='portfolio__link'>
+              Одностраничное приложение <span className='portfolio__arrow'>&#8599;</span>
+            </Link>
           </li>
         </ul>
       </nav>

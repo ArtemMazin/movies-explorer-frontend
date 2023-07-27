@@ -19,4 +19,8 @@
   border-radius: 6px;
   background-color: var(--bg-input-color);
   cursor: pointer;
+  transition: var(--transition);
+}
+.movies__button:hover {
+  opacity: var(--opacity-button);
 }

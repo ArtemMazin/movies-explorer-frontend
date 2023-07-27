@@ -12,9 +12,7 @@ const Profile = () => {
       <main>
         <div className='profile'>
           <h1 className='profile__title'>Привет, Виталий!</h1>
-          <form
-            action=''
-            className='profile__form'>
+          <form className='profile__form'>
             <div>
               <label className='profile__label'>
                 <span className='profile__input-name'>Имя</span>

@@ -33,4 +33,8 @@
   font-weight: 400;
   text-decoration: none;
   color: var(--main-color);
+  transition: var(--transition);
+}
+.footer__link:hover {
+  opacity: var(--opacity-link);
 }

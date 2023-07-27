@@ -47,6 +47,10 @@
   font-weight: 400;
   background-color: var(--main-bg-color);
   cursor: pointer;
+  transition: var(--transition);
+}
+.profile__submit-button:hover {
+  opacity: var(--opacity-button);
 }
 .profile__logout-button {
   padding: 0;
@@ -59,4 +63,8 @@
   color: var(--error-color);
   background-color: var(--main-bg-color);
   cursor: pointer;
+  transition: var(--transition);
+}
+.profile__logout-button:hover {
+  opacity: var(--opacity-button);
 }

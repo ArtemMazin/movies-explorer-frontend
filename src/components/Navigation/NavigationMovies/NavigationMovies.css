@@ -11,28 +11,39 @@
 }
 .nav-movies__link {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 18px;
   text-decoration: none;
   color: var(--main-color);
+  transition: var(--transition);
+}
+.nav-movies__link:hover {
+  opacity: var(--opacity-link);
+}
+.active {
+  font-weight: 500;
 }
 .nav-movies__profile-link {
-  text-decoration: none;
-}
-.nav-movies__button {
   padding: 8px 10px;
   width: 100px;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
+  text-decoration: none;
   font-size: 14px;
   font-weight: 500;
   line-height: 16px;
   border-radius: 50px;
   border: 2px solid rgba(170, 170, 170, 0.2);
+  color: var(--main-color);
   background-color: var(--main-bg-color);
+  transition: var(--transition);
   cursor: pointer;
 }
-.nav-movies__button-svg {
+.nav-movies__profile-link:hover {
+  opacity: var(--opacity-link);
+}
+.nav-movies__profile-svg {
   width: 12px;
   height: 14px;
   background: url(../../../images/account-svg.svg);

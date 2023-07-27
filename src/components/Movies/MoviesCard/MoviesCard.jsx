@@ -17,12 +17,10 @@ const MoviesCard = ({ card }) => {
           <h2 className='card__name'>{card.nameRU}</h2>
           <p className='card__duration'>{card.duration}</p>
         </div>
-        {location.pathname === '/movies' ? (
+        {location.pathname === '/movies' || location.pathname === '/movies/' ? (
           <input
             className='card__checkbox'
             type='checkbox'
-            name='favorite_checkbox'
-            id='favorite_checkbox'
           />
         ) : (
           <button

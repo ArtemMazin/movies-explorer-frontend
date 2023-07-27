@@ -39,6 +39,10 @@
   font-size: 12px;
   line-height: 16px;
   cursor: pointer;
+  transition: var(--transition);
+}
+.promo__button:hover {
+  opacity: var(--opacity-button);
 }
 .promo__img-wrap {
   width: 310px;

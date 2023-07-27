@@ -27,23 +27,20 @@
   border-bottom: none;
 }
 .portfolio__link {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   color: var(--main-color);
   font-size: 30px;
   font-weight: 400;
   line-height: 50px;
   letter-spacing: -1.2px;
   text-decoration: none;
+  transition: var(--transition);
 }
-.portfolio__button {
-  padding: 0;
-  width: 29px;
-  height: 60px;
-  color: var(--main-color);
-  background-color: var(--bg-main-color);
-  border: none;
-  color: #000;
-  font-size: 30px;
-  font-weight: 400;
+.portfolio__link:hover {
+  opacity: var(--opacity-link);
+}
+.portfolio__arrow {
   line-height: 60px;
-  letter-spacing: -1.2px;
 }

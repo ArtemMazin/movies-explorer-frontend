@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './NavigationMovies.css';
 
 const NavigationMovies = () => {
@@ -7,29 +7,25 @@ const NavigationMovies = () => {
     <div className='nav-movies'>
       <ul className='nav-movies__links'>
         <li>
-          <Link
+          <NavLink
             to={'/movies'}
             className='nav-movies__link'>
             Фильмы
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             to={'/saved-movies'}
-            className='nav-movies__link'>
+            className={({ isActive }) => `nav-movies__link ${isActive ? 'active' : ''}`}>
             Сохранённые фильмы
-          </Link>
+          </NavLink>
         </li>
       </ul>
       <Link
         to={'/profile'}
         className='nav-movies__profile-link'>
-        <button
-          type='button'
-          className='nav-movies__button'>
-          <div className='nav-movies__button-svg'></div>
-          Аккаунт
-        </button>
+        <div className='nav-movies__profile-svg'></div>
+        Аккаунт
       </Link>
     </div>
   );
