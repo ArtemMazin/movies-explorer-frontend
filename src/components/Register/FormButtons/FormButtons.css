@@ -1,0 +1,27 @@
+.form-buttons__submit {
+  margin: 0 0 16px 0;
+  padding: 14px 0;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 3px;
+  color: var(--bg-main-color);
+  background-color: var(--main-color);
+  border: none;
+  cursor: pointer;
+}
+.form-buttons__nav {
+  text-align: center;
+}
+.form-buttons__span {
+  margin: 0 6px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-gray-color);
+}
+.form-buttons__link {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--main-color);
+}

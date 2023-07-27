@@ -1,0 +1,27 @@
+.label__input-name {
+  margin: 0 0 10px 0;
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+}
+.label__input_error {
+  color: var(--error-color);
+}
+.label__error-message {
+  min-height: 12px;
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--error-color);
+}
+.label__input {
+  margin: 0 0 10px 0;
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: var(--bg-input-color);
+}

@@ -3,72 +3,7 @@
   padding: 70px 0;
   max-width: 396px;
 }
-.register__header {
-  margin: 0 0 40px 0;
-}
-.register__logo {
-  margin: 0 0 40px 0;
-}
-.register__title {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 500;
-}
 
 .register__inputs {
   margin: 0 0 69px 0;
-}
-.register__input-name {
-  margin: 0 0 10px 0;
-  display: block;
-  font-size: 10px;
-  font-weight: 400;
-}
-.register__input_error {
-  color: var(--error-color);
-}
-.register__error-message {
-  min-height: 12px;
-  display: block;
-  font-size: 10px;
-  font-weight: 400;
-  color: var(--error-color);
-}
-.register__input {
-  margin: 0 0 10px 0;
-  padding: 15px;
-  width: 100%;
-  box-sizing: border-box;
-  border: none;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  background-color: var(--bg-input-color);
-}
-.register__submit-btn {
-  margin: 0 0 16px 0;
-  padding: 14px 0;
-  width: 100%;
-  font-size: 14px;
-  font-weight: 500;
-  border-radius: 3px;
-  color: var(--bg-main-color);
-  background-color: var(--main-color);
-  border: none;
-  cursor: pointer;
-}
-.register__nav {
-  text-align: center;
-}
-.register__span {
-  margin: 0 6px 0 0;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--text-gray-color);
-}
-.register__login-link {
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--main-color);
 }
