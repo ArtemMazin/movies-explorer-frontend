@@ -51,3 +51,9 @@
   background: url('../../../images/delete-btn.svg') no-repeat;
   cursor: pointer;
 }
+@media (max-width: 990px) {
+  .card__image {
+    width: 339px;
+    height: 190px;
+  }
+}

@@ -24,3 +24,10 @@
 .movies__button:hover {
   opacity: var(--opacity-button);
 }
+@media (max-width: 900px) {
+  .movies__list {
+    padding: 70px 30px 30px 30px;
+    column-gap: 30px;
+    row-gap: 36px;
+  }
+}

@@ -24,3 +24,8 @@
   font-weight: 400;
   line-height: 18px;
 }
+@media (max-width: 900px) {
+  .filter-checkbox {
+    padding: 40px 0 40px 0;
+  }
+}

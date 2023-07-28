@@ -26,6 +26,7 @@
   padding: 0;
   width: 44px;
   height: 44px;
+  flex-shrink: 0;
   border: none;
   background: url(../../../images/search-icon.svg);
   cursor: pointer;
@@ -33,4 +34,9 @@
 }
 .search-form__button:hover {
   opacity: var(--opacity-button);
+}
+@media (max-width: 900px) {
+  .search-form {
+    padding: 80px 30px 0 30px;
+  }
 }
