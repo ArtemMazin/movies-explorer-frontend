@@ -1,7 +1,9 @@
 .header {
   margin: 0 auto;
   padding: 17px 70px;
-  max-width: 1140px;
+  height: 74px;
+  max-width: 1280px;
+  box-sizing: border-box;
   background-color: var(--bg-hero-color);
 }
 .header_white {

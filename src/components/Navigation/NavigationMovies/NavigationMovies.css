@@ -48,3 +48,32 @@
   height: 14px;
   background: url(../../../images/account-svg.svg);
 }
+
+.header__menu-hamburger {
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  display: none;
+  z-index: 5;
+  border: none;
+  background: url('../../../images/burger-open.svg');
+  cursor: pointer;
+}
+.header__close-menu-btn {
+  padding: 0;
+  width: 22px;
+  height: 22px;
+  z-index: 5;
+  border: none;
+  background: url('../../../images/burger-close.svg');
+  background-position: center;
+  cursor: pointer;
+}
+@media (max-width: 900px) {
+  .header__menu-hamburger {
+    display: block;
+  }
+  .nav-movies {
+    display: none;
+  }
+}
