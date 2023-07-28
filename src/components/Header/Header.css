@@ -2,9 +2,13 @@
   margin: 0 auto;
   padding: 17px 70px;
   max-width: 1140px;
-  width: 100%;
   background-color: var(--bg-hero-color);
 }
 .header_white {
   background-color: var(--main-bg-color);
+}
+@media (max-width: 900px) {
+  .header {
+    padding: 17px 30px;
+  }
 }

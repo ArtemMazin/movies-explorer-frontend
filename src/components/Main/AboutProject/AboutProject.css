@@ -41,6 +41,7 @@
 
 .about-project__timeline-button {
   padding: 9px 14px;
+  height: 36px;
   width: 100%;
   border: none;
   font-size: 14px;
@@ -60,4 +61,26 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
+}
+@media (max-width: 900px) {
+  .about-project {
+    padding: 90px 50px;
+  }
+  .about-project__content {
+    padding: 72px 0 94px 0;
+    gap: 30px;
+  }
+  .about-project__title {
+    margin: 0 0 22px 0;
+  }
+  .about-project__text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .about-project__timeline-block_left {
+    max-width: 140px;
+  }
+  .about-project__timeline-text {
+    font-weight: 400;
+  }
 }

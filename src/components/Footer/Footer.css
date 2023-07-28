@@ -38,3 +38,8 @@
 .footer__link:hover {
   opacity: var(--opacity-link);
 }
+@media (max-width: 900px) {
+  .footer {
+    padding: 79px 30px 0 30px;
+  }
+}

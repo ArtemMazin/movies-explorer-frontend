@@ -44,3 +44,12 @@
 .portfolio__arrow {
   line-height: 60px;
 }
+@media (max-width: 900px) {
+  .portfolio {
+    padding: 0 50px 90px 50px;
+  }
+  .portfolio__link {
+    font-size: 28px;
+    letter-spacing: -1.12px;
+  }
+}
