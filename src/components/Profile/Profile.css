@@ -26,6 +26,7 @@
 }
 .profile__input-name {
   min-width: 140px;
+  height: 14px;
   font-size: 11px;
   font-weight: 500;
 }
@@ -67,4 +68,15 @@
 }
 .profile__logout-button:hover {
   opacity: var(--opacity-button);
+}
+@media (max-width: 900px) {
+  .profile {
+    padding: 236px 0 269px 0;
+  }
+  .profile__title {
+    margin: 0 0 96px 0;
+  }
+  .profile__label:last-child {
+    margin: 0 0 210px 0;
+  }
 }

@@ -7,3 +7,8 @@
 .register__inputs {
   margin: 0 0 69px 0;
 }
+@media (max-width: 900px) {
+  .register {
+    padding: 232px 0;
+  }
+}

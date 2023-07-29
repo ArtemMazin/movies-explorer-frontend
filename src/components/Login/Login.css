@@ -5,5 +5,10 @@
 }
 
 .login__inputs {
-  margin: 0 0 157px 0;
+  margin: 0 0 158px 0;
+}
+@media (max-width: 900px) {
+  .login {
+    padding: 232px 0;
+  }
 }

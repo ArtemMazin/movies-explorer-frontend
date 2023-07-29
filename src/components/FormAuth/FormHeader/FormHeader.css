@@ -2,7 +2,7 @@
   margin: 0 0 40px 0;
 }
 .form-header__logo {
-  margin: 0 0 40px 0;
+  margin: 0 0 39px 0;
   transition: var(--transition);
 }
 .form-header__logo:hover {
