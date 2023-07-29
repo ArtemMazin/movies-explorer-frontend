@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './NavigationMovies.css';
+import HideMenu from '../HideMenu/HideMenu';
 
 const NavigationMovies = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,16 +13,16 @@ const NavigationMovies = () => {
     <>
       {!isMenuOpen ? (
         <button
-          className='header__menu-hamburger'
-          onClick={toggleHideMenu}>
-          <span className='header__menu-bar' />
-        </button>
+          className='button-hamburger'
+          onClick={toggleHideMenu}
+        />
       ) : (
         <button
-          className='header__close-menu-btn'
+          className='button-hamburger-close'
           onClick={toggleHideMenu}
         />
       )}
+      <HideMenu isMenuOpen={isMenuOpen} />
       <div className='nav-movies'>
         <ul className='nav-movies__links'>
           <li>
@@ -42,7 +43,7 @@ const NavigationMovies = () => {
         <Link
           to={'/profile'}
           className='nav-movies__profile-link'>
-          <div className='nav-movies__profile-svg'></div>
+          <div className='nav-movies__profile-svg' />
           Аккаунт
         </Link>
       </div>

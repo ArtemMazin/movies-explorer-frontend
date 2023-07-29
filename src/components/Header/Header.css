@@ -4,11 +4,13 @@
   height: 74px;
   max-width: 1280px;
   width: 100%;
+  position: sticky;
+  top: 0;
   box-sizing: border-box;
   background-color: var(--bg-hero-color);
 }
 .header_white {
-  background-color: var(--main-bg-color);
+  background-color: var(--bg-main-color);
 }
 @media (max-width: 900px) {
   .header {

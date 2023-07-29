@@ -46,7 +46,7 @@
   border: none;
   font-size: 13px;
   font-weight: 400;
-  background-color: var(--main-bg-color);
+  background-color: var(--bg-main-color);
   cursor: pointer;
   transition: var(--transition);
 }
@@ -62,7 +62,7 @@
   font-size: 13px;
   font-weight: 500;
   color: var(--error-color);
-  background-color: var(--main-bg-color);
+  background-color: var(--bg-main-color);
   cursor: pointer;
   transition: var(--transition);
 }

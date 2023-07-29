@@ -19,5 +19,10 @@
   border: none;
   font-size: 14px;
   font-weight: 400;
-  background-color: var(--main-bg-color);
+  background-color: var(--bg-main-color);
+}
+@media (max-width: 900px) {
+  .not-found {
+    padding: 410px 0 222px 0;
+  }
 }
