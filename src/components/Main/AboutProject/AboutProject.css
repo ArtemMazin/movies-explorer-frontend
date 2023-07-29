@@ -84,3 +84,35 @@
     font-weight: 400;
   }
 }
+@media (max-width: 560px) {
+  .about-project {
+    padding: 70px 18px;
+  }
+  .about-project__content {
+    padding: 62px 0 60px 0;
+    flex-direction: column;
+    gap: 58px;
+  }
+  .about-project__title {
+    margin: 0 0 16px 0;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+  .about-project__text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .about-project__timeline-block {
+    gap: 10px;
+  }
+  .about-project__timeline-block_left {
+    max-width: 100px;
+  }
+  .about-project__timeline-button {
+    padding: 11px 10px;
+    font-size: 11px;
+  }
+  .about-project__timeline-text {
+    font-size: 11px;
+  }
+}

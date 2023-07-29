@@ -70,6 +70,7 @@
     line-height: 50px;
   }
   .promo__description {
+    margin: 0;
     max-width: 680px;
     align-items: center;
     gap: 22px;
@@ -80,5 +81,25 @@
   }
   .promo__button {
     margin: 0 auto;
+  }
+}
+@media (max-width: 560px) {
+  .promo {
+    padding: 70px 18px 30px 18px;
+  }
+  .promo__img-wrap {
+    margin: 0 0 44px 0;
+    width: 210px;
+  }
+  .promo__description {
+    gap: 24px;
+  }
+  .promo__title {
+    font-size: 30px;
+    line-height: 38px;
+    letter-spacing: -1.2px;
+  }
+  .promo__text {
+    margin: 0 0 82px 0;
   }
 }

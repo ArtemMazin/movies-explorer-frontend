@@ -71,4 +71,29 @@
     font-size: 12px;
     letter-spacing: -0.48px;
   }
+  @media (max-width: 560px) {
+    .techs {
+      padding: 68px 18px;
+      background-color: var(--bg-main-color);
+    }
+    .techs__content {
+      padding: 50px 0 0 0;
+    }
+    .techs__description {
+      margin: 0 0 50px 0;
+    }
+    .techs__title {
+      margin: 0 0 12px 0;
+      font-size: 30px;
+      letter-spacing: -1.2px;
+    }
+    .techs__text {
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: -0.44px;
+    }
+    .techs__skills {
+      max-width: 178px;
+    }
+  }
 }

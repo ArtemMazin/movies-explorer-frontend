@@ -43,3 +43,30 @@
     padding: 79px 30px 0 30px;
   }
 }
+@media (max-width: 560px) {
+  .footer {
+    padding: 79px 18px 0 18px;
+  }
+  .footer__description {
+    font-size: 12px;
+  }
+  .footer__row {
+    padding: 30px 0 20px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+  }
+  .footer__links {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .footer__link {
+    font-size: 12px;
+  }
+  .footer__copyright {
+    order: 1;
+    font-size: 12px;
+    color: var(--text-gray-color);
+  }
+}

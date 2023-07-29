@@ -17,3 +17,8 @@
     padding: 17px 30px;
   }
 }
+@media (max-width: 560px) {
+  .header {
+    padding: 17px 14px;
+  }
+}
