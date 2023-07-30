@@ -1,20 +1,25 @@
 .not-found {
   margin: 0 auto;
-  padding: 246px 0 60px;
+  padding: 246px 0 60px 0;
   max-width: 400px;
+  min-height: 100vh;
   text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 .not-found__title {
-  margin: 0 0 10px 0;
+  margin: 0 0 12px 0;
   font-size: 140px;
   font-weight: 400;
 }
 .not-found__text {
-  margin: 0 0 184px;
+  margin: 0 0 30px 0;
   font-size: 16px;
   font-weight: 400;
 }
 .not-found__button {
+  margin-top: auto;
   padding: 0;
   border: none;
   font-size: 14px;
@@ -24,5 +29,20 @@
 @media (max-width: 900px) {
   .not-found {
     padding: 410px 0 222px 0;
+  }
+}
+@media (max-width: 560px) {
+  .not-found {
+    padding: 330px 0 30px;
+  }
+  .not-found__title {
+    font-size: 80px;
+  }
+  .not-found__text {
+    margin: 0;
+    font-size: 12px;
+  }
+  .not-found__button {
+    font-size: 12px;
   }
 }

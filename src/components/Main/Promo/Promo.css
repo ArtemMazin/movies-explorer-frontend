@@ -16,7 +16,7 @@
   max-width: 640px;
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 38px;
 }
 
 .promo__text {

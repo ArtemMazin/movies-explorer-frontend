@@ -79,6 +79,10 @@
   .button-hamburger {
     display: block;
   }
+  .button-hamburger-close {
+    top: 24px;
+    right: 28px;
+  }
   .nav-movies {
     display: none;
   }
@@ -89,6 +93,7 @@
     right: 14px;
   }
   .button-hamburger-close {
-    right: 14px;
+    top: 20px;
+    right: 18px;
   }
 }

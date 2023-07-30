@@ -11,8 +11,8 @@ const Login = () => {
   return (
     <div className='login'>
       <FormHeader />
-      <main>
-        <form>
+      <main className='login__main'>
+        <form className='login__form'>
           <div className='login__inputs'>
             <FormLabel
               value={email}

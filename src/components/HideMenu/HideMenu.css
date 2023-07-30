@@ -78,3 +78,13 @@
   height: 14px;
   background: url(../../images/account-svg.svg);
 }
+
+@media (max-width: 560px) {
+  .nav-hide {
+    padding: 144px 0 46px 0;
+    width: 320px;
+  }
+  .nav-hide__links {
+    gap: 26px;
+  }
+}
