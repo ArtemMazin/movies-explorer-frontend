@@ -12,8 +12,8 @@ const Register = () => {
   return (
     <div className='register'>
       <FormHeader />
-      <main>
-        <form>
+      <main className='register__main'>
+        <form className='register__form'>
           <div className='register__inputs'>
             <FormLabel
               value={name}

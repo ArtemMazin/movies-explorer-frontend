@@ -13,3 +13,12 @@
   font-size: 24px;
   font-weight: 500;
 }
+@media (max-width: 560px) {
+  .form-header {
+    margin: 0 0 80px 0;
+    text-align: center;
+  }
+  .form-header__logo {
+    margin: 0 0 48px 0;
+  }
+}

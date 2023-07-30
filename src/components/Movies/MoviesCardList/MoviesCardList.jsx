@@ -10,9 +10,9 @@ const MoviesCardList = () => {
   const [countMoreMovies, setCountMoreMovies] = useState(0);
   const location = useLocation();
   const orientation = useScreenOrientation();
+  const screenWidth = window.screen.width;
 
   useEffect(() => {
-    const screenWidth = window.screen.width;
     if (screenWidth >= 1280) {
       setCountRenderMovies(16);
       setCountMoreMovies(4);
@@ -55,12 +55,20 @@ const MoviesCardList = () => {
         </>
       ) : (
         <ul className='movies__list'>
-          {favoriteCards.map((card, i) => (
-            <MoviesCard
-              card={card}
-              key={i}
-            />
-          ))}
+          {/*!!!!!!!!! проверка ширины для соответствия макету !!!!!!!!!!*/}
+          {screenWidth < 768
+            ? favoriteCards.slice(0, 2).map((card, i) => (
+                <MoviesCard
+                  card={card}
+                  key={i}
+                />
+              ))
+            : favoriteCards.map((card, i) => (
+                <MoviesCard
+                  card={card}
+                  key={i}
+                />
+              ))}
         </ul>
       )}
     </section>

@@ -1,3 +1,6 @@
+.form-buttons {
+  margin-top: auto;
+}
 .form-buttons__submit {
   margin: 0 0 16px 0;
   padding: 14px 0;
@@ -32,4 +35,18 @@
 }
 .form-buttons__link:hover {
   opacity: var(--opacity-link);
+}
+@media (max-width: 560px) {
+  .form-buttons__submit {
+    margin: 0 0 14px 0;
+    padding: 15px 0;
+    font-size: 12px;
+  }
+  .form-buttons__span {
+    margin: 0 7px 0 0;
+    font-size: 12px;
+  }
+  .form-buttons__link {
+    font-size: 12px;
+  }
 }
