@@ -8,14 +8,16 @@ const NavigationPromo = () => {
       <li>
         <Link
           to={'/signup'}
-          className='nav-promo__link'>
+          className='nav-promo__link'
+          tabIndex={1}>
           Регистрация
         </Link>
       </li>
       <li>
         <Link
           to={'/signin'}
-          className='nav-promo__button'>
+          className='nav-promo__button'
+          tabIndex={1}>
           Войти
         </Link>
       </li>

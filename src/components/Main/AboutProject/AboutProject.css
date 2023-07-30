@@ -40,10 +40,13 @@
 }
 
 .about-project__timeline-button {
-  padding: 9px 14px;
+  margin: 0;
   height: 36px;
   width: 100%;
-  border: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 14px;
   font-weight: 400;
 }
@@ -109,7 +112,6 @@
     max-width: 100px;
   }
   .about-project__timeline-button {
-    padding: 11px 10px;
     font-size: 11px;
   }
   .about-project__timeline-text {

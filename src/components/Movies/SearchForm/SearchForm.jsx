@@ -10,10 +10,13 @@ const SearchForm = () => {
           type='text'
           placeholder='Фильм'
           className='search-form__input'
+          tabIndex={1}
         />
         <button
           type='button'
-          className='search-form__button'></button>
+          className='search-form__button'
+          tabIndex={1}
+        />
       </form>
 
       <FilterCheckbox />

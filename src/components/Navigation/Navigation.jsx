@@ -10,7 +10,9 @@ const Navigation = () => {
 
   return (
     <nav className='nav'>
-      <Link to={'/'}>
+      <Link
+        to={'/'}
+        tabIndex={1}>
         <img
           src={logo}
           alt='Логотип проекта: Movies-Explorer'

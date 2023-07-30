@@ -4,16 +4,12 @@ import './FilterCheckbox.css';
 const FilterCheckbox = () => {
   return (
     <div className='filter-checkbox'>
-      <input
-        type='checkbox'
-        name='tumb'
-        id='tumb'
-        className='filter-checkbox__input'
-      />
-
-      <label
-        // for='tumb'
-        className='filter-checkbox__text'>
+      <label className='filter-checkbox__text'>
+        <input
+          type='checkbox'
+          className='filter-checkbox__input'
+          tabIndex={1}
+        />
         Короткометражки
       </label>
     </div>

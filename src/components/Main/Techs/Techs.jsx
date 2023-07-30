@@ -15,25 +15,25 @@ const Techs = () => {
         </article>
         <ul className='techs__skills'>
           <li>
-            <button className='techs__skill'>HTML</button>
+            <p className='techs__skill'>HTML</p>
           </li>
           <li>
-            <button className='techs__skill'>CSS</button>
+            <p className='techs__skill'>CSS</p>
           </li>
           <li>
-            <button className='techs__skill'>JS</button>
+            <p className='techs__skill'>JS</p>
           </li>
           <li>
-            <button className='techs__skill'>React</button>
+            <p className='techs__skill'>React</p>
           </li>
           <li>
-            <button className='techs__skill'>Git</button>
+            <p className='techs__skill'>Git</p>
           </li>
           <li>
-            <button className='techs__skill'>Express.js</button>
+            <p className='techs__skill'>Express.js</p>
           </li>
           <li>
-            <button className='techs__skill'>mongoDB</button>
+            <p className='techs__skill'>mongoDB</p>
           </li>
         </ul>
       </div>

@@ -4,7 +4,9 @@ import SectionName from '../SectionName/SectionName';
 
 const AboutProject = () => {
   return (
-    <section className='about-project'>
+    <section
+      className='about-project'
+      id='about_project'>
       <SectionName>О проекте</SectionName>
       <ul className='about-project__content'>
         <li>
@@ -26,11 +28,11 @@ const AboutProject = () => {
       </ul>
       <div className='about-project__timeline'>
         <div className='about-project__timeline-block about-project__timeline-block_left'>
-          <button className='about-project__timeline-button  about-project__timeline-button_left'>1 неделя</button>
+          <p className='about-project__timeline-button  about-project__timeline-button_left'>1 неделя</p>
           <p className='about-project__timeline-text'>Back-end</p>
         </div>
         <div className='about-project__timeline-block about-project__timeline-block_right'>
-          <button className='about-project__timeline-button about-project__timeline-button_right'>4 недели</button>
+          <p className='about-project__timeline-button about-project__timeline-button_right'>4 недели</p>
           <p className='about-project__timeline-text'>Front-end</p>
         </div>
       </div>

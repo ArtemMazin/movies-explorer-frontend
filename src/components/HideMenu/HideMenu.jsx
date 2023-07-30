@@ -10,28 +10,32 @@ const HideMenu = ({ isMenuOpen }) => {
           <li>
             <NavLink
               to={'/'}
-              className='nav-hide__link'>
+              className={({ isActive }) => `nav-hide__link ${isActive ? 'active' : ''}`}
+              tabIndex={1}>
               Главная
             </NavLink>
           </li>
           <li>
             <NavLink
               to={'/movies'}
-              className='nav-hide__link'>
+              className={({ isActive }) => `nav-hide__link ${isActive ? 'active' : ''}`}
+              tabIndex={1}>
               Фильмы
             </NavLink>
           </li>
           <li>
             <NavLink
               to={'/saved-movies'}
-              className={({ isActive }) => `nav-hide__link ${isActive ? 'active' : ''}`}>
+              className={({ isActive }) => `nav-hide__link ${isActive ? 'active' : ''}`}
+              tabIndex={1}>
               Сохранённые фильмы
             </NavLink>
           </li>
         </ul>
         <Link
           to={'/profile'}
-          className='nav-hide__profile-link'>
+          className='nav-hide__profile-link'
+          tabIndex={1}>
           <div className='nav-hide__profile-svg' />
           Аккаунт
         </Link>

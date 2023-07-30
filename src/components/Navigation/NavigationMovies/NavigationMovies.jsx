@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './NavigationMovies.css';
-import HideMenu from '../HideMenu/HideMenu';
+import HideMenu from '../../HideMenu/HideMenu';
 
 const NavigationMovies = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,11 +15,13 @@ const NavigationMovies = () => {
         <button
           className='button-hamburger'
           onClick={toggleHideMenu}
+          tabIndex={1}
         />
       ) : (
         <button
           className='button-hamburger-close'
           onClick={toggleHideMenu}
+          tabIndex={1}
         />
       )}
       <HideMenu isMenuOpen={isMenuOpen} />
@@ -28,14 +30,16 @@ const NavigationMovies = () => {
           <li>
             <NavLink
               to={'/movies'}
-              className='nav-movies__link'>
+              className={({ isActive }) => `nav-movies__link ${isActive ? 'active' : ''}`}
+              tabIndex={1}>
               Фильмы
             </NavLink>
           </li>
           <li>
             <NavLink
               to={'/saved-movies'}
-              className={({ isActive }) => `nav-movies__link ${isActive ? 'active' : ''}`}>
+              className={({ isActive }) => `nav-movies__link ${isActive ? 'active' : ''}`}
+              tabIndex={1}>
               Сохранённые фильмы
             </NavLink>
           </li>
@@ -43,7 +47,10 @@ const NavigationMovies = () => {
         <Link
           to={'/profile'}
           className='nav-movies__profile-link'>
-          <div className='nav-movies__profile-svg' />
+          <div
+            className='nav-movies__profile-svg'
+            tabIndex={1}
+          />
           Аккаунт
         </Link>
       </div>

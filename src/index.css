@@ -17,6 +17,10 @@
   --opacity-button: 0.8;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
 .body {
   background-color: var(--bg-main-color);
   color: var(--main-color);

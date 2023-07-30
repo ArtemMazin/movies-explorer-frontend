@@ -13,16 +13,18 @@ const Footer = () => {
             <li>
               <Link
                 to={'https://practicum.yandex.ru/'}
+                className='footer__link'
                 target='blank'
-                className='footer__link'>
+                tabIndex={1}>
                 Яндекс.Практикум
               </Link>
             </li>
             <li>
               <Link
                 to={'https://github.com/ArtemMazin'}
+                className='footer__link'
                 target='blank'
-                className='footer__link'>
+                tabIndex={1}>
                 Github
               </Link>
             </li>

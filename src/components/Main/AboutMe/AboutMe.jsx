@@ -22,7 +22,8 @@ const AboutMe = () => {
             <Link
               to={'https://github.com/ArtemMazin'}
               className='about-me__link'
-              target='blank'>
+              target='blank'
+              tabIndex={1}>
               Github
             </Link>
           </article>

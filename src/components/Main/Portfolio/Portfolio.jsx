@@ -12,7 +12,8 @@ const Portfolio = () => {
             <Link
               className='portfolio__link'
               to={'https://github.com/ArtemMazin/how-to-learn'}
-              target='blank'>
+              target='blank'
+              tabIndex={1}>
               Статичный сайт <span className='portfolio__arrow'>&#8599;</span>
             </Link>
           </li>
@@ -20,7 +21,8 @@ const Portfolio = () => {
             <Link
               className='portfolio__link'
               to={'https://github.com/ArtemMazin/russian-travel'}
-              target='blank'>
+              target='blank'
+              tabIndex={1}>
               Адаптивный сайт <span className='portfolio__arrow'>&#8599;</span>
             </Link>
           </li>
@@ -28,7 +30,8 @@ const Portfolio = () => {
             <Link
               className='portfolio__link'
               to={'https://github.com/ArtemMazin/react-mesto-api-full-gha'}
-              target='blank'>
+              target='blank'
+              tabIndex={1}>
               Одностраничное приложение <span className='portfolio__arrow'>&#8599;</span>
             </Link>
           </li>
