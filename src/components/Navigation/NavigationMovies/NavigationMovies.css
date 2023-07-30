@@ -83,3 +83,12 @@
     display: none;
   }
 }
+@media (max-width: 560px) {
+  .button-hamburger {
+    width: 40px;
+    right: 14px;
+  }
+  .button-hamburger-close {
+    right: 14px;
+  }
+}

@@ -47,7 +47,8 @@ const MoviesCardList = () => {
             <button
               className='movies__button'
               type='button'
-              onClick={getMoreMovies}>
+              onClick={getMoreMovies}
+              tabIndex={1}>
               Ещё
             </button>
           )}

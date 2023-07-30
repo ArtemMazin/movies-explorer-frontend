@@ -31,3 +31,11 @@
     padding: 40px 0 40px 0;
   }
 }
+@media (max-width: 560px) {
+  .filter-checkbox {
+    padding: 47px 0 40px 0;
+  }
+  .filter-checkbox__text {
+    font-size: 11px;
+  }
+}

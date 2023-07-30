@@ -57,3 +57,9 @@
     height: 190px;
   }
 }
+@media (max-width: 766px) {
+  .card__image {
+    width: 300px;
+    height: 168px;
+  }
+}

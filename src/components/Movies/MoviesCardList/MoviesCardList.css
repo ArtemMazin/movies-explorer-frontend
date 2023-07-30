@@ -31,3 +31,15 @@
     row-gap: 36px;
   }
 }
+
+@media (max-width: 690px) {
+  .movies__list {
+    padding: 40px 10px 30px 10px;
+    justify-content: center;
+    column-gap: 10px;
+    row-gap: 20px;
+  }
+  .movies__button {
+    width: 240px;
+  }
+}

@@ -40,3 +40,12 @@
     padding: 80px 30px 0 30px;
   }
 }
+@media (max-width: 560px) {
+  .search-form {
+    padding: 78px 14px 0 14px;
+  }
+  .search-form__input {
+    padding: 0 13px;
+    height: 44px;
+  }
+}
