@@ -31,6 +31,7 @@
 }
 .profile__label:last-child {
   padding: 0;
+  margin: 0 0 100px 0;
   border-bottom: none;
 }
 .profile__input-name {

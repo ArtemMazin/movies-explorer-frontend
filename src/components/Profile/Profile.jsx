@@ -13,26 +13,28 @@ const Profile = () => {
       <main className='profile__main'>
         <h1 className='profile__title'>Привет, Виталий!</h1>
         <form className='profile__form'>
-          <label className='profile__label'>
-            <span className='profile__input-name'>Имя</span>
-            <input
-              type='text'
-              placeholder='Введите имя'
-              className='profile__input'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
-          <label className='profile__label'>
-            <span className='profile__input-name'>E-mail</span>
-            <input
-              type='text'
-              placeholder='Введите e-mail'
-              className='profile__input'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
+          <div className='profile__inputs'>
+            <label className='profile__label'>
+              <span className='profile__input-name'>Имя</span>
+              <input
+                type='text'
+                placeholder='Введите имя'
+                className='profile__input'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </label>
+            <label className='profile__label'>
+              <span className='profile__input-name'>E-mail</span>
+              <input
+                type='text'
+                placeholder='Введите e-mail'
+                className='profile__input'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </label>
+          </div>
 
           <div className='profile__buttons'>
             <button

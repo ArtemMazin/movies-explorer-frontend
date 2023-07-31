@@ -46,11 +46,9 @@ const NavigationMovies = () => {
         </ul>
         <Link
           to={'/profile'}
-          className='nav-movies__profile-link'>
-          <div
-            className='nav-movies__profile-svg'
-            tabIndex={1}
-          />
+          className='nav-movies__profile-link'
+          tabIndex={1}>
+          <div className='nav-movies__profile-svg' />
           Аккаунт
         </Link>
       </div>
