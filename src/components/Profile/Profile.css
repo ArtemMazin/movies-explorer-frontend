@@ -49,6 +49,7 @@
 }
 .profile__buttons {
   margin-top: auto;
+  text-align: center;
 }
 .profile__submit-button {
   padding: 0;
@@ -70,7 +71,7 @@
   margin: 0;
   width: 100%;
   display: block;
-  border: none;
+  text-decoration: none;
   font-size: 13px;
   font-weight: 500;
   color: var(--error-color);

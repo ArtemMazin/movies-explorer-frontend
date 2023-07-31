@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Profile.css';
 import Header from '../Header/Header';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
   const [name, setName] = useState('Виталий');
@@ -39,11 +40,11 @@ const Profile = () => {
               className='profile__submit-button'>
               Редактировать
             </button>
-            <button
-              type='button'
+            <Link
+              to={'/signin'}
               className='profile__logout-button'>
               Выйти из аккаунта
-            </button>
+            </Link>
           </div>
         </form>
       </main>

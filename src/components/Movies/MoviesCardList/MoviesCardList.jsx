@@ -23,7 +23,7 @@ const MoviesCardList = () => {
       setCountRenderMovies(5);
       setCountMoreMovies(2);
     }
-  }, [orientation]);
+  }, [orientation, screenWidth]);
 
   const getMoreMovies = () => {
     setCountRenderMovies(countRenderMovies + countMoreMovies);
