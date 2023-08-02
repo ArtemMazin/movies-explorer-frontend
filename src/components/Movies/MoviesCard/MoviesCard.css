@@ -23,6 +23,9 @@
   margin: 0 0 10px 0;
   font-size: 13px;
   font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .card__duration {
   margin: 0;

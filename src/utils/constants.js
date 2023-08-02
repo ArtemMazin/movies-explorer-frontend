@@ -1,3 +1,5 @@
+export const { BASE_URL = 'https://api.nomoreparties.co' } = process.env;
+
 export const favoriteCards = [
   {
     duration: '1ч42м',

@@ -1,17 +1,22 @@
 import React from 'react';
 import './MoviesCard.css';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { BASE_URL } from '../../../utils/constants';
 
 const MoviesCard = ({ card }) => {
   const location = useLocation();
 
   return (
     <li className='card'>
-      <img
-        className='card__image'
-        src={`https://api.nomoreparties.co/${card.image.url}`}
-        alt={card.nameRU}
-      />
+      <Link
+        to={card.trailerLink}
+        target='blank'>
+        <img
+          className='card__image'
+          src={`${BASE_URL}${card.image.url}`}
+          alt={card.nameRU}
+        />
+      </Link>
       <div className='card__description'>
         <div>
           <h2 className='card__name'>{card.nameRU}</h2>

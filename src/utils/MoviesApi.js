@@ -1,4 +1,4 @@
-const { BASE_URL = 'https://api.nomoreparties.co/beatfilm-movies' } = process.env;
+import { BASE_URL } from './constants';
 
 function getResponseData(res, setErrorMessage) {
   if (!res.ok) {
@@ -13,7 +13,7 @@ async function request(url, setErrorMessage) {
 
 export function getMovies() {
   return request(
-    '/',
+    '/beatfilm-movies',
     'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
   );
 }

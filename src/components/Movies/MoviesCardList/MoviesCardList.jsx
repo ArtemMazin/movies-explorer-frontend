@@ -4,8 +4,9 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import { favoriteCards } from '../../../utils/constants';
 import { useLocation } from 'react-router-dom';
 import useScreenOrientation from '../../../hooks/useScreenOrientation';
+import Preloader from '../Preloader/Preloader';
 
-const MoviesCardList = ({ movies }) => {
+const MoviesCardList = ({ movies, isLoading }) => {
   const [countRenderMovies, setCountRenderMovies] = useState(0);
   const [countMoreMovies, setCountMoreMovies] = useState(0);
   const location = useLocation();
@@ -33,6 +34,7 @@ const MoviesCardList = ({ movies }) => {
     <section className='movies'>
       {location.pathname === '/movies' || location.pathname === '/movies/' ? (
         <>
+          {isLoading && <Preloader />}
           <ul className='movies__list'>
             {movies.slice(0, countRenderMovies).map((card, i) => (
               <MoviesCard
@@ -42,8 +44,7 @@ const MoviesCardList = ({ movies }) => {
             ))}
           </ul>
 
-          {/* !!!!!!!!!! не забыть заменить >= на > !!!!!!!!!!! */}
-          {movies.length >= countRenderMovies && (
+          {movies.length > countRenderMovies && (
             <button
               className='movies__button'
               type='button'

@@ -12,14 +12,28 @@ import { getMovies } from '../../utils/MoviesApi';
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [findedMovies, setFindedMovies] = useState([]);
+  const [valueInputMovie, setValueInputMovie] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
+  const handleSubmitSearchMovies = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
     Promise.all([getMovies()])
       .then(([arrayCards]) => {
         setMovies(arrayCards);
       })
-      .catch(console.error);
-  }, []);
+      .then(() => {
+        setFindedMovies(
+          Array.from(movies).filter((item) => {
+            return item.nameRU.toLowerCase().includes(valueInputMovie);
+          })
+        );
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  };
 
   return (
     <div className='App'>
@@ -30,7 +44,14 @@ function App() {
         />
         <Route
           path='/movies'
-          element={<Movies movies={movies} />}
+          element={
+            <Movies
+              movies={findedMovies}
+              setValueInputMovie={setValueInputMovie}
+              handleSubmit={handleSubmitSearchMovies}
+              isLoading={isLoading}
+            />
+          }
         />
         <Route
           path='/saved-movies'
