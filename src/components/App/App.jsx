@@ -25,15 +25,23 @@ function App() {
         setMovies(arrayCards);
       })
       .then(() => {
-        setFindedMovies(
-          Array.from(movies).filter((item) => {
-            return item.nameRU.toLowerCase().includes(valueInputMovie);
-          })
-        );
+        const filteredMovies = Array.from(movies).filter((item) => {
+          return item.nameRU.toLowerCase().includes(valueInputMovie);
+        });
+
+        setFindedMovies(filteredMovies);
+        localStorage.setItem('movies', JSON.stringify(filteredMovies));
       })
+
       .catch(console.error)
       .finally(() => setIsLoading(false));
   };
+  useEffect(() => {
+    const movies = localStorage.getItem('movies');
+    if (movies) {
+      setFindedMovies(JSON.parse(movies));
+    }
+  }, []);
 
   return (
     <div className='App'>
