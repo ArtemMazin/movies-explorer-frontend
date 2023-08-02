@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer';
 import SearchForm from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 
-const Movies = ({ movies, setValueInputMovie, handleSubmit, isLoading }) => {
+const Movies = ({ movies, setValueInputMovie, handleSubmit, isLoading, isMoviesNotFound }) => {
   return (
     <>
       <Header />
@@ -16,6 +16,7 @@ const Movies = ({ movies, setValueInputMovie, handleSubmit, isLoading }) => {
         <MoviesCardList
           movies={movies}
           isLoading={isLoading}
+          isMoviesNotFound={isMoviesNotFound}
         />
       </main>
       <Footer />

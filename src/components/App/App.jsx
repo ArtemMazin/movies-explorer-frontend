@@ -15,6 +15,17 @@ function App() {
   const [findedMovies, setFindedMovies] = useState([]);
   const [valueInputMovie, setValueInputMovie] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isMoviesNotFound, setIsMoviesNotFound] = useState(false);
+
+  function getFilteredMovies(arrayMovies) {
+    return Array.from(arrayMovies).filter((item) => {
+      return item.nameRU.toLowerCase().includes(valueInputMovie);
+    });
+  }
+
+  function checkIsMoviesNotFound(filteredMovies) {
+    filteredMovies.length === 0 ? setIsMoviesNotFound(true) : setIsMoviesNotFound(false);
+  }
 
   async function handleSubmitSearchMovies(e) {
     e.preventDefault();
@@ -24,12 +35,11 @@ function App() {
       if (valueInputMovie.length === 0) {
         throw new Error('Нужно ввести ключевое слово');
       }
-      const arrayCards = await Promise.resolve(getMovies());
-      const filteredMovies = Array.from(arrayCards).filter((item) => {
-        return item.nameRU.toLowerCase().includes(valueInputMovie);
-      });
+      const arrayMovies = await Promise.resolve(getMovies());
+      const filteredMovies = getFilteredMovies(arrayMovies);
 
-      setMovies(arrayCards);
+      checkIsMoviesNotFound(filteredMovies);
+      setMovies(arrayMovies);
       setFindedMovies(filteredMovies);
       localStorage.setItem('movies', JSON.stringify(filteredMovies));
     } catch (err) {
@@ -60,6 +70,7 @@ function App() {
               setValueInputMovie={setValueInputMovie}
               handleSubmit={handleSubmitSearchMovies}
               isLoading={isLoading}
+              isMoviesNotFound={isMoviesNotFound}
             />
           }
         />

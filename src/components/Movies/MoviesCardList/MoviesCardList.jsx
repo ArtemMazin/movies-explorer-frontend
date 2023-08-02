@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import useScreenOrientation from '../../../hooks/useScreenOrientation';
 import Preloader from '../Preloader/Preloader';
 
-const MoviesCardList = ({ movies, isLoading }) => {
+const MoviesCardList = ({ movies, isLoading, isMoviesNotFound }) => {
   const [countRenderMovies, setCountRenderMovies] = useState(0);
   const [countMoreMovies, setCountMoreMovies] = useState(0);
   const location = useLocation();
@@ -34,6 +34,7 @@ const MoviesCardList = ({ movies, isLoading }) => {
     <section className='movies'>
       {location.pathname === '/movies' || location.pathname === '/movies/' ? (
         <>
+          {isMoviesNotFound && <h2 className='movies__not-found'>Ничего не найдено</h2>}
           {isLoading && <Preloader />}
           <ul className='movies__list'>
             {movies.slice(0, countRenderMovies).map((card, i) => (
@@ -56,20 +57,12 @@ const MoviesCardList = ({ movies, isLoading }) => {
         </>
       ) : (
         <ul className='movies__list'>
-          {/*!!!!!!!!! проверка ширины для соответствия макету !!!!!!!!!!*/}
-          {screenWidth < 768
-            ? favoriteCards.slice(0, 2).map((card, i) => (
-                <MoviesCard
-                  card={card}
-                  key={i}
-                />
-              ))
-            : favoriteCards.map((card, i) => (
-                <MoviesCard
-                  card={card}
-                  key={i}
-                />
-              ))}
+          {favoriteCards.map((card, i) => (
+            <MoviesCard
+              card={card}
+              key={i}
+            />
+          ))}
         </ul>
       )}
     </section>
