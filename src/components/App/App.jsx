@@ -16,26 +16,28 @@ function App() {
   const [valueInputMovie, setValueInputMovie] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmitSearchMovies = (e) => {
+  async function handleSubmitSearchMovies(e) {
     e.preventDefault();
     setIsLoading(true);
 
-    Promise.all([getMovies()])
-      .then(([arrayCards]) => {
-        setMovies(arrayCards);
-      })
-      .then(() => {
-        const filteredMovies = Array.from(movies).filter((item) => {
-          return item.nameRU.toLowerCase().includes(valueInputMovie);
-        });
+    try {
+      if (valueInputMovie.length === 0) {
+        throw new Error('Нужно ввести ключевое слово');
+      }
+      const arrayCards = await Promise.resolve(getMovies());
+      const filteredMovies = Array.from(arrayCards).filter((item) => {
+        return item.nameRU.toLowerCase().includes(valueInputMovie);
+      });
 
-        setFindedMovies(filteredMovies);
-        localStorage.setItem('movies', JSON.stringify(filteredMovies));
-      })
+      setMovies(arrayCards);
+      setFindedMovies(filteredMovies);
+      localStorage.setItem('movies', JSON.stringify(filteredMovies));
+    } catch (err) {
+      console.error(err.message);
+    }
+    setIsLoading(false);
+  }
 
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
-  };
   useEffect(() => {
     const movies = localStorage.getItem('movies');
     if (movies) {

@@ -2,7 +2,7 @@ import { BASE_URL } from './constants';
 
 function getResponseData(res, setErrorMessage) {
   if (!res.ok) {
-    return Promise.reject(setErrorMessage);
+    throw new Error(setErrorMessage);
   }
   return res.json();
 }
