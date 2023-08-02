@@ -1,0 +1,41 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/fonts.css);
+
+:root {
+  --main-color: #000;
+  --text-gray-color: #a0a0a0;
+  --border-color: #e8e8e8;
+  --error-color: #ff4062;
+  --checkbox-color: #2be080;
+
+  --bg-main-color: #fff;
+  --bg-input-color: #f9f9f9;
+  --bg-hero-color: #f3c1f8;
+
+  --transition: 0.5s;
+  --opacity-link: 0.7;
+  --opacity-button: 0.8;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 20px;
+}
+.body {
+  background-color: var(--bg-main-color);
+  color: var(--main-color);
+  height: 100%;
+  font-family: 'Inter', Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}
+
+.content {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 1280px;
+}

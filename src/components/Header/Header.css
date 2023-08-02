@@ -1,0 +1,24 @@
+.header {
+  margin: 0 auto;
+  padding: 17px 70px;
+  height: 74px;
+  max-width: 1280px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  background-color: var(--bg-hero-color);
+}
+.header_white {
+  background-color: var(--bg-main-color);
+}
+@media (max-width: 900px) {
+  .header {
+    padding: 17px 30px;
+  }
+}
+@media (max-width: 560px) {
+  .header {
+    padding: 17px 14px;
+  }
+}
