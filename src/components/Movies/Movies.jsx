@@ -4,13 +4,13 @@ import Footer from '../Footer/Footer';
 import SearchForm from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 
-const Movies = () => {
+const Movies = ({ movies }) => {
   return (
     <>
       <Header />
       <main>
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList movies={movies} />
       </main>
       <Footer />
     </>

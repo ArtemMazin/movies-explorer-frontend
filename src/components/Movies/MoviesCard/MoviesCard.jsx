@@ -9,13 +9,13 @@ const MoviesCard = ({ card }) => {
     <li className='card'>
       <img
         className='card__image'
-        src={card.image}
+        src={`https://api.nomoreparties.co/${card.image.url}`}
         alt={card.nameRU}
       />
       <div className='card__description'>
         <div>
           <h2 className='card__name'>{card.nameRU}</h2>
-          <p className='card__duration'>{card.duration}</p>
+          <p className='card__duration'>{`${Math.floor(card.duration / 60)}ч${Math.floor(card.duration % 60)}м`}</p>
         </div>
         {location.pathname === '/movies' || location.pathname === '/movies/' ? (
           <input

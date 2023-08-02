@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import { initialCards, favoriteCards } from '../../../utils/constants';
+import { favoriteCards } from '../../../utils/constants';
 import { useLocation } from 'react-router-dom';
 import useScreenOrientation from '../../../hooks/useScreenOrientation';
 
-const MoviesCardList = () => {
+const MoviesCardList = ({ movies }) => {
   const [countRenderMovies, setCountRenderMovies] = useState(0);
   const [countMoreMovies, setCountMoreMovies] = useState(0);
   const location = useLocation();
@@ -34,7 +34,7 @@ const MoviesCardList = () => {
       {location.pathname === '/movies' || location.pathname === '/movies/' ? (
         <>
           <ul className='movies__list'>
-            {initialCards.slice(0, countRenderMovies).map((card, i) => (
+            {movies.slice(0, countRenderMovies).map((card, i) => (
               <MoviesCard
                 card={card}
                 key={i}
@@ -43,7 +43,7 @@ const MoviesCardList = () => {
           </ul>
 
           {/* !!!!!!!!!! не забыть заменить >= на > !!!!!!!!!!! */}
-          {initialCards.length >= countRenderMovies && (
+          {movies.length >= countRenderMovies && (
             <button
               className='movies__button'
               type='button'
