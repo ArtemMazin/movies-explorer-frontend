@@ -13,13 +13,25 @@ import { getMovies } from '../../utils/MoviesApi';
 function App() {
   const [movies, setMovies] = useState([]);
   const [findedMovies, setFindedMovies] = useState([]);
+  const [shortFilms, setShortFilms] = useState([]);
   const [valueInputMovie, setValueInputMovie] = useState('');
+  const [valueCheckboxMovie, setValueCheckboxMovie] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isMoviesNotFound, setIsMoviesNotFound] = useState(false);
 
+  function handleCheckbox() {
+    setValueCheckboxMovie(!valueCheckboxMovie);
+
+    setShortFilms(
+      getFilteredMovies(movies).filter((film) => {
+        return film.duration <= 40;
+      })
+    );
+  }
+
   function getFilteredMovies(arrayMovies) {
     return Array.from(arrayMovies).filter((item) => {
-      return item.nameRU.toLowerCase().includes(valueInputMovie);
+      return item.nameRU.toLowerCase().includes(valueInputMovie) || item.nameEN.toLowerCase().includes(valueInputMovie);
     });
   }
 
@@ -38,10 +50,20 @@ function App() {
       const arrayMovies = await Promise.resolve(getMovies());
       const filteredMovies = getFilteredMovies(arrayMovies);
 
+      if (valueCheckboxMovie === true) {
+        setShortFilms(
+          filteredMovies.filter((film) => {
+            return film.duration <= 40;
+          })
+        );
+      }
       checkIsMoviesNotFound(filteredMovies);
       setMovies(arrayMovies);
       setFindedMovies(filteredMovies);
+
       localStorage.setItem('movies', JSON.stringify(filteredMovies));
+      localStorage.setItem('text', JSON.stringify(valueInputMovie));
+      localStorage.setItem('checkbox', JSON.stringify(valueCheckboxMovie));
     } catch (err) {
       console.error(err.message);
     }
@@ -50,9 +72,13 @@ function App() {
 
   useEffect(() => {
     const movies = localStorage.getItem('movies');
-    if (movies) {
-      setFindedMovies(JSON.parse(movies));
-    }
+    const text = localStorage.getItem('text');
+    const checkbox = localStorage.getItem('checkbox');
+    console.log(text, checkbox);
+
+    movies && setFindedMovies(JSON.parse(movies));
+    text && setValueInputMovie(JSON.parse(text));
+    checkbox && setValueCheckboxMovie(JSON.parse(checkbox));
   }, []);
 
   return (
@@ -68,9 +94,13 @@ function App() {
             <Movies
               movies={findedMovies}
               setValueInputMovie={setValueInputMovie}
+              valueInputMovie={valueInputMovie}
               handleSubmit={handleSubmitSearchMovies}
               isLoading={isLoading}
               isMoviesNotFound={isMoviesNotFound}
+              handleCheckbox={handleCheckbox}
+              valueCheckboxMovie={valueCheckboxMovie}
+              shortFilms={shortFilms}
             />
           }
         />

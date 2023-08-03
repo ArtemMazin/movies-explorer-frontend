@@ -2,7 +2,7 @@ import React from 'react';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-const SearchForm = ({ setValueInputMovie, handleSubmit }) => {
+const SearchForm = ({ setValueInputMovie, handleSubmit, handleCheckbox, valueInputMovie, valueCheckboxMovie }) => {
   return (
     <section className='search-form'>
       <form className='search-form__row'>
@@ -11,6 +11,7 @@ const SearchForm = ({ setValueInputMovie, handleSubmit }) => {
           placeholder='Фильм'
           className='search-form__input'
           tabIndex={1}
+          value={valueInputMovie}
           onChange={(e) => setValueInputMovie(e.target.value)}
         />
         <button
@@ -21,7 +22,10 @@ const SearchForm = ({ setValueInputMovie, handleSubmit }) => {
         />
       </form>
 
-      <FilterCheckbox />
+      <FilterCheckbox
+        handleCheckbox={handleCheckbox}
+        valueCheckboxMovie={valueCheckboxMovie}
+      />
     </section>
   );
 };

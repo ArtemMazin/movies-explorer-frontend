@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import useScreenOrientation from '../../../hooks/useScreenOrientation';
 import Preloader from '../Preloader/Preloader';
 
-const MoviesCardList = ({ movies, isLoading, isMoviesNotFound }) => {
+const MoviesCardList = ({ movies, isLoading, isMoviesNotFound, valueCheckboxMovie, shortFilms }) => {
   const [countRenderMovies, setCountRenderMovies] = useState(0);
   const [countMoreMovies, setCountMoreMovies] = useState(0);
   const location = useLocation();
@@ -29,6 +29,7 @@ const MoviesCardList = ({ movies, isLoading, isMoviesNotFound }) => {
   const getMoreMovies = () => {
     setCountRenderMovies(countRenderMovies + countMoreMovies);
   };
+  useEffect(() => console.log(valueCheckboxMovie));
 
   return (
     <section className='movies'>
@@ -37,7 +38,7 @@ const MoviesCardList = ({ movies, isLoading, isMoviesNotFound }) => {
           {isMoviesNotFound && <h2 className='movies__not-found'>Ничего не найдено</h2>}
           {isLoading && <Preloader />}
           <ul className='movies__list'>
-            {movies.slice(0, countRenderMovies).map((card, i) => (
+            {(valueCheckboxMovie ? shortFilms : movies).slice(0, countRenderMovies).map((card, i) => (
               <MoviesCard
                 card={card}
                 key={i}
