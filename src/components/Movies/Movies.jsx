@@ -12,7 +12,7 @@ const Movies = ({
   isMoviesNotFound,
   handleCheckbox,
   shortFilms,
-  valueCheckboxMovie,
+  isChecked,
   valueInputMovie,
 }) => {
   return (
@@ -24,14 +24,14 @@ const Movies = ({
           handleSubmit={handleSubmit}
           handleCheckbox={handleCheckbox}
           valueInputMovie={valueInputMovie}
-          valueCheckboxMovie={valueCheckboxMovie}
+          isChecked={isChecked}
         />
         <MoviesCardList
           movies={movies}
           shortFilms={shortFilms}
           isLoading={isLoading}
           isMoviesNotFound={isMoviesNotFound}
-          valueCheckboxMovie={valueCheckboxMovie}
+          isChecked={isChecked}
         />
       </main>
       <Footer />

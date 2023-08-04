@@ -15,12 +15,12 @@ function App() {
   const [findedMovies, setFindedMovies] = useState([]);
   const [shortFilms, setShortFilms] = useState([]);
   const [valueInputMovie, setValueInputMovie] = useState('');
-  const [valueCheckboxMovie, setValueCheckboxMovie] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isMoviesNotFound, setIsMoviesNotFound] = useState(false);
 
   function handleCheckbox(e) {
-    valueInputMovie.length !== 0 && setValueCheckboxMovie(e.target.checked);
+    valueInputMovie.length !== 0 && setIsChecked(e.target.checked);
     handleSubmitSearchMovies(e, e.target.checked);
   }
 
@@ -71,7 +71,7 @@ function App() {
 
     movies && setFindedMovies(movies);
     text && setValueInputMovie(text);
-    checkbox && setValueCheckboxMovie(checkbox);
+    checkbox && setIsChecked(checkbox);
 
     movies &&
       setShortFilms(
@@ -99,7 +99,7 @@ function App() {
               isLoading={isLoading}
               isMoviesNotFound={isMoviesNotFound}
               handleCheckbox={handleCheckbox}
-              valueCheckboxMovie={valueCheckboxMovie}
+              isChecked={isChecked}
               shortFilms={shortFilms}
             />
           }
