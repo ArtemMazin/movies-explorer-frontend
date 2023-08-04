@@ -19,14 +19,9 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isMoviesNotFound, setIsMoviesNotFound] = useState(false);
 
-  function handleCheckbox() {
-    setValueCheckboxMovie(!valueCheckboxMovie);
-
-    setShortFilms(
-      getFilteredMovies(movies).filter((film) => {
-        return film.duration <= 40;
-      })
-    );
+  function handleCheckbox(e) {
+    valueInputMovie.length !== 0 && setValueCheckboxMovie(e.target.checked);
+    handleSubmitSearchMovies(e, e.target.checked);
   }
 
   function getFilteredMovies(arrayMovies) {
@@ -39,7 +34,7 @@ function App() {
     filteredMovies.length === 0 ? setIsMoviesNotFound(true) : setIsMoviesNotFound(false);
   }
 
-  async function handleSubmitSearchMovies(e) {
+  async function handleSubmitSearchMovies(e, valueCheckbox) {
     e.preventDefault();
     setIsLoading(true);
 
@@ -50,20 +45,19 @@ function App() {
       const arrayMovies = await Promise.resolve(getMovies());
       const filteredMovies = getFilteredMovies(arrayMovies);
 
-      if (valueCheckboxMovie === true) {
-        setShortFilms(
-          filteredMovies.filter((film) => {
-            return film.duration <= 40;
-          })
-        );
-      }
+      setShortFilms(
+        filteredMovies.filter((film) => {
+          return film.duration <= 40;
+        })
+      );
+
       checkIsMoviesNotFound(filteredMovies);
       setMovies(arrayMovies);
       setFindedMovies(filteredMovies);
 
       localStorage.setItem('movies', JSON.stringify(filteredMovies));
       localStorage.setItem('text', JSON.stringify(valueInputMovie));
-      localStorage.setItem('checkbox', JSON.stringify(valueCheckboxMovie));
+      localStorage.setItem('checkbox', JSON.stringify(valueCheckbox));
     } catch (err) {
       console.error(err.message);
     }
@@ -71,14 +65,20 @@ function App() {
   }
 
   useEffect(() => {
-    const movies = localStorage.getItem('movies');
-    const text = localStorage.getItem('text');
-    const checkbox = localStorage.getItem('checkbox');
-    console.log(text, checkbox);
+    const movies = JSON.parse(localStorage.getItem('movies'));
+    const text = JSON.parse(localStorage.getItem('text'));
+    const checkbox = JSON.parse(localStorage.getItem('checkbox'));
 
-    movies && setFindedMovies(JSON.parse(movies));
-    text && setValueInputMovie(JSON.parse(text));
-    checkbox && setValueCheckboxMovie(JSON.parse(checkbox));
+    movies && setFindedMovies(movies);
+    text && setValueInputMovie(text);
+    checkbox && setValueCheckboxMovie(checkbox);
+
+    movies &&
+      setShortFilms(
+        movies.filter((film) => {
+          return film.duration <= 40;
+        })
+      );
   }, []);
 
   return (

@@ -29,7 +29,6 @@ const MoviesCardList = ({ movies, isLoading, isMoviesNotFound, valueCheckboxMovi
   const getMoreMovies = () => {
     setCountRenderMovies(countRenderMovies + countMoreMovies);
   };
-  useEffect(() => console.log(valueCheckboxMovie));
 
   return (
     <section className='movies'>
