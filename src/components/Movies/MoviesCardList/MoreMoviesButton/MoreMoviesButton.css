@@ -1,0 +1,23 @@
+.movies__button {
+  display: block;
+  padding: 0;
+  margin: 50px auto 80px auto;
+  width: 320px;
+  height: 36px;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--bg-input-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.movies__button:hover {
+  opacity: var(--opacity-button);
+}
+
+@media (max-width: 690px) {
+  .movies__button {
+    width: 240px;
+  }
+}

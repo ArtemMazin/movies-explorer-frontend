@@ -5,8 +5,9 @@ import { favoriteCards } from '../../../utils/constants';
 import { useLocation } from 'react-router-dom';
 import useScreenOrientation from '../../../hooks/useScreenOrientation';
 import Preloader from '../Preloader/Preloader';
+import MoreMoviesButton from './MoreMoviesButton/MoreMoviesButton';
 
-const MoviesCardList = ({ movies, isLoading, isMoviesNotFound, isChecked, shortFilms }) => {
+const MoviesCardList = ({ movies, isLoading, isChecked, shortFilms, isMoviesNotFound }) => {
   const [countRenderMovies, setCountRenderMovies] = useState(0);
   const [countMoreMovies, setCountMoreMovies] = useState(0);
   const location = useLocation();
@@ -33,32 +34,28 @@ const MoviesCardList = ({ movies, isLoading, isMoviesNotFound, isChecked, shortF
   return (
     <section className='movies'>
       {location.pathname === '/movies' || location.pathname === '/movies/' ? (
-        <>
-          {(isMoviesNotFound || (isChecked && shortFilms.length === 0)) && (
-            <h2 className='movies__not-found'>Ничего не найдено</h2>
-          )}
+        (isLoading && <Preloader />) || (
+          <>
+            {(isMoviesNotFound || (isChecked && shortFilms.length === 0)) && (
+              <h2 className='movies__not-found'>Ничего не найдено</h2>
+            )}
 
-          {(isLoading && <Preloader />) || (
-            <ul className='movies__list'>
-              {(isChecked ? shortFilms : movies).slice(0, countRenderMovies).map((card, i) => (
-                <MoviesCard
-                  card={card}
-                  key={i}
-                />
-              ))}
-            </ul>
-          )}
+            {
+              <ul className='movies__list'>
+                {(isChecked ? shortFilms : movies).slice(0, countRenderMovies).map((card, i) => (
+                  <MoviesCard
+                    card={card}
+                    key={i}
+                  />
+                ))}
+              </ul>
+            }
 
-          {movies.length > countRenderMovies && (
-            <button
-              className='movies__button'
-              type='button'
-              onClick={getMoreMovies}
-              tabIndex={1}>
-              Ещё
-            </button>
-          )}
-        </>
+            {isChecked
+              ? shortFilms.length > countRenderMovies && <MoreMoviesButton getMoreMovies={getMoreMovies} />
+              : movies.length > countRenderMovies && <MoreMoviesButton getMoreMovies={getMoreMovies} />}
+          </>
+        )
       ) : (
         <ul className='movies__list'>
           {favoriteCards.map((card, i) => (

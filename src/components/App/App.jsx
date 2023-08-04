@@ -24,14 +24,14 @@ function App() {
     handleSubmitSearchMovies(e, e.target.checked);
   }
 
+  function checkIsMoviesNotFound(filteredMovies) {
+    filteredMovies.length === 0 ? setIsMoviesNotFound(true) : setIsMoviesNotFound(false);
+  }
+
   function getFilteredMovies(arrayMovies) {
     return Array.from(arrayMovies).filter((item) => {
       return item.nameRU.toLowerCase().includes(valueInputMovie) || item.nameEN.toLowerCase().includes(valueInputMovie);
     });
-  }
-
-  function checkIsMoviesNotFound(filteredMovies) {
-    filteredMovies.length === 0 ? setIsMoviesNotFound(true) : setIsMoviesNotFound(false);
   }
 
   async function handleSubmitSearchMovies(e, valueCheckbox) {
@@ -55,9 +55,10 @@ function App() {
       setMovies(arrayMovies);
       setFindedMovies(filteredMovies);
 
-      localStorage.setItem('movies', JSON.stringify(filteredMovies));
-      localStorage.setItem('text', JSON.stringify(valueInputMovie));
-      localStorage.setItem('checkbox', JSON.stringify(valueCheckbox));
+      localStorage.setItem(
+        'savedData',
+        JSON.stringify({ checkbox: valueCheckbox, text: valueInputMovie, movies: filteredMovies })
+      );
     } catch (err) {
       console.error(err.message);
     }
@@ -65,20 +66,19 @@ function App() {
   }
 
   useEffect(() => {
-    const movies = JSON.parse(localStorage.getItem('movies'));
-    const text = JSON.parse(localStorage.getItem('text'));
-    const checkbox = JSON.parse(localStorage.getItem('checkbox'));
+    const localStorageData = JSON.parse(localStorage.getItem('savedData'));
 
-    movies && setFindedMovies(movies);
-    text && setValueInputMovie(text);
-    checkbox && setIsChecked(checkbox);
+    if (localStorageData) {
+      setFindedMovies(localStorageData.movies);
+      setValueInputMovie(localStorageData.text);
+      setIsChecked(localStorageData.checkbox);
 
-    movies &&
       setShortFilms(
-        movies.filter((film) => {
+        localStorageData.movies.filter((film) => {
           return film.duration <= 40;
         })
       );
+    }
   }, []);
 
   return (
@@ -97,10 +97,10 @@ function App() {
               valueInputMovie={valueInputMovie}
               handleSubmit={handleSubmitSearchMovies}
               isLoading={isLoading}
-              isMoviesNotFound={isMoviesNotFound}
               handleCheckbox={handleCheckbox}
               isChecked={isChecked}
               shortFilms={shortFilms}
+              isMoviesNotFound={isMoviesNotFound}
             />
           }
         />
