@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { IsLoggedContext } from '../../contexts/IsLoggedContext';
 import './App.css';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -9,7 +10,7 @@ import Register from '../Register/Register';
 import Main from '../Main/Main';
 import Page404 from '../Page404/Page404';
 import { getMovies } from '../../utils/MoviesApi';
-import { register } from '../../utils/MainApi';
+import { login, register } from '../../utils/MainApi';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -18,6 +19,8 @@ function App() {
   const [valueInputMovie, setValueInputMovie] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [errorMessageLogin, setErrorMessageLogin] = useState('');
   const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
   const [errorMessageRegister, setErrorMessageRegister] = useState('');
   const [isMoviesNotFound, setIsMoviesNotFound] = useState(false);
@@ -39,6 +42,26 @@ function App() {
         setIsRegistrationSuccess(false);
 
         navigate('/signup', { replace: true });
+      })
+      .finally(() => setIsLoading(false));
+  }
+
+  function handleLogin() {
+    setLoggedIn(true);
+  }
+  function handleSubmitLogin(e, email, password) {
+    e.preventDefault();
+    setIsLoading(true);
+
+    login(email, password, setErrorMessageLogin)
+      .then((data) => {
+        if (data) {
+          handleLogin();
+          navigate('/', { replace: true });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
       })
       .finally(() => setIsLoading(false));
   }
@@ -106,50 +129,52 @@ function App() {
   }, []);
 
   return (
-    <div className='App'>
-      <Routes>
-        <Route
-          path='/'
-          element={<Main />}
-        />
-        <Route
-          path='/movies'
-          element={
-            <Movies
-              movies={findedMovies}
-              setValueInputMovie={setValueInputMovie}
-              valueInputMovie={valueInputMovie}
-              handleSubmit={handleSubmitSearchMovies}
-              isLoading={isLoading}
-              handleCheckbox={handleCheckbox}
-              isChecked={isChecked}
-              shortFilms={shortFilms}
-              isMoviesNotFound={isMoviesNotFound}
-            />
-          }
-        />
-        <Route
-          path='/saved-movies'
-          element={<SavedMovies />}
-        />
-        <Route
-          path='/profile'
-          element={<Profile />}
-        />
-        <Route
-          path='/signin'
-          element={<Login />}
-        />
-        <Route
-          path='/signup'
-          element={<Register handleSubmitRegistration={handleSubmitRegistration} />}
-        />
-        <Route
-          path='*'
-          element={<Page404 />}
-        />
-      </Routes>
-    </div>
+    <IsLoggedContext.Provider value={loggedIn}>
+      <div className='App'>
+        <Routes>
+          <Route
+            path='/'
+            element={<Main />}
+          />
+          <Route
+            path='/movies'
+            element={
+              <Movies
+                movies={findedMovies}
+                setValueInputMovie={setValueInputMovie}
+                valueInputMovie={valueInputMovie}
+                handleSubmit={handleSubmitSearchMovies}
+                isLoading={isLoading}
+                handleCheckbox={handleCheckbox}
+                isChecked={isChecked}
+                shortFilms={shortFilms}
+                isMoviesNotFound={isMoviesNotFound}
+              />
+            }
+          />
+          <Route
+            path='/saved-movies'
+            element={<SavedMovies />}
+          />
+          <Route
+            path='/profile'
+            element={<Profile />}
+          />
+          <Route
+            path='/signin'
+            element={<Login handleSubmitLogin={handleSubmitLogin} />}
+          />
+          <Route
+            path='/signup'
+            element={<Register handleSubmitRegistration={handleSubmitRegistration} />}
+          />
+          <Route
+            path='*'
+            element={<Page404 />}
+          />
+        </Routes>
+      </div>
+    </IsLoggedContext.Provider>
   );
 }
 

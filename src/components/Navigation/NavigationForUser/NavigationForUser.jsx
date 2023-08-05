@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import './NavigationMovies.css';
+import './NavigationForUser.css';
 import HideMenu from '../../HideMenu/HideMenu';
 
 const NavigationMovies = () => {

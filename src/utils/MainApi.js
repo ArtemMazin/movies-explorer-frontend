@@ -30,3 +30,23 @@ export function register(name, email, password, setErrorMessageRegister) {
     setErrorMessageRegister
   );
 }
+
+export function login(email, password, setErrorMessageLogin) {
+  return request(
+    '/signin',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({ email, password }),
+    },
+    setErrorMessageLogin
+  ).then((data) => {
+    if (data) {
+      localStorage.setItem('token', 'isLoggedIn');
+      return data;
+    }
+  });
+}

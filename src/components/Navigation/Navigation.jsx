@@ -1,12 +1,13 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
-import NavigationPromo from './NavigationPromo/NavigationPromo';
+import NavigationForGuest from './NavigationForGuest/NavigationForGuest';
+import NavigationForUser from './NavigationForUser/NavigationForUser';
+import { IsLoggedContext } from '../../contexts/IsLoggedContext';
 import './Navigation.css';
-import NavigationMovies from './NavigationMovies/NavigationMovies';
 
 const Navigation = () => {
-  const location = useLocation();
+  const loggedIn = useContext(IsLoggedContext);
 
   return (
     <nav className='nav'>
@@ -19,7 +20,7 @@ const Navigation = () => {
           className='nav__logo'
         />
       </Link>
-      {location.pathname === '/' ? <NavigationPromo /> : <NavigationMovies />}
+      {loggedIn ? <NavigationForUser /> : <NavigationForGuest />}
     </nav>
   );
 };
