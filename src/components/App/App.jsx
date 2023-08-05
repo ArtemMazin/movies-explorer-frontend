@@ -9,6 +9,7 @@ import Register from '../Register/Register';
 import Main from '../Main/Main';
 import Page404 from '../Page404/Page404';
 import { getMovies } from '../../utils/MoviesApi';
+import { register } from '../../utils/MainApi';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -17,7 +18,30 @@ function App() {
   const [valueInputMovie, setValueInputMovie] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
+  const [errorMessageRegister, setErrorMessageRegister] = useState('');
   const [isMoviesNotFound, setIsMoviesNotFound] = useState(false);
+
+  const navigate = useNavigate();
+
+  function handleSubmitRegistration(e, name, email, password) {
+    e.preventDefault();
+    setIsLoading(true);
+
+    register(name, email, password, setErrorMessageRegister)
+      .then((res) => {
+        setIsRegistrationSuccess(true);
+
+        navigate('/signin', { replace: true });
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsRegistrationSuccess(false);
+
+        navigate('/signup', { replace: true });
+      })
+      .finally(() => setIsLoading(false));
+  }
 
   function handleCheckbox(e) {
     valueInputMovie.length !== 0 && setIsChecked(e.target.checked);
@@ -118,7 +142,7 @@ function App() {
         />
         <Route
           path='/signup'
-          element={<Register />}
+          element={<Register handleSubmitRegistration={handleSubmitRegistration} />}
         />
         <Route
           path='*'

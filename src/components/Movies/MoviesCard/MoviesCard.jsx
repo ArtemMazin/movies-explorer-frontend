@@ -1,7 +1,7 @@
 import React from 'react';
 import './MoviesCard.css';
 import { Link, useLocation } from 'react-router-dom';
-import { BASE_URL } from '../../../utils/constants';
+import { BASE_MOVIES_URL } from '../../../utils/constants';
 
 const MoviesCard = ({ card }) => {
   const location = useLocation();
@@ -13,7 +13,7 @@ const MoviesCard = ({ card }) => {
         target='blank'>
         <img
           className='card__image'
-          src={`${BASE_URL}${card.image.url}`}
+          src={`${BASE_MOVIES_URL}${card.image.url}`}
           alt={card.nameRU}
         />
       </Link>

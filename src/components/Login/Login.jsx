@@ -15,14 +15,14 @@ const Login = () => {
         <form className='login__form'>
           <div className='login__inputs'>
             <FormLabel
-              value={email}
-              setValue={setEmail}
+              // value={email}
+              // setValue={setEmail}
               span={'E-mail'}
               placeholder={'Введите e-mail'}
             />
             <FormLabel
-              value={password}
-              setValue={setPassword}
+              // value={password}
+              // setValue={setPassword}
               span={'Пароль'}
               placeholder={''}
             />

@@ -1,4 +1,4 @@
-import { BASE_URL } from './constants';
+import { BASE_MOVIES_URL } from './constants';
 
 function getResponseData(res, setErrorMessage) {
   if (!res.ok) {
@@ -7,7 +7,7 @@ function getResponseData(res, setErrorMessage) {
   return res.json();
 }
 async function request(url, setErrorMessage) {
-  const res = await fetch(`${BASE_URL}${url}`);
+  const res = await fetch(`${BASE_MOVIES_URL}${url}`);
   return getResponseData(res, setErrorMessage);
 }
 
