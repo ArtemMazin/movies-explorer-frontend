@@ -7,7 +7,7 @@ import useScreenOrientation from '../../../hooks/useScreenOrientation';
 import Preloader from '../Preloader/Preloader';
 import MoreMoviesButton from './MoreMoviesButton/MoreMoviesButton';
 
-const MoviesCardList = ({ movies, isLoading, isChecked, shortFilms, isMoviesNotFound }) => {
+const MoviesCardList = ({ movies, isLoading, isChecked, shortFilms, isMoviesNotFound, handleLikeMovie }) => {
   const [countRenderMovies, setCountRenderMovies] = useState(0);
   const [countMoreMovies, setCountMoreMovies] = useState(0);
   const location = useLocation();
@@ -45,7 +45,8 @@ const MoviesCardList = ({ movies, isLoading, isChecked, shortFilms, isMoviesNotF
                 {(isChecked ? shortFilms : movies).slice(0, countRenderMovies).map((card, i) => (
                   <MoviesCard
                     card={card}
-                    key={i}
+                    key={card.id}
+                    handleLikeMovie={handleLikeMovie}
                   />
                 ))}
               </ul>

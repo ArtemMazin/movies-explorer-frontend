@@ -10,7 +10,7 @@ import Register from '../Register/Register';
 import Main from '../Main/Main';
 import Page404 from '../Page404/Page404';
 import { getMovies } from '../../utils/MoviesApi';
-import { login, register } from '../../utils/MainApi';
+import { getContent, login, register, saveMovie } from '../../utils/MainApi';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -66,9 +66,45 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
+  useEffect(() => {
+    tokenCheck();
+  }, []);
+
+  function tokenCheck() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      getContent()
+        .then((res) => {
+          if (res) {
+            // авторизуем пользователя
+            setLoggedIn(true);
+            navigate('/', { replace: true });
+          }
+        })
+        .catch(console.error);
+    }
+  }
+
   function handleCheckbox(e) {
     valueInputMovie.length !== 0 && setIsChecked(e.target.checked);
     handleSubmitSearchMovies(e, e.target.checked);
+  }
+
+  function handleLikeMovie(
+    e,
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    movieId,
+    nameRU,
+    nameEN
+  ) {
+    saveMovie(country, director, duration, year, description, image, trailerLink, thumbnail, movieId, nameRU, nameEN);
   }
 
   function checkIsMoviesNotFound(filteredMovies) {
@@ -149,6 +185,7 @@ function App() {
                 isChecked={isChecked}
                 shortFilms={shortFilms}
                 isMoviesNotFound={isMoviesNotFound}
+                handleLikeMovie={handleLikeMovie}
               />
             }
           />

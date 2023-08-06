@@ -14,6 +14,7 @@ const Movies = ({
   shortFilms,
   isChecked,
   valueInputMovie,
+  handleLikeMovie,
 }) => {
   return (
     <>
@@ -32,6 +33,7 @@ const Movies = ({
           isLoading={isLoading}
           isMoviesNotFound={isMoviesNotFound}
           isChecked={isChecked}
+          handleLikeMovie={handleLikeMovie}
         />
       </main>
       <Footer />
