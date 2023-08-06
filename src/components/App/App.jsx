@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import { IsLoggedContext } from '../../contexts/IsLoggedContext';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -21,6 +22,7 @@ function App() {
   const [isChecked, setIsChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
   const [errorMessageLogin, setErrorMessageLogin] = useState('');
   const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
   const [errorMessageRegister, setErrorMessageRegister] = useState('');
@@ -78,6 +80,7 @@ function App() {
         .then((res) => {
           if (res) {
             // авторизуем пользователя
+            setCurrentUser(res);
             setLoggedIn(true);
             navigate('/', { replace: true });
           }
@@ -112,28 +115,43 @@ function App() {
     nameRU,
     nameEN
   ) {
-    saveMovie(
-      country,
-      director,
-      duration,
-      year,
-      description,
-      image,
-      trailerLink,
-      thumbnail,
-      movieId,
-      nameRU,
-      nameEN
-    ).then(() =>
-      getSavedMovies()
-        .then((res) => {
-          if (res) {
-            setSavedMovies(res.data);
-          }
-        })
-        .catch(console.error)
-    );
+    e.target.checked
+      ? saveMovie(
+          country,
+          director,
+          duration,
+          year,
+          description,
+          image,
+          trailerLink,
+          thumbnail,
+          movieId,
+          nameRU,
+          nameEN
+        ).then(() =>
+          getSavedMovies()
+            .then((res) => {
+              if (res) {
+                setSavedMovies(res.data);
+              }
+            })
+            .catch(console.error)
+        )
+      : removeFilm(movieId);
   }
+  function removeFilm(movieId) {
+    const film = savedMovies.find((movie) => movie.movieId === movieId);
+
+    removeMovie(film._id)
+      .then(() => {
+        const newCards = savedMovies.filter((newCard) => {
+          return newCard._id !== film._id;
+        });
+        setSavedMovies(newCards);
+      })
+      .catch(console.error);
+  }
+
   function handleRemoveButton(cardID) {
     setIsLoading(true);
 
@@ -206,58 +224,60 @@ function App() {
   }, []);
 
   return (
-    <IsLoggedContext.Provider value={loggedIn}>
-      <div className='App'>
-        <Routes>
-          <Route
-            path='/'
-            element={<Main />}
-          />
-          <Route
-            path='/movies'
-            element={
-              <Movies
-                movies={findedMovies}
-                setValueInputMovie={setValueInputMovie}
-                valueInputMovie={valueInputMovie}
-                handleSubmit={handleSubmitSearchMovies}
-                isLoading={isLoading}
-                handleCheckbox={handleCheckbox}
-                isChecked={isChecked}
-                shortFilms={shortFilms}
-                isMoviesNotFound={isMoviesNotFound}
-                handleLikeMovie={handleLikeMovie}
-              />
-            }
-          />
-          <Route
-            path='/saved-movies'
-            element={
-              <SavedMovies
-                savedMovies={savedMovies}
-                handleRemoveButton={handleRemoveButton}
-              />
-            }
-          />
-          <Route
-            path='/profile'
-            element={<Profile />}
-          />
-          <Route
-            path='/signin'
-            element={<Login handleSubmitLogin={handleSubmitLogin} />}
-          />
-          <Route
-            path='/signup'
-            element={<Register handleSubmitRegistration={handleSubmitRegistration} />}
-          />
-          <Route
-            path='*'
-            element={<Page404 />}
-          />
-        </Routes>
-      </div>
-    </IsLoggedContext.Provider>
+    <CurrentUserContext.Provider value={currentUser}>
+      <IsLoggedContext.Provider value={loggedIn}>
+        <div className='App'>
+          <Routes>
+            <Route
+              path='/'
+              element={<Main />}
+            />
+            <Route
+              path='/movies'
+              element={
+                <Movies
+                  movies={findedMovies}
+                  setValueInputMovie={setValueInputMovie}
+                  valueInputMovie={valueInputMovie}
+                  handleSubmit={handleSubmitSearchMovies}
+                  isLoading={isLoading}
+                  handleCheckbox={handleCheckbox}
+                  isChecked={isChecked}
+                  shortFilms={shortFilms}
+                  isMoviesNotFound={isMoviesNotFound}
+                  handleLikeMovie={handleLikeMovie}
+                />
+              }
+            />
+            <Route
+              path='/saved-movies'
+              element={
+                <SavedMovies
+                  savedMovies={savedMovies}
+                  handleRemoveButton={handleRemoveButton}
+                />
+              }
+            />
+            <Route
+              path='/profile'
+              element={<Profile />}
+            />
+            <Route
+              path='/signin'
+              element={<Login handleSubmitLogin={handleSubmitLogin} />}
+            />
+            <Route
+              path='/signup'
+              element={<Register handleSubmitRegistration={handleSubmitRegistration} />}
+            />
+            <Route
+              path='*'
+              element={<Page404 />}
+            />
+          </Routes>
+        </div>
+      </IsLoggedContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 
