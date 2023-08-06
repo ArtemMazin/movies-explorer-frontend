@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
-import { favoriteCards } from '../../../utils/constants';
 import { useLocation } from 'react-router-dom';
 import useScreenOrientation from '../../../hooks/useScreenOrientation';
 import Preloader from '../Preloader/Preloader';
@@ -56,6 +55,7 @@ const MoviesCardList = ({
                     card={card}
                     key={card.id}
                     handleLikeMovie={handleLikeMovie}
+                    savedMovies={savedMovies}
                   />
                 ))}
               </ul>

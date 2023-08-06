@@ -3,8 +3,11 @@ import './MoviesCard.css';
 import { Link, useLocation } from 'react-router-dom';
 import { BASE_MOVIES_URL } from '../../../utils/constants';
 
-const MoviesCard = ({ card, handleLikeMovie, handleRemoveButton }) => {
+const MoviesCard = ({ card, handleLikeMovie, handleRemoveButton, savedMovies }) => {
   const location = useLocation();
+  function checkLike(card) {
+    return savedMovies.some((f) => f.movieId === card.id);
+  }
 
   return (
     <li className='card'>
@@ -30,7 +33,8 @@ const MoviesCard = ({ card, handleLikeMovie, handleRemoveButton }) => {
           <input
             className='card__checkbox'
             type='checkbox'
-            onClick={(e) =>
+            checked={checkLike(card)}
+            onChange={(e) =>
               handleLikeMovie(
                 e,
                 card.country,

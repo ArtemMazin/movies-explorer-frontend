@@ -246,6 +246,7 @@ function App() {
                   shortFilms={shortFilms}
                   isMoviesNotFound={isMoviesNotFound}
                   handleLikeMovie={handleLikeMovie}
+                  savedMovies={savedMovies}
                 />
               }
             />
