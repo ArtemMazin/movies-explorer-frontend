@@ -96,3 +96,13 @@ export function saveMovie(
     }),
   });
 }
+
+export function getSavedMovies() {
+  return request('/movies', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+}

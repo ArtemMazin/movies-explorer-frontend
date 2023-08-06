@@ -10,11 +10,12 @@ import Register from '../Register/Register';
 import Main from '../Main/Main';
 import Page404 from '../Page404/Page404';
 import { getMovies } from '../../utils/MoviesApi';
-import { getContent, login, register, saveMovie } from '../../utils/MainApi';
+import { getContent, getSavedMovies, login, register, saveMovie } from '../../utils/MainApi';
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [findedMovies, setFindedMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
   const [shortFilms, setShortFilms] = useState([]);
   const [valueInputMovie, setValueInputMovie] = useState('');
   const [isChecked, setIsChecked] = useState(false);
@@ -82,6 +83,13 @@ function App() {
           }
         })
         .catch(console.error);
+      getSavedMovies()
+        .then((res) => {
+          if (res) {
+            setSavedMovies(res.data);
+          }
+        })
+        .catch(console.error);
     }
   }
 
@@ -105,6 +113,13 @@ function App() {
     nameEN
   ) {
     saveMovie(country, director, duration, year, description, image, trailerLink, thumbnail, movieId, nameRU, nameEN);
+    getSavedMovies()
+      .then((res) => {
+        if (res) {
+          setSavedMovies(res.data);
+        }
+      })
+      .catch(console.error);
   }
 
   function checkIsMoviesNotFound(filteredMovies) {
@@ -191,7 +206,7 @@ function App() {
           />
           <Route
             path='/saved-movies'
-            element={<SavedMovies />}
+            element={<SavedMovies savedMovies={savedMovies} />}
           />
           <Route
             path='/profile'

@@ -5,13 +5,13 @@ import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import './SavedMovies.css';
 
-const SavedMovies = () => {
+const SavedMovies = ({ savedMovies }) => {
   return (
     <div className='saved-movies'>
       <Header />
       <main>
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList savedMovies={savedMovies} />
       </main>
       <Footer />
     </div>

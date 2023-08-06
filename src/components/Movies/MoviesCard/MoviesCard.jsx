@@ -13,7 +13,11 @@ const MoviesCard = ({ card, handleLikeMovie }) => {
         target='blank'>
         <img
           className='card__image'
-          src={`${BASE_MOVIES_URL}${card.image.url}`}
+          src={
+            location.pathname === '/movies' || location.pathname === '/movies/'
+              ? `${BASE_MOVIES_URL}${card.image.url}`
+              : `${card.image}`
+          }
           alt={card.nameRU}
         />
       </Link>
