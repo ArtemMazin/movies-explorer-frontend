@@ -10,7 +10,7 @@ import Register from '../Register/Register';
 import Main from '../Main/Main';
 import Page404 from '../Page404/Page404';
 import { getMovies } from '../../utils/MoviesApi';
-import { getContent, getSavedMovies, login, register, saveMovie } from '../../utils/MainApi';
+import { getContent, getSavedMovies, login, register, removeMovie, saveMovie } from '../../utils/MainApi';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -112,14 +112,40 @@ function App() {
     nameRU,
     nameEN
   ) {
-    saveMovie(country, director, duration, year, description, image, trailerLink, thumbnail, movieId, nameRU, nameEN);
-    getSavedMovies()
-      .then((res) => {
-        if (res) {
-          setSavedMovies(res.data);
-        }
+    saveMovie(
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailerLink,
+      thumbnail,
+      movieId,
+      nameRU,
+      nameEN
+    ).then(() =>
+      getSavedMovies()
+        .then((res) => {
+          if (res) {
+            setSavedMovies(res.data);
+          }
+        })
+        .catch(console.error)
+    );
+  }
+  function handleRemoveButton(cardID) {
+    setIsLoading(true);
+
+    removeMovie(cardID)
+      .then(() => {
+        const newCards = savedMovies.filter((newCard) => {
+          return newCard._id !== cardID;
+        });
+        setSavedMovies(newCards);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }
 
   function checkIsMoviesNotFound(filteredMovies) {
@@ -206,7 +232,12 @@ function App() {
           />
           <Route
             path='/saved-movies'
-            element={<SavedMovies savedMovies={savedMovies} />}
+            element={
+              <SavedMovies
+                savedMovies={savedMovies}
+                handleRemoveButton={handleRemoveButton}
+              />
+            }
           />
           <Route
             path='/profile'

@@ -15,6 +15,7 @@ const MoviesCardList = ({
   isMoviesNotFound,
   handleLikeMovie,
   savedMovies,
+  handleRemoveButton,
 }) => {
   const [countRenderMovies, setCountRenderMovies] = useState(0);
   const [countMoreMovies, setCountMoreMovies] = useState(0);
@@ -71,6 +72,7 @@ const MoviesCardList = ({
             <MoviesCard
               card={card}
               key={card._id}
+              handleRemoveButton={handleRemoveButton}
             />
           ))}
         </ul>

@@ -5,13 +5,16 @@ import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import './SavedMovies.css';
 
-const SavedMovies = ({ savedMovies }) => {
+const SavedMovies = ({ savedMovies, handleRemoveButton }) => {
   return (
     <div className='saved-movies'>
       <Header />
       <main>
         <SearchForm />
-        <MoviesCardList savedMovies={savedMovies} />
+        <MoviesCardList
+          savedMovies={savedMovies}
+          handleRemoveButton={handleRemoveButton}
+        />
       </main>
       <Footer />
     </div>

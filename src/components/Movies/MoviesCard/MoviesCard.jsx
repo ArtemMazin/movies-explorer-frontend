@@ -3,7 +3,7 @@ import './MoviesCard.css';
 import { Link, useLocation } from 'react-router-dom';
 import { BASE_MOVIES_URL } from '../../../utils/constants';
 
-const MoviesCard = ({ card, handleLikeMovie }) => {
+const MoviesCard = ({ card, handleLikeMovie, handleRemoveButton }) => {
   const location = useLocation();
 
   return (
@@ -50,7 +50,8 @@ const MoviesCard = ({ card, handleLikeMovie }) => {
         ) : (
           <button
             className='card__delete-btn'
-            type='button'></button>
+            type='button'
+            onClick={() => handleRemoveButton(card._id)}></button>
         )}
       </div>
     </li>

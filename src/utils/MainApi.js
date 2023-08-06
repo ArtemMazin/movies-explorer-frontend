@@ -106,3 +106,12 @@ export function getSavedMovies() {
     credentials: 'include',
   });
 }
+export function removeMovie(movieID) {
+  return request(`/movies/${movieID}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+}
