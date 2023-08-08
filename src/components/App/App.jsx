@@ -144,6 +144,11 @@ function App() {
             .then((res) => {
               if (res) {
                 setSavedMovies(res.data);
+                setShortSavedFilms(
+                  res.data.filter((film) => {
+                    return film.duration <= 40;
+                  })
+                );
               }
             })
             .catch(console.error)
@@ -159,6 +164,11 @@ function App() {
           return newCard._id !== film._id;
         });
         setSavedMovies(newCards);
+        setShortSavedFilms(
+          newCards.filter((film) => {
+            return film.duration <= 40;
+          })
+        );
       })
       .catch(console.error);
   }
@@ -172,6 +182,11 @@ function App() {
           return newCard._id !== cardID;
         });
         setSavedMovies(newCards);
+        setShortSavedFilms(
+          newCards.filter((film) => {
+            return film.duration <= 40;
+          })
+        );
       })
       .catch(console.error)
       .finally(() => setIsLoading(false));
