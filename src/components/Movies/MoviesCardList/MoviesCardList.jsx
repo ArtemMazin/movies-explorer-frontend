@@ -17,6 +17,7 @@ const MoviesCardList = ({
   shortSavedFilms,
   handleRemoveButton,
   isSavedMoviesChecked,
+  filteredSavedMovies,
 }) => {
   const [countRenderMovies, setCountRenderMovies] = useState(0);
   const [countMoreMovies, setCountMoreMovies] = useState(0);
@@ -70,11 +71,12 @@ const MoviesCardList = ({
         )
       ) : (
         <ul className='movies__list'>
-          {(isSavedMoviesChecked ? shortSavedFilms : savedMovies).slice(0, countRenderMovies).map((card, i) => (
+          {(isSavedMoviesChecked ? shortSavedFilms : filteredSavedMovies).slice(0, countRenderMovies).map((card, i) => (
             <MoviesCard
               card={card}
               key={card._id}
               handleRemoveButton={handleRemoveButton}
+              savedMovies={savedMovies}
             />
           ))}
         </ul>

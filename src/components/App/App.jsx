@@ -16,10 +16,12 @@ import { getContent, getSavedMovies, login, register, removeMovie, saveMovie } f
 function App() {
   const [movies, setMovies] = useState([]);
   const [findedMovies, setFindedMovies] = useState([]);
+  const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [shortFilms, setShortFilms] = useState([]);
   const [shortSavedFilms, setShortSavedFilms] = useState([]);
   const [valueInputMovie, setValueInputMovie] = useState('');
+  const [valueInputSavedMovie, setValueInputSavedMovie] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [isSavedMoviesChecked, setIsSavedMoviesChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,6 +33,8 @@ function App() {
   const [isMoviesNotFound, setIsMoviesNotFound] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => setFilteredSavedMovies(savedMovies), [savedMovies]);
 
   function handleSubmitRegistration(e, name, email, password) {
     e.preventDefault();
@@ -196,9 +200,9 @@ function App() {
     filteredMovies.length === 0 ? setIsMoviesNotFound(true) : setIsMoviesNotFound(false);
   }
 
-  function getFilteredMovies(arrayMovies) {
+  function getFilteredMovies(arrayMovies, value) {
     return Array.from(arrayMovies).filter((item) => {
-      return item.nameRU.toLowerCase().includes(valueInputMovie) || item.nameEN.toLowerCase().includes(valueInputMovie);
+      return item.nameRU.toLowerCase().includes(value) || item.nameEN.toLowerCase().includes(value);
     });
   }
 
@@ -211,7 +215,7 @@ function App() {
         throw new Error('Нужно ввести ключевое слово');
       }
       const arrayMovies = await Promise.resolve(getMovies());
-      const filteredMovies = getFilteredMovies(arrayMovies);
+      const filteredMovies = getFilteredMovies(arrayMovies, valueInputMovie);
 
       setShortFilms(
         filteredMovies.filter((film) => {
@@ -226,6 +230,29 @@ function App() {
       localStorage.setItem(
         'savedData',
         JSON.stringify({ checkbox: valueCheckbox, text: valueInputMovie, movies: filteredMovies })
+      );
+    } catch (err) {
+      console.error(err.message);
+    }
+    setIsLoading(false);
+  }
+
+  function handleSubmitSearchSavedMovies(e) {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      if (valueInputSavedMovie.length === 0) {
+        throw new Error('Нужно ввести ключевое слово');
+      }
+      // setFilteredSavedMovies(savedMovies);
+      const filteredSavedMovies = getFilteredMovies(savedMovies, valueInputSavedMovie);
+
+      setFilteredSavedMovies(filteredSavedMovies);
+      setShortSavedFilms(
+        filteredSavedMovies.filter((film) => {
+          return film.duration <= 40;
+        })
       );
     } catch (err) {
       console.error(err.message);
@@ -280,11 +307,14 @@ function App() {
               path='/saved-movies'
               element={
                 <SavedMovies
-                  savedMovies={savedMovies}
+                  filteredSavedMovies={filteredSavedMovies}
                   handleRemoveButton={handleRemoveButton}
                   handleSavedMoviesCheckbox={handleSavedMoviesCheckbox}
                   isSavedMoviesChecked={isSavedMoviesChecked}
                   shortSavedFilms={shortSavedFilms}
+                  setValueInputSavedMovie={setValueInputSavedMovie}
+                  valueInputSavedMovie={valueInputSavedMovie}
+                  handleSubmitSearchSavedMovies={handleSubmitSearchSavedMovies}
                 />
               }
             />

@@ -6,11 +6,14 @@ import Footer from '../Footer/Footer';
 import './SavedMovies.css';
 
 const SavedMovies = ({
-  savedMovies,
+  filteredSavedMovies,
   handleRemoveButton,
   handleSavedMoviesCheckbox,
   isSavedMoviesChecked,
   shortSavedFilms,
+  valueInputSavedMovie,
+  setValueInputSavedMovie,
+  handleSubmitSearchSavedMovies,
 }) => {
   return (
     <div className='saved-movies'>
@@ -19,9 +22,12 @@ const SavedMovies = ({
         <SearchForm
           handleSavedMoviesCheckbox={handleSavedMoviesCheckbox}
           isSavedMoviesChecked={isSavedMoviesChecked}
+          setValueInputSavedMovie={setValueInputSavedMovie}
+          valueInputSavedMovie={valueInputSavedMovie}
+          handleSubmitSearchSavedMovies={handleSubmitSearchSavedMovies}
         />
         <MoviesCardList
-          savedMovies={savedMovies}
+          filteredSavedMovies={filteredSavedMovies}
           shortSavedFilms={shortSavedFilms}
           isSavedMoviesChecked={isSavedMoviesChecked}
           handleRemoveButton={handleRemoveButton}
