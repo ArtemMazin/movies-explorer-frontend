@@ -5,14 +5,25 @@ import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import './SavedMovies.css';
 
-const SavedMovies = ({ savedMovies, handleRemoveButton }) => {
+const SavedMovies = ({
+  savedMovies,
+  handleRemoveButton,
+  handleSavedMoviesCheckbox,
+  isSavedMoviesChecked,
+  shortSavedFilms,
+}) => {
   return (
     <div className='saved-movies'>
       <Header />
       <main>
-        <SearchForm />
+        <SearchForm
+          handleSavedMoviesCheckbox={handleSavedMoviesCheckbox}
+          isSavedMoviesChecked={isSavedMoviesChecked}
+        />
         <MoviesCardList
           savedMovies={savedMovies}
+          shortSavedFilms={shortSavedFilms}
+          isSavedMoviesChecked={isSavedMoviesChecked}
           handleRemoveButton={handleRemoveButton}
         />
       </main>

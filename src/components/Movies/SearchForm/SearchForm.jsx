@@ -2,7 +2,15 @@ import React from 'react';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 
-const SearchForm = ({ setValueInputMovie, handleSubmit, handleCheckbox, valueInputMovie, isChecked }) => {
+const SearchForm = ({
+  setValueInputMovie,
+  handleSubmit,
+  handleCheckbox,
+  valueInputMovie,
+  isChecked,
+  handleSavedMoviesCheckbox,
+  isSavedMoviesChecked,
+}) => {
   return (
     <section className='search-form'>
       <form
@@ -26,6 +34,8 @@ const SearchForm = ({ setValueInputMovie, handleSubmit, handleCheckbox, valueInp
       <FilterCheckbox
         handleCheckbox={handleCheckbox}
         isChecked={isChecked}
+        handleSavedMoviesCheckbox={handleSavedMoviesCheckbox}
+        isSavedMoviesChecked={isSavedMoviesChecked}
       />
     </section>
   );

@@ -18,8 +18,10 @@ function App() {
   const [findedMovies, setFindedMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [shortFilms, setShortFilms] = useState([]);
+  const [shortSavedFilms, setShortSavedFilms] = useState([]);
   const [valueInputMovie, setValueInputMovie] = useState('');
   const [isChecked, setIsChecked] = useState(false);
+  const [isSavedMoviesChecked, setIsSavedMoviesChecked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
@@ -99,6 +101,15 @@ function App() {
   function handleCheckbox(e) {
     valueInputMovie.length !== 0 && setIsChecked(e.target.checked);
     handleSubmitSearchMovies(e, e.target.checked);
+  }
+  function handleSavedMoviesCheckbox(e) {
+    setIsSavedMoviesChecked(e.target.checked);
+
+    setShortSavedFilms(
+      savedMovies.filter((film) => {
+        return film.duration <= 40;
+      })
+    );
   }
 
   function handleLikeMovie(
@@ -256,6 +267,9 @@ function App() {
                 <SavedMovies
                   savedMovies={savedMovies}
                   handleRemoveButton={handleRemoveButton}
+                  handleSavedMoviesCheckbox={handleSavedMoviesCheckbox}
+                  isSavedMoviesChecked={isSavedMoviesChecked}
+                  shortSavedFilms={shortSavedFilms}
                 />
               }
             />
