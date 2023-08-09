@@ -52,6 +52,16 @@ export function login(email, password, setErrorMessageLogin) {
   });
 }
 
+export function logout() {
+  return request('/signout', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+}
+
 export function getContent() {
   return request('/users/me', {
     method: 'GET',

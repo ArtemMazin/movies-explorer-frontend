@@ -15,6 +15,7 @@ import {
   getContent,
   getSavedMovies,
   login,
+  logout,
   register,
   removeMovie,
   saveMovie,
@@ -81,6 +82,16 @@ function App() {
         console.log(err);
       })
       .finally(() => setIsLoading(false));
+  }
+
+  function handleLogout() {
+    logout()
+      .then((res) => {
+        setLoggedIn(false);
+        localStorage.removeItem('token');
+        localStorage.removeItem('savedData');
+      })
+      .catch((err) => console.log(err));
   }
 
   useEffect(() => {
@@ -338,7 +349,12 @@ function App() {
             />
             <Route
               path='/profile'
-              element={<Profile handleUpdateUser={handleUpdateUser} />}
+              element={
+                <Profile
+                  handleUpdateUser={handleUpdateUser}
+                  handleLogout={handleLogout}
+                />
+              }
             />
             <Route
               path='/signin'

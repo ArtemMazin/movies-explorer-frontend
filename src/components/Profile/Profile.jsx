@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
-const Profile = ({ handleUpdateUser }) => {
+const Profile = ({ handleUpdateUser, handleLogout }) => {
   const { isFormValid, errors, handleChangeValidation, inputsValid, setInputsValid, values, resetForm, setValues } =
     useFormAndValidation();
   const { email, name } = values;
@@ -31,7 +31,7 @@ const Profile = ({ handleUpdateUser }) => {
     <div className='profile'>
       <Header />
       <main className='profile__main'>
-        <h1 className='profile__title'>Привет, Виталий!</h1>
+        <h1 className='profile__title'>{`Привет, ${name}`}!</h1>
         <form
           className='profile__form'
           onSubmit={handleSubmit}>
@@ -66,8 +66,9 @@ const Profile = ({ handleUpdateUser }) => {
               Редактировать
             </button>
             <Link
-              to={'/signin'}
-              className='profile__logout-button'>
+              to={'/'}
+              className='profile__logout-button'
+              onClick={handleLogout}>
               Выйти из аккаунта
             </Link>
           </div>
