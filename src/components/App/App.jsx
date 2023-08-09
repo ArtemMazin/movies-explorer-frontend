@@ -102,20 +102,6 @@ function App() {
     }
   }
 
-  function handleCheckbox(e) {
-    valueInputMovie.length !== 0 && setIsChecked(e.target.checked);
-    handleSubmitSearchMovies(e, e.target.checked);
-  }
-  function handleSavedMoviesCheckbox(e) {
-    setIsSavedMoviesChecked(e.target.checked);
-
-    setShortSavedFilms(
-      savedMovies.filter((film) => {
-        return film.duration <= 40;
-      })
-    );
-  }
-
   function handleLikeMovie(
     e,
     country,
@@ -204,6 +190,24 @@ function App() {
     return Array.from(arrayMovies).filter((item) => {
       return item.nameRU.toLowerCase().includes(value) || item.nameEN.toLowerCase().includes(value);
     });
+  }
+
+  function handleCheckbox(e) {
+    valueInputMovie.length !== 0 && setIsChecked(e.target.checked);
+    handleSubmitSearchMovies(e, e.target.checked);
+  }
+
+  function handleSavedMoviesCheckbox(e) {
+    setIsSavedMoviesChecked(e.target.checked);
+
+    const filteredSavedMovies = getFilteredMovies(savedMovies, valueInputSavedMovie);
+
+    setFilteredSavedMovies(filteredSavedMovies);
+    setShortSavedFilms(
+      filteredSavedMovies.filter((film) => {
+        return film.duration <= 40;
+      })
+    );
   }
 
   async function handleSubmitSearchMovies(e, valueCheckbox) {
