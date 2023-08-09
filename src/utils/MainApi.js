@@ -115,3 +115,16 @@ export function removeMovie(movieID) {
     credentials: 'include',
   });
 }
+export function updateProfile(data) {
+  return request('/users/me', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    body: JSON.stringify({
+      name: data.name,
+      email: data.email,
+    }),
+  });
+}

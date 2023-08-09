@@ -11,7 +11,15 @@ import Register from '../Register/Register';
 import Main from '../Main/Main';
 import Page404 from '../Page404/Page404';
 import { getMovies } from '../../utils/MoviesApi';
-import { getContent, getSavedMovies, login, register, removeMovie, saveMovie } from '../../utils/MainApi';
+import {
+  getContent,
+  getSavedMovies,
+  login,
+  register,
+  removeMovie,
+  saveMovie,
+  updateProfile,
+} from '../../utils/MainApi';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -86,7 +94,7 @@ function App() {
         .then((res) => {
           if (res) {
             // авторизуем пользователя
-            setCurrentUser(res);
+            setCurrentUser(res.data);
             setLoggedIn(true);
             navigate('/', { replace: true });
           }
@@ -246,10 +254,6 @@ function App() {
     setIsLoading(true);
 
     try {
-      if (valueInputSavedMovie.length === 0) {
-        throw new Error('Нужно ввести ключевое слово');
-      }
-      // setFilteredSavedMovies(savedMovies);
       const filteredSavedMovies = getFilteredMovies(savedMovies, valueInputSavedMovie);
 
       setFilteredSavedMovies(filteredSavedMovies);
@@ -279,6 +283,16 @@ function App() {
       );
     }
   }, []);
+
+  function handleUpdateUser(user) {
+    setIsLoading(true);
+    updateProfile(user)
+      .then((userInfo) => {
+        setCurrentUser(userInfo.data);
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -324,7 +338,7 @@ function App() {
             />
             <Route
               path='/profile'
-              element={<Profile />}
+              element={<Profile handleUpdateUser={handleUpdateUser} />}
             />
             <Route
               path='/signin'
