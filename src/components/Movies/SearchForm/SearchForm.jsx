@@ -19,7 +19,7 @@ const SearchForm = ({
 
   return (
     <section className='search-form'>
-      {location.pathname === '/movies' || location.pathname === '/movies/' ? (
+      {location.pathname === '/movies' ? (
         <form
           className='search-form__row'
           onSubmit={(e) => handleSubmit(e, isChecked)}>

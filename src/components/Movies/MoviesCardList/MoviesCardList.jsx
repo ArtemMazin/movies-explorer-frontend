@@ -44,7 +44,7 @@ const MoviesCardList = ({
 
   return (
     <section className='movies'>
-      {location.pathname === '/movies' || location.pathname === '/movies/' ? (
+      {location.pathname === '/movies' ? (
         (isLoading && <Preloader />) || (
           <>
             {(isMoviesNotFound || (isChecked && shortFilms.length === 0)) && (

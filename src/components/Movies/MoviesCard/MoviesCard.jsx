@@ -16,11 +16,7 @@ const MoviesCard = ({ card, handleLikeMovie, handleRemoveButton, savedMovies }) 
         target='blank'>
         <img
           className='card__image'
-          src={
-            location.pathname === '/movies' || location.pathname === '/movies/'
-              ? `${BASE_MOVIES_URL}${card.image.url}`
-              : `${card.image}`
-          }
+          src={location.pathname === '/movies' ? `${BASE_MOVIES_URL}${card.image.url}` : `${card.image}`}
           alt={card.nameRU}
         />
       </Link>
@@ -29,7 +25,7 @@ const MoviesCard = ({ card, handleLikeMovie, handleRemoveButton, savedMovies }) 
           <h2 className='card__name'>{card.nameRU}</h2>
           <p className='card__duration'>{`${Math.floor(card.duration / 60)}ч${Math.floor(card.duration % 60)}м`}</p>
         </div>
-        {location.pathname === '/movies' || location.pathname === '/movies/' ? (
+        {location.pathname === '/movies' ? (
           <input
             className='card__checkbox'
             type='checkbox'

@@ -7,7 +7,7 @@ const FilterCheckbox = ({ handleCheckbox, isChecked, handleSavedMoviesCheckbox, 
   return (
     <div className='filter-checkbox'>
       <label className='filter-checkbox__text'>
-        {location.pathname === '/movies' || location.pathname === '/movies/' ? (
+        {location.pathname === '/movies' ? (
           <input
             type='checkbox'
             className='filter-checkbox__input'
