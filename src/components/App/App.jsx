@@ -45,6 +45,41 @@ function App() {
 
   useEffect(() => setFilteredSavedMovies(savedMovies), [savedMovies]);
 
+  useEffect(() => {
+    const localStorageData = JSON.parse(localStorage.getItem('savedData'));
+
+    if (localStorageData) {
+      const { movies, text, checkbox } = localStorageData;
+      setFindedMovies(movies);
+      setValueInputMovie(text);
+      setIsChecked(checkbox);
+      setShortFilms(filterShortMovies(movies));
+    }
+  }, []);
+
+  useEffect(() => {
+    checkToken();
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn) {
+      checkToken();
+      getSavedMovies()
+        .then((res) => {
+          if (res) {
+            setSavedMovies(res.data);
+          }
+        })
+        .catch(console.error);
+    }
+  }, [loggedIn]);
+
+  function filterShortMovies(movies) {
+    movies.filter((film) => {
+      return film.duration <= 40;
+    });
+  }
+
   function handleSubmitRegistration(e, name, email, password) {
     e.preventDefault();
     setIsLoading(true);
@@ -64,41 +99,33 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  function handleLogin() {
-    setLoggedIn(true);
-  }
   function handleSubmitLogin(e, email, password) {
     e.preventDefault();
     setIsLoading(true);
-
-    login(email, password, setErrorMessageLogin)
-      .then((data) => {
+    try {
+      login(email, password, setErrorMessageLogin).then((data) => {
         if (data) {
-          handleLogin();
-          navigate('/', { replace: true });
+          setLoggedIn(true);
+          navigate('/movies', { replace: true });
         }
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => setIsLoading(false));
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   function handleLogout() {
     logout()
       .then((res) => {
         setLoggedIn(false);
-        localStorage.removeItem('token');
-        localStorage.removeItem('savedData');
+        localStorage.clear();
       })
       .catch((err) => console.log(err));
   }
 
-  useEffect(() => {
-    tokenCheck();
-  }, []);
-
-  function tokenCheck() {
+  function checkToken() {
     const token = localStorage.getItem('token');
     if (token) {
       getContent()
@@ -152,12 +179,9 @@ function App() {
           getSavedMovies()
             .then((res) => {
               if (res) {
-                setSavedMovies(res.data);
-                setShortSavedFilms(
-                  res.data.filter((film) => {
-                    return film.duration <= 40;
-                  })
-                );
+                const { data } = res;
+                setSavedMovies(data);
+                setShortSavedFilms(filterShortMovies(data));
               }
             })
             .catch(console.error)
@@ -247,7 +271,7 @@ function App() {
       );
 
       checkIsMoviesNotFound(filteredMovies);
-      setMovies(arrayMovies);
+      // setMovies(arrayMovies);
       setFindedMovies(filteredMovies);
 
       localStorage.setItem(
@@ -275,25 +299,10 @@ function App() {
       );
     } catch (err) {
       console.error(err.message);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }
-
-  useEffect(() => {
-    const localStorageData = JSON.parse(localStorage.getItem('savedData'));
-
-    if (localStorageData) {
-      setFindedMovies(localStorageData.movies);
-      setValueInputMovie(localStorageData.text);
-      setIsChecked(localStorageData.checkbox);
-
-      setShortFilms(
-        localStorageData.movies.filter((film) => {
-          return film.duration <= 40;
-        })
-      );
-    }
-  }, []);
 
   function handleUpdateUser(user) {
     setIsLoading(true);
@@ -336,6 +345,7 @@ function App() {
               path='/saved-movies'
               element={
                 <SavedMovies
+                  savedMovies={savedMovies}
                   filteredSavedMovies={filteredSavedMovies}
                   handleRemoveButton={handleRemoveButton}
                   handleSavedMoviesCheckbox={handleSavedMoviesCheckbox}
