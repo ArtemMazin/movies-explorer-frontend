@@ -72,19 +72,7 @@ export function getContent() {
   });
 }
 
-export function saveMovie(
-  country,
-  director,
-  duration,
-  year,
-  description,
-  image,
-  trailerLink,
-  thumbnail,
-  movieId,
-  nameRU,
-  nameEN
-) {
+export function saveMovie(dataMovie) {
   return request('/movies', {
     method: 'POST',
     headers: {
@@ -92,17 +80,17 @@ export function saveMovie(
     },
     credentials: 'include',
     body: JSON.stringify({
-      country,
-      director,
-      duration,
-      year,
-      description,
-      image,
-      trailerLink,
-      thumbnail,
-      movieId,
-      nameRU,
-      nameEN,
+      country: dataMovie.country,
+      director: dataMovie.director,
+      duration: dataMovie.duration,
+      year: dataMovie.year,
+      description: dataMovie.description,
+      image: dataMovie.image,
+      trailerLink: dataMovie.trailerLink,
+      thumbnail: dataMovie.thumbnail,
+      movieId: dataMovie.movieId,
+      nameRU: dataMovie.nameRU,
+      nameEN: dataMovie.nameEN,
     }),
   });
 }

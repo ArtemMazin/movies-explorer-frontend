@@ -23,7 +23,6 @@ import {
 } from '../../utils/MainApi';
 
 function App() {
-  const [movies, setMovies] = useState([]);
   const [findedMovies, setFindedMovies] = useState([]);
   const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
@@ -64,165 +63,139 @@ function App() {
   useEffect(() => {
     if (loggedIn) {
       checkToken();
-      getSavedMovies()
-        .then((res) => {
-          if (res) {
-            setSavedMovies(res.data);
-          }
-        })
-        .catch(console.error);
+      (async function () {
+        const savedMovies = await getSavedMovies();
+        updateSavedMovies(savedMovies.data);
+      })();
     }
   }, [loggedIn]);
 
+  function updateSavedMovies(savedMovies) {
+    try {
+      setSavedMovies(savedMovies);
+      setShortSavedFilms(filterShortMovies(savedMovies));
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   function filterShortMovies(movies) {
-    movies.filter((film) => {
+    return movies.filter((film) => {
       return film.duration <= 40;
     });
   }
 
-  function handleSubmitRegistration(e, name, email, password) {
+  async function handleSubmitRegistration(e, name, email, password) {
     e.preventDefault();
     setIsLoading(true);
 
-    register(name, email, password, setErrorMessageRegister)
-      .then((res) => {
-        setIsRegistrationSuccess(true);
-
-        navigate('/signin', { replace: true });
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsRegistrationSuccess(false);
-
-        navigate('/signup', { replace: true });
-      })
-      .finally(() => setIsLoading(false));
-  }
-
-  function handleSubmitLogin(e, email, password) {
-    e.preventDefault();
-    setIsLoading(true);
     try {
-      login(email, password, setErrorMessageLogin).then((data) => {
-        if (data) {
-          setLoggedIn(true);
-          navigate('/movies', { replace: true });
-        }
-      });
-    } catch (error) {
-      console.log(error);
+      await register(name, email, password, setErrorMessageRegister);
+      setIsRegistrationSuccess(true);
+      navigate('/signin', { replace: true });
+    } catch (err) {
+      console.error(err);
+      setIsRegistrationSuccess(false);
     } finally {
       setIsLoading(false);
     }
   }
 
-  function handleLogout() {
-    logout()
-      .then((res) => {
-        setLoggedIn(false);
-        localStorage.clear();
-      })
-      .catch((err) => console.log(err));
-  }
+  async function handleSubmitLogin(e, email, password) {
+    e.preventDefault();
+    setIsLoading(true);
 
-  function checkToken() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      getContent()
-        .then((res) => {
-          if (res) {
-            // авторизуем пользователя
-            setCurrentUser(res.data);
-            setLoggedIn(true);
-            navigate('/', { replace: true });
-          }
-        })
-        .catch(console.error);
-      getSavedMovies()
-        .then((res) => {
-          if (res) {
-            setSavedMovies(res.data);
-          }
-        })
-        .catch(console.error);
+    try {
+      await login(email, password, setErrorMessageLogin);
+      setLoggedIn(true);
+      navigate('/movies', { replace: true });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   }
 
-  function handleLikeMovie(
-    e,
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailerLink,
-    thumbnail,
-    movieId,
-    nameRU,
-    nameEN
-  ) {
-    e.target.checked
-      ? saveMovie(
-          country,
-          director,
-          duration,
-          year,
-          description,
-          image,
-          trailerLink,
-          thumbnail,
-          movieId,
-          nameRU,
-          nameEN
-        ).then(() =>
-          getSavedMovies()
-            .then((res) => {
-              if (res) {
-                const { data } = res;
-                setSavedMovies(data);
-                setShortSavedFilms(filterShortMovies(data));
-              }
-            })
-            .catch(console.error)
-        )
-      : removeFilm(movieId);
-  }
-  function removeFilm(movieId) {
-    const film = savedMovies.find((movie) => movie.movieId === movieId);
-
-    removeMovie(film._id)
-      .then(() => {
-        const newCards = savedMovies.filter((newCard) => {
-          return newCard._id !== film._id;
-        });
-        setSavedMovies(newCards);
-        setShortSavedFilms(
-          newCards.filter((film) => {
-            return film.duration <= 40;
-          })
-        );
-      })
-      .catch(console.error);
-  }
-
-  function handleRemoveButton(cardID) {
+  async function handleLogout() {
     setIsLoading(true);
 
-    removeMovie(cardID)
-      .then(() => {
-        const newCards = savedMovies.filter((newCard) => {
-          return newCard._id !== cardID;
-        });
-        setSavedMovies(newCards);
-        setShortSavedFilms(
-          newCards.filter((film) => {
-            return film.duration <= 40;
-          })
-        );
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
+    try {
+      await logout();
+      setLoggedIn(false);
+      localStorage.clear();
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function checkToken() {
+    try {
+      const token = localStorage.getItem('token');
+
+      if (token) {
+        const profileData = await getContent();
+        // авторизуем пользователя
+        setCurrentUser(profileData.data);
+        setLoggedIn(true);
+        navigate('/', { replace: true });
+        //показываем сохраненные фильмы
+        const savedMovies = await getSavedMovies();
+        updateSavedMovies(savedMovies.data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function handleLikeMovie(e, dataMovie) {
+    try {
+      if (e.target.checked) {
+        saveFilm(dataMovie);
+      } else {
+        removeFilm(dataMovie.movieId);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function saveFilm(dataMovie) {
+    try {
+      await saveMovie(dataMovie);
+      const savedMovies = await getSavedMovies();
+      updateSavedMovies(savedMovies.data);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function removeFilm(movieId) {
+    try {
+      const film = savedMovies.find((movie) => movie.movieId === movieId);
+      await removeMovie(film._id);
+      const newCards = filterSavedMovies(film._id);
+      updateSavedMovies(newCards);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  function filterSavedMovies(movieID) {
+    return savedMovies.filter((newCard) => {
+      return newCard._id !== movieID;
+    });
+  }
+
+  async function handleRemoveButton(cardID) {
+    try {
+      await removeMovie(cardID);
+      const newCards = filterSavedMovies(cardID);
+      updateSavedMovies(newCards);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   function checkIsMoviesNotFound(filteredMovies) {
@@ -241,16 +214,13 @@ function App() {
   }
 
   function handleSavedMoviesCheckbox(e) {
-    setIsSavedMoviesChecked(e.target.checked);
+    try {
+      setIsSavedMoviesChecked(e.target.checked);
 
-    const filteredSavedMovies = getFilteredMovies(savedMovies, valueInputSavedMovie);
-
-    setFilteredSavedMovies(filteredSavedMovies);
-    setShortSavedFilms(
-      filteredSavedMovies.filter((film) => {
-        return film.duration <= 40;
-      })
-    );
+      updateFilteredSavedMovies();
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   async function handleSubmitSearchMovies(e, valueCheckbox) {
@@ -261,17 +231,11 @@ function App() {
       if (valueInputMovie.length === 0) {
         throw new Error('Нужно ввести ключевое слово');
       }
-      const arrayMovies = await Promise.resolve(getMovies());
+      const arrayMovies = await getMovies();
       const filteredMovies = getFilteredMovies(arrayMovies, valueInputMovie);
 
-      setShortFilms(
-        filteredMovies.filter((film) => {
-          return film.duration <= 40;
-        })
-      );
-
+      setShortFilms(filterShortMovies(filteredMovies));
       checkIsMoviesNotFound(filteredMovies);
-      // setMovies(arrayMovies);
       setFindedMovies(filteredMovies);
 
       localStorage.setItem(
@@ -279,9 +243,10 @@ function App() {
         JSON.stringify({ checkbox: valueCheckbox, text: valueInputMovie, movies: filteredMovies })
       );
     } catch (err) {
-      console.error(err.message);
+      console.error(err);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }
 
   function handleSubmitSearchSavedMovies(e) {
@@ -289,29 +254,34 @@ function App() {
     setIsLoading(true);
 
     try {
-      const filteredSavedMovies = getFilteredMovies(savedMovies, valueInputSavedMovie);
-
-      setFilteredSavedMovies(filteredSavedMovies);
-      setShortSavedFilms(
-        filteredSavedMovies.filter((film) => {
-          return film.duration <= 40;
-        })
-      );
+      updateFilteredSavedMovies();
     } catch (err) {
-      console.error(err.message);
+      console.error(err);
     } finally {
       setIsLoading(false);
     }
   }
 
-  function handleUpdateUser(user) {
+  function updateFilteredSavedMovies() {
+    try {
+      const filteredSavedMovies = getFilteredMovies(savedMovies, valueInputSavedMovie);
+      setFilteredSavedMovies(filteredSavedMovies);
+      setShortSavedFilms(filterShortMovies(filteredSavedMovies));
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  async function handleUpdateUser(user) {
     setIsLoading(true);
-    updateProfile(user)
-      .then((userInfo) => {
-        setCurrentUser(userInfo.data);
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
+    try {
+      const updated = await updateProfile(user);
+      setCurrentUser(updated.data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (

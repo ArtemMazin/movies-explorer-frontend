@@ -31,20 +31,19 @@ const MoviesCard = ({ card, handleLikeMovie, handleRemoveButton, savedMovies }) 
             type='checkbox'
             checked={checkLike(card)}
             onChange={(e) =>
-              handleLikeMovie(
-                e,
-                card.country,
-                card.director,
-                card.duration,
-                card.year,
-                card.description,
-                `${BASE_MOVIES_URL}${card.image.url}`,
-                card.trailerLink,
-                `${BASE_MOVIES_URL}${card.image.formats.thumbnail.url}`,
-                card.id,
-                card.nameRU,
-                card.nameEN
-              )
+              handleLikeMovie(e, {
+                country: card.country,
+                director: card.director,
+                duration: card.duration,
+                year: card.year,
+                description: card.description,
+                image: `${BASE_MOVIES_URL}${card.image.url}`,
+                trailerLink: card.trailerLink,
+                thumbnail: `${BASE_MOVIES_URL}${card.image.formats.thumbnail.url}`,
+                movieId: card.id,
+                nameRU: card.nameRU,
+                nameEN: card.nameEN,
+              })
             }
           />
         ) : (
