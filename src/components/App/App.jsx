@@ -21,6 +21,7 @@ import {
   saveMovie,
   updateProfile,
 } from '../../utils/MainApi';
+import ProtectedRouteElement from '../ProtectedRoute';
 
 function App() {
   const [findedMovies, setFindedMovies] = useState([]);
@@ -296,7 +297,9 @@ function App() {
             <Route
               path='/movies'
               element={
-                <Movies
+                <ProtectedRouteElement
+                  element={Movies}
+                  loggedIn={loggedIn}
                   movies={findedMovies}
                   setValueInputMovie={setValueInputMovie}
                   valueInputMovie={valueInputMovie}
@@ -314,7 +317,9 @@ function App() {
             <Route
               path='/saved-movies'
               element={
-                <SavedMovies
+                <ProtectedRouteElement
+                  element={SavedMovies}
+                  loggedIn={loggedIn}
                   savedMovies={savedMovies}
                   filteredSavedMovies={filteredSavedMovies}
                   handleRemoveButton={handleRemoveButton}
@@ -330,7 +335,9 @@ function App() {
             <Route
               path='/profile'
               element={
-                <Profile
+                <ProtectedRouteElement
+                  element={Profile}
+                  loggedIn={loggedIn}
                   handleUpdateUser={handleUpdateUser}
                   handleLogout={handleLogout}
                 />
