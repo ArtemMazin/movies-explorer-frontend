@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { IsLoggedContext } from '../../contexts/IsLoggedContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import './App.css';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
@@ -22,6 +21,8 @@ import {
   updateProfile,
 } from '../../utils/MainApi';
 import ProtectedRouteElement from '../ProtectedRoute';
+import { filterSavedMovies, filterShortMovies, getFilteredMovies } from '../../utils/constants';
+import './App.css';
 
 function App() {
   const [findedMovies, setFindedMovies] = useState([]);
@@ -78,12 +79,6 @@ function App() {
     } catch (err) {
       console.error(err);
     }
-  }
-
-  function filterShortMovies(movies) {
-    return movies.filter((film) => {
-      return film.duration <= 40;
-    });
   }
 
   async function handleSubmitRegistration(e, name, email, password) {
@@ -179,23 +174,17 @@ function App() {
     try {
       const film = savedMovies.find((movie) => movie.movieId === movieId);
       await removeMovie(film._id);
-      const newCards = filterSavedMovies(film._id);
+      const newCards = filterSavedMovies(savedMovies, film._id);
       updateSavedMovies(newCards);
     } catch (err) {
       console.error(err);
     }
   }
 
-  function filterSavedMovies(movieID) {
-    return savedMovies.filter((newCard) => {
-      return newCard._id !== movieID;
-    });
-  }
-
   async function handleRemoveButton(cardID) {
     try {
       await removeMovie(cardID);
-      const newCards = filterSavedMovies(cardID);
+      const newCards = filterSavedMovies(savedMovies, cardID);
       updateSavedMovies(newCards);
     } catch (err) {
       console.error(err);
@@ -206,12 +195,6 @@ function App() {
     filteredMovies.length === 0 ? setIsMoviesNotFound(true) : setIsMoviesNotFound(false);
   }
 
-  function getFilteredMovies(arrayMovies, value) {
-    return Array.from(arrayMovies).filter((item) => {
-      return item.nameRU.toLowerCase().includes(value) || item.nameEN.toLowerCase().includes(value);
-    });
-  }
-
   function handleCheckbox(e) {
     valueInputMovie.length !== 0 && setIsChecked(e.target.checked);
     handleSubmitSearchMovies(e, e.target.checked);
@@ -220,7 +203,6 @@ function App() {
   function handleSavedMoviesCheckbox(e) {
     try {
       setIsSavedMoviesChecked(e.target.checked);
-
       updateFilteredSavedMovies();
     } catch (err) {
       console.error(err);
