@@ -124,6 +124,9 @@ function App() {
       await logout();
       setLoggedIn(false);
       localStorage.clear();
+      setFindedMovies([]);
+      setValueInputMovie('');
+      setIsChecked(false);
     } catch (err) {
       console.error(err);
     } finally {

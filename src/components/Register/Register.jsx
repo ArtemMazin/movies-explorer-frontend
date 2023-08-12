@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './Register.css';
 import FormLabel from '../FormAuth/FormLabel/FormLabel';
 import FormButtons from '../FormAuth/FormButtons/FormButtons';

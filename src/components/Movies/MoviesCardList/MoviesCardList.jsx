@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { useLocation } from 'react-router-dom';
 import useScreenOrientation from '../../../hooks/useScreenOrientation';
 import Preloader from '../Preloader/Preloader';
 import MoreMoviesButton from './MoreMoviesButton/MoreMoviesButton';
+import useCountMovies from '../../../hooks/useCountMovies';
 
 const MoviesCardList = ({
   movies,
@@ -19,28 +19,9 @@ const MoviesCardList = ({
   isSavedMoviesChecked,
   filteredSavedMovies,
 }) => {
-  const [countRenderMovies, setCountRenderMovies] = useState(0);
-  const [countMoreMovies, setCountMoreMovies] = useState(0);
   const location = useLocation();
   const orientation = useScreenOrientation();
-  const screenWidth = window.screen.width;
-
-  useEffect(() => {
-    if (screenWidth >= 1280) {
-      setCountRenderMovies(16);
-      setCountMoreMovies(4);
-    } else if (screenWidth >= 768 && screenWidth < 1280) {
-      setCountRenderMovies(8);
-      setCountMoreMovies(2);
-    } else if (screenWidth < 768) {
-      setCountRenderMovies(5);
-      setCountMoreMovies(2);
-    }
-  }, [orientation, screenWidth]);
-
-  const getMoreMovies = () => {
-    setCountRenderMovies(countRenderMovies + countMoreMovies);
-  };
+  const { getMoreMovies, countRenderMovies } = useCountMovies(orientation);
 
   return (
     <section className='movies'>
