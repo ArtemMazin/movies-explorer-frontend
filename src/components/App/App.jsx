@@ -23,6 +23,7 @@ import {
 import ProtectedRouteElement from '../ProtectedRoute';
 import { filterSavedMovies, filterShortMovies, getFilteredMovies } from '../../utils/constants';
 import './App.css';
+import Notification from '../Notification/Notification';
 
 function App() {
   const [findedMovies, setFindedMovies] = useState([]);
@@ -37,9 +38,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [errorMessageLogin, setErrorMessageLogin] = useState('');
-  const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
-  const [errorMessageRegister, setErrorMessageRegister] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [notificationIsOpen, setNotificationIsOpen] = useState(false);
   const [isMoviesNotFound, setIsMoviesNotFound] = useState(false);
 
   const navigate = useNavigate();
@@ -60,17 +60,33 @@ function App() {
 
   useEffect(() => {
     checkToken();
-  }, []);
+  }, [loggedIn]);
 
-  useEffect(() => {
-    if (loggedIn) {
-      checkToken();
-      (async function () {
+  async function checkToken() {
+    try {
+      const token = localStorage.getItem('token');
+
+      if (token) {
+        const profileData = await getContent();
+        // авторизуем пользователя
+        setCurrentUser(profileData.data);
+        setLoggedIn(true);
+        navigate('/movies', { replace: true });
+        //показываем сохраненные фильмы
         const savedMovies = await getSavedMovies();
         updateSavedMovies(savedMovies.data);
-      })();
+      }
+    } catch (err) {
+      console.error(err);
     }
-  }, [loggedIn]);
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setNotificationIsOpen(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [notificationIsOpen]);
 
   function updateSavedMovies(savedMovies) {
     try {
@@ -86,12 +102,11 @@ function App() {
     setIsLoading(true);
 
     try {
-      await register(name, email, password, setErrorMessageRegister);
-      setIsRegistrationSuccess(true);
+      await register(name, email, password, setErrorMessage);
       navigate('/signin', { replace: true });
     } catch (err) {
       console.error(err);
-      setIsRegistrationSuccess(false);
+      setNotificationIsOpen(true);
     } finally {
       setIsLoading(false);
     }
@@ -102,11 +117,12 @@ function App() {
     setIsLoading(true);
 
     try {
-      await login(email, password, setErrorMessageLogin);
+      await login(email, password, setErrorMessage);
       setLoggedIn(true);
       navigate('/movies', { replace: true });
     } catch (err) {
       console.error(err);
+      setNotificationIsOpen(true);
     } finally {
       setIsLoading(false);
     }
@@ -126,25 +142,6 @@ function App() {
       console.error(err);
     } finally {
       setIsLoading(false);
-    }
-  }
-
-  async function checkToken() {
-    try {
-      const token = localStorage.getItem('token');
-
-      if (token) {
-        const profileData = await getContent();
-        // авторизуем пользователя
-        setCurrentUser(profileData.data);
-        setLoggedIn(true);
-        navigate('/', { replace: true });
-        //показываем сохраненные фильмы
-        const savedMovies = await getSavedMovies();
-        updateSavedMovies(savedMovies.data);
-      }
-    } catch (err) {
-      console.error(err);
     }
   }
 
@@ -341,6 +338,11 @@ function App() {
               element={<Page404 />}
             />
           </Routes>
+          <Notification
+            notificationIsOpen={notificationIsOpen}
+            setNotificationIsOpen={setNotificationIsOpen}
+            errorMessage={errorMessage}
+          />
         </div>
       </IsLoggedContext.Provider>
     </CurrentUserContext.Provider>

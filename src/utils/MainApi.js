@@ -2,10 +2,9 @@ import { BASE_URL } from './constants';
 
 function getResponseData(res, setErrorMessage) {
   if (!res.ok) {
-    console.log('оп');
     //получаем ответ от сервера с текстом ошибки, чтобы передать его в попап
     res.text().then((text) => {
-      // setErrorMessage(JSON.parse(text).message || JSON.parse(text).error);
+      setErrorMessage(JSON.parse(text).message || JSON.parse(text).error);
     });
     return Promise.reject(`Ошибка: ${res.status}`);
   }
@@ -17,7 +16,7 @@ async function request(url, options, setErrorMessage) {
   return getResponseData(res, setErrorMessage);
 }
 
-export function register(name, email, password, setErrorMessageRegister) {
+export function register(name, email, password, setErrorMessage) {
   return request(
     '/signup',
     {
@@ -28,11 +27,11 @@ export function register(name, email, password, setErrorMessageRegister) {
       credentials: 'include',
       body: JSON.stringify({ name, email, password }),
     },
-    setErrorMessageRegister
+    setErrorMessage
   );
 }
 
-export function login(email, password, setErrorMessageLogin) {
+export function login(email, password, setErrorMessage) {
   return request(
     '/signin',
     {
@@ -43,7 +42,7 @@ export function login(email, password, setErrorMessageLogin) {
       credentials: 'include',
       body: JSON.stringify({ email, password }),
     },
-    setErrorMessageLogin
+    setErrorMessage
   ).then((data) => {
     if (data) {
       localStorage.setItem('token', 'isLoggedIn');
