@@ -19,8 +19,6 @@
   transition: var(--transition);
 }
 .notification_active {
-  /* animation-name: show;
-  animation-duration: 4s; */
   top: 0;
   visibility: visible;
 }
@@ -33,15 +31,4 @@
 }
 .notification__message {
   margin: 0;
-}
-@keyframes show {
-  from {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
 }

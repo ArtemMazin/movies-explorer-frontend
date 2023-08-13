@@ -81,13 +81,6 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setNotificationIsOpen(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, [notificationIsOpen]);
-
   function updateSavedMovies(savedMovies) {
     try {
       setSavedMovies(savedMovies);
@@ -258,10 +251,11 @@ function App() {
   async function handleUpdateUser(user) {
     setIsLoading(true);
     try {
-      const updated = await updateProfile(user);
+      const updated = await updateProfile(user, setErrorMessage);
       setCurrentUser(updated.data);
     } catch (err) {
       console.error(err);
+      setNotificationIsOpen(true);
     } finally {
       setIsLoading(false);
     }

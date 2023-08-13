@@ -22,6 +22,10 @@
   font-weight: 400;
   line-height: 18px;
 }
+.search-form__input:focus {
+  outline: none;
+  border: 1px solid var(--border-color);
+}
 .search-form__button {
   padding: 0;
   width: 44px;

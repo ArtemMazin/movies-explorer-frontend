@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Profile.css';
 import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
@@ -34,35 +34,45 @@ const Profile = ({ handleUpdateUser, handleLogout }) => {
         <h1 className='profile__title'>{`Привет, ${name}`}!</h1>
         <form
           className='profile__form'
+          noValidate
           onSubmit={handleSubmit}>
           <div className='profile__inputs'>
             <label className='profile__label'>
-              <span className='profile__input-name'>Имя</span>
-              <input
-                placeholder='Введите имя'
-                className='profile__input'
-                type='text'
-                value={name || ''}
-                name='name'
-                onChange={handleChangeValidation}
-              />
+              <div className='profile__input-block'>
+                <span className='profile__input-name'>Имя</span>
+                <input
+                  placeholder='Введите имя'
+                  className={`profile__input ${!inputsValid.name ? 'profile__input_error' : ''}`}
+                  type='text'
+                  value={name || ''}
+                  name='name'
+                  required
+                  onChange={handleChangeValidation}
+                />
+              </div>
+              <span className='profile__error-message'>{errors.name}</span>
             </label>
             <label className='profile__label'>
-              <span className='profile__input-name'>E-mail</span>
-              <input
-                value={email || ''}
-                type='email'
-                name='email'
-                placeholder='Введите e-mail'
-                className='profile__input'
-                onChange={handleChangeValidation}
-              />
+              <div className='profile__input-block'>
+                <span className='profile__input-name'>E-mail</span>
+                <input
+                  value={email || ''}
+                  type='email'
+                  name='email'
+                  required
+                  placeholder='Введите e-mail'
+                  className={`profile__input ${!inputsValid.email ? 'profile__input_error' : ''}`}
+                  onChange={handleChangeValidation}
+                />
+              </div>
+              <span className='profile__error-message'>{errors.email}</span>
             </label>
           </div>
           <div className='profile__buttons'>
             <button
               type='submit'
-              className='profile__submit-button'>
+              className={`profile__submit-button ${!isFormValid ? 'profile__submit-button_disabled' : ''}`}
+              disabled={!isFormValid}>
               Редактировать
             </button>
             <Link
