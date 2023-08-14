@@ -7,9 +7,10 @@ const FormLabel = ({
   span,
   placeholder,
   inputsValid,
-  errorMessage,
+  message,
   handleChangeValidation,
   minLength,
+  maxLength,
   type,
 }) => {
   return (
@@ -20,12 +21,13 @@ const FormLabel = ({
         className={`label__input ${!inputsValid ? 'label__input_error' : ''}`}
         placeholder={placeholder}
         minLength={minLength}
+        maxLength={maxLength}
         required
         name={name}
         value={value}
         onChange={handleChangeValidation}
       />
-      <span className='label__error-message'>{errorMessage}</span>
+      <span className='label__error-message'>{message}</span>
     </label>
   );
 };

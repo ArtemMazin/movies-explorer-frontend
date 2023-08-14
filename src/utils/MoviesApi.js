@@ -1,14 +1,14 @@
 import { BASE_MOVIES_URL } from './constants';
 
-function getResponseData(res, setErrorMessage) {
+function getResponseData(res, setMessage) {
   if (!res.ok) {
-    throw new Error(setErrorMessage);
+    throw new Error(setMessage);
   }
   return res.json();
 }
-async function request(url, setErrorMessage) {
+async function request(url, setMessage) {
   const res = await fetch(`${BASE_MOVIES_URL}${url}`);
-  return getResponseData(res, setErrorMessage);
+  return getResponseData(res, setMessage);
 }
 
 export function getMovies() {

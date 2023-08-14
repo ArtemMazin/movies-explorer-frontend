@@ -1,22 +1,22 @@
 import { BASE_URL } from './constants';
 
-function getResponseData(res, setErrorMessage) {
+function getResponseData(res, setMessage) {
   if (!res.ok) {
     //получаем ответ от сервера с текстом ошибки, чтобы передать его в попап
     res.text().then((text) => {
-      setErrorMessage(JSON.parse(text).message || 'Произошла ошибка');
+      setMessage(JSON.parse(text).message || 'Произошла ошибка');
     });
     return Promise.reject(`Ошибка: ${res.status}`);
   }
   return res.json();
 }
 
-async function request(url, options, setErrorMessage) {
+async function request(url, options, setMessage) {
   const res = await fetch(`${BASE_URL}${url}`, options);
-  return getResponseData(res, setErrorMessage);
+  return getResponseData(res, setMessage);
 }
 
-export function register(name, email, password, setErrorMessage) {
+export function register(name, email, password, setMessage) {
   return request(
     '/signup',
     {
@@ -27,11 +27,11 @@ export function register(name, email, password, setErrorMessage) {
       credentials: 'include',
       body: JSON.stringify({ name, email, password }),
     },
-    setErrorMessage
+    setMessage
   );
 }
 
-export function login(email, password, setErrorMessage) {
+export function login(email, password, setMessage) {
   return request(
     '/signin',
     {
@@ -42,7 +42,7 @@ export function login(email, password, setErrorMessage) {
       credentials: 'include',
       body: JSON.stringify({ email, password }),
     },
-    setErrorMessage
+    setMessage
   ).then((data) => {
     if (data) {
       localStorage.setItem('token', 'isLoggedIn');
@@ -112,7 +112,7 @@ export function removeMovie(movieID) {
     credentials: 'include',
   });
 }
-export function updateProfile(data, setErrorMessage) {
+export function updateProfile(data, setMessage) {
   return request(
     '/users/me',
     {
@@ -126,6 +126,6 @@ export function updateProfile(data, setErrorMessage) {
         email: data.email,
       }),
     },
-    setErrorMessage
+    setMessage
   );
 }

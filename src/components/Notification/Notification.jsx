@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './Notification.css';
 
-const Notification = ({ notificationIsOpen, setNotificationIsOpen, errorMessage }) => {
+const Notification = ({ notificationIsOpen, setNotificationIsOpen, message }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setNotificationIsOpen(false);
@@ -11,7 +11,7 @@ const Notification = ({ notificationIsOpen, setNotificationIsOpen, errorMessage 
 
   return (
     <div className={`notification ${notificationIsOpen && 'notification_active'}`}>
-      <p className='notification__message'>{errorMessage}</p>
+      <p className='notification__message'>{message}</p>
       <button
         type='button'
         className='notification__close-btn'

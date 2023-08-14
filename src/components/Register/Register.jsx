@@ -28,8 +28,10 @@ const Register = ({ handleSubmitRegistration }) => {
               value={name || ''}
               name='name'
               span='Имя'
+              minLength={2}
+              maxLength={30}
               placeholder='Введите имя'
-              errorMessage={errors.name || ''}
+              message={errors.name || ''}
               inputsValid={inputsValid.name}
               handleChangeValidation={handleChangeValidation}
             />
@@ -40,7 +42,7 @@ const Register = ({ handleSubmitRegistration }) => {
               span='E-mail'
               placeholder='Введите e-mail'
               inputsValid={inputsValid.email}
-              errorMessage={errors.email || ''}
+              message={errors.email || ''}
               handleChangeValidation={handleChangeValidation}
             />
             <FormLabel
@@ -51,7 +53,7 @@ const Register = ({ handleSubmitRegistration }) => {
               minLength='6'
               placeholder='Введите пароль'
               inputsValid={inputsValid.password}
-              errorMessage={errors.password || ''}
+              message={errors.password || ''}
               handleChangeValidation={handleChangeValidation}
             />
           </div>

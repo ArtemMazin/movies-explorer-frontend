@@ -18,3 +18,14 @@ export function filterSavedMovies(movies, movieID) {
     return newCard._id !== movieID;
   });
 }
+
+export const messages = {
+  SUCCESS_REGISTRATION: 'Регистрация прошла успешно',
+  SUCCESS_LOGIN: 'Вы вошли в аккаунт',
+  LOGOUT_SUCCESS: 'Вы вышли из аккаунта',
+  SERVER_ERROR: 'На сервере произошла ошибка',
+  ADD_MOVIE: 'Фильм добавлен в избранные',
+  REMOVE_MOVIE: 'Фильм удален из избранных',
+  KEY_WORD: 'Нужно ввести ключевое слово',
+  UPDATE_PROFILE: 'Профиль сохранён',
+};

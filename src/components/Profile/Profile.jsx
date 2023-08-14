@@ -46,6 +46,8 @@ const Profile = ({ handleUpdateUser, handleLogout }) => {
                   type='text'
                   value={name || ''}
                   name='name'
+                  minLength={2}
+                  maxLength={30}
                   required
                   onChange={handleChangeValidation}
                 />

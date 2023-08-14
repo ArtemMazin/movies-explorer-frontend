@@ -21,7 +21,7 @@ import {
   updateProfile,
 } from '../../utils/MainApi';
 import ProtectedRouteElement from '../ProtectedRoute';
-import { filterSavedMovies, filterShortMovies, getFilteredMovies } from '../../utils/constants';
+import { filterSavedMovies, filterShortMovies, getFilteredMovies, messages } from '../../utils/constants';
 import './App.css';
 import Notification from '../Notification/Notification';
 
@@ -38,7 +38,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [errorMessage, setErrorMessage] = useState('');
+  const [message, setMessage] = useState('');
   const [notificationIsOpen, setNotificationIsOpen] = useState(false);
   const [isMoviesNotFound, setIsMoviesNotFound] = useState(false);
 
@@ -92,38 +92,35 @@ function App() {
 
   async function handleSubmitRegistration(e, name, email, password) {
     e.preventDefault();
-    setIsLoading(true);
 
     try {
-      await register(name, email, password, setErrorMessage);
-      navigate('/signin', { replace: true });
+      await register(name, email, password, setMessage);
+      await handleSubmitLogin(e, email, password);
+      navigate('/movies', { replace: true });
+      setMessage(messages.SUCCESS_REGISTRATION);
+      setNotificationIsOpen(true);
     } catch (err) {
       console.error(err);
       setNotificationIsOpen(true);
-    } finally {
-      setIsLoading(false);
     }
   }
 
   async function handleSubmitLogin(e, email, password) {
     e.preventDefault();
-    setIsLoading(true);
 
     try {
-      await login(email, password, setErrorMessage);
+      await login(email, password, setMessage);
       setLoggedIn(true);
       navigate('/movies', { replace: true });
+      setMessage(messages.SUCCESS_LOGIN);
+      setNotificationIsOpen(true);
     } catch (err) {
       console.error(err);
       setNotificationIsOpen(true);
-    } finally {
-      setIsLoading(false);
     }
   }
 
   async function handleLogout() {
-    setIsLoading(true);
-
     try {
       await logout();
       setLoggedIn(false);
@@ -131,10 +128,12 @@ function App() {
       setFindedMovies([]);
       setValueInputMovie('');
       setIsChecked(false);
+      setMessage(messages.LOGOUT_SUCCESS);
+      setNotificationIsOpen(true);
     } catch (err) {
       console.error(err);
-    } finally {
-      setIsLoading(false);
+      setMessage(messages.SERVER_ERROR);
+      setNotificationIsOpen(true);
     }
   }
 
@@ -155,8 +154,12 @@ function App() {
       await saveMovie(dataMovie);
       const savedMovies = await getSavedMovies();
       updateSavedMovies(savedMovies.data);
+      setMessage(messages.ADD_MOVIE);
+      setNotificationIsOpen(true);
     } catch (err) {
       console.error(err);
+      setMessage(messages.SERVER_ERROR);
+      setNotificationIsOpen(true);
     }
   }
 
@@ -166,8 +169,12 @@ function App() {
       await removeMovie(film._id);
       const newCards = filterSavedMovies(savedMovies, film._id);
       updateSavedMovies(newCards);
+      setMessage(messages.REMOVE_MOVIE);
+      setNotificationIsOpen(true);
     } catch (err) {
       console.error(err);
+      setMessage(messages.SERVER_ERROR);
+      setNotificationIsOpen(true);
     }
   }
 
@@ -176,8 +183,12 @@ function App() {
       await removeMovie(cardID);
       const newCards = filterSavedMovies(savedMovies, cardID);
       updateSavedMovies(newCards);
+      setMessage(messages.REMOVE_MOVIE);
+      setNotificationIsOpen(true);
     } catch (err) {
       console.error(err);
+      setMessage(messages.SERVER_ERROR);
+      setNotificationIsOpen(true);
     }
   }
 
@@ -196,6 +207,8 @@ function App() {
       updateFilteredSavedMovies();
     } catch (err) {
       console.error(err);
+      setMessage(messages.SERVER_ERROR);
+      setNotificationIsOpen(true);
     }
   }
 
@@ -205,7 +218,7 @@ function App() {
 
     try {
       if (valueInputMovie.length === 0) {
-        throw new Error('Нужно ввести ключевое слово');
+        throw new Error(messages.KEY_WORD);
       }
       const arrayMovies = await getMovies();
       const filteredMovies = getFilteredMovies(arrayMovies, valueInputMovie);
@@ -219,6 +232,13 @@ function App() {
         JSON.stringify({ checkbox: valueCheckbox, text: valueInputMovie, movies: filteredMovies })
       );
     } catch (err) {
+      if (err.message === messages.KEY_WORD) {
+        setMessage(messages.KEY_WORD);
+        setNotificationIsOpen(true);
+      } else {
+        setMessage(messages.SERVER_ERROR);
+        setNotificationIsOpen(true);
+      }
       console.error(err);
     } finally {
       setIsLoading(false);
@@ -227,14 +247,11 @@ function App() {
 
   function handleSubmitSearchSavedMovies(e) {
     e.preventDefault();
-    setIsLoading(true);
 
     try {
       updateFilteredSavedMovies();
     } catch (err) {
       console.error(err);
-    } finally {
-      setIsLoading(false);
     }
   }
 
@@ -249,15 +266,14 @@ function App() {
   }
 
   async function handleUpdateUser(user) {
-    setIsLoading(true);
     try {
-      const updated = await updateProfile(user, setErrorMessage);
+      const updated = await updateProfile(user, setMessage);
       setCurrentUser(updated.data);
+      setMessage(messages.UPDATE_PROFILE);
+      setNotificationIsOpen(true);
     } catch (err) {
       console.error(err);
       setNotificationIsOpen(true);
-    } finally {
-      setIsLoading(false);
     }
   }
 
@@ -335,7 +351,7 @@ function App() {
           <Notification
             notificationIsOpen={notificationIsOpen}
             setNotificationIsOpen={setNotificationIsOpen}
-            errorMessage={errorMessage}
+            message={message}
           />
         </div>
       </IsLoggedContext.Provider>

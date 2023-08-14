@@ -30,7 +30,7 @@ const Login = ({ handleSubmitLogin }) => {
               span='E-mail'
               placeholder='Введите e-mail'
               inputsValid={inputsValid.email}
-              errorMessage={errors.email || ''}
+              message={errors.email || ''}
               handleChangeValidation={handleChangeValidation}
             />
             <FormLabel
@@ -41,7 +41,7 @@ const Login = ({ handleSubmitLogin }) => {
               minLength='6'
               placeholder='Введите пароль'
               inputsValid={inputsValid.password}
-              errorMessage={errors.password || ''}
+              message={errors.password || ''}
               handleChangeValidation={handleChangeValidation}
             />
           </div>
