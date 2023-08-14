@@ -44,8 +44,6 @@ function App() {
 
   const navigate = useNavigate();
 
-  useEffect(() => setFilteredSavedMovies(savedMovies), [savedMovies]);
-
   useEffect(() => {
     const localStorageData = JSON.parse(localStorage.getItem('savedData'));
 
@@ -321,6 +319,8 @@ function App() {
                   setValueInputSavedMovie={setValueInputSavedMovie}
                   valueInputSavedMovie={valueInputSavedMovie}
                   handleSubmitSearchSavedMovies={handleSubmitSearchSavedMovies}
+                  setIsSavedMoviesChecked={setIsSavedMoviesChecked}
+                  setFilteredSavedMovies={setFilteredSavedMovies}
                 />
               }
             />

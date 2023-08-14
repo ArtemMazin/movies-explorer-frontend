@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import { useLocation } from 'react-router-dom';
@@ -14,8 +14,15 @@ const SearchForm = ({
   setValueInputSavedMovie,
   valueInputSavedMovie,
   handleSubmitSearchSavedMovies,
+  setIsSavedMoviesChecked,
 }) => {
   const location = useLocation();
+  useEffect(() => {
+    if (location.pathname === '/saved-movies') {
+      setValueInputSavedMovie('');
+      setIsSavedMoviesChecked(false);
+    }
+  }, []);
 
   return (
     <section className='search-form'>

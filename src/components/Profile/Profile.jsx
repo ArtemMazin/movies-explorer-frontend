@@ -28,7 +28,7 @@ const Profile = ({ handleUpdateUser, handleLogout }) => {
   }
 
   function checkDuplicate() {
-    return (currentUser.name === name ? true : false) || (currentUser.email === email ? true : false);
+    return (currentUser.name === name ? true : false) && (currentUser.email === email ? true : false);
   }
 
   return (

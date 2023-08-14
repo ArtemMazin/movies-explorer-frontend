@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../Header/Header';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
@@ -15,7 +15,10 @@ const SavedMovies = ({
   valueInputSavedMovie,
   setValueInputSavedMovie,
   handleSubmitSearchSavedMovies,
+  setIsSavedMoviesChecked,
+  setFilteredSavedMovies,
 }) => {
+  useEffect(() => setFilteredSavedMovies(savedMovies), [savedMovies]);
   return (
     <div className='saved-movies'>
       <Header />
@@ -26,6 +29,7 @@ const SavedMovies = ({
           setValueInputSavedMovie={setValueInputSavedMovie}
           valueInputSavedMovie={valueInputSavedMovie}
           handleSubmitSearchSavedMovies={handleSubmitSearchSavedMovies}
+          setIsSavedMoviesChecked={setIsSavedMoviesChecked}
         />
         <MoviesCardList
           savedMovies={savedMovies}
