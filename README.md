@@ -4,6 +4,8 @@
 
 Адрес репозитория: https://github.com/ArtemMazin/movies-explorer-frontend/tree/level-3
 
+Пулреквест: https://github.com/ArtemMazin/movies-explorer-frontend/pull/2
+
 Макет: https://disk.yandex.ru/d/ncrm77R8Wr-UUg
 
 ## Ссылки на проект
