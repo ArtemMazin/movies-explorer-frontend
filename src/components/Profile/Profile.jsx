@@ -27,6 +27,10 @@ const Profile = ({ handleUpdateUser, handleLogout }) => {
     handleUpdateUser(values);
   }
 
+  function checkDuplicate() {
+    return (currentUser.name === name ? true : false) || (currentUser.email === email ? true : false);
+  }
+
   return (
     <div className='profile'>
       <Header />
@@ -74,7 +78,7 @@ const Profile = ({ handleUpdateUser, handleLogout }) => {
             <button
               type='submit'
               className={`profile__submit-button ${!isFormValid ? 'profile__submit-button_disabled' : ''}`}
-              disabled={!isFormValid}>
+              disabled={!isFormValid || checkDuplicate()}>
               Редактировать
             </button>
             <Link

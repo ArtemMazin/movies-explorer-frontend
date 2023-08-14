@@ -31,3 +31,13 @@
 .notification__message {
   margin: 0;
 }
+
+@media (max-width: 560px) {
+  .notification {
+    padding: 15px;
+    margin: 15px;
+    min-height: 40px;
+    max-width: 320px;
+    font-size: 12px;
+  }
+}

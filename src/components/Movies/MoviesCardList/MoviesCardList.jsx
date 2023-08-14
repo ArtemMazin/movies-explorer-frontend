@@ -51,16 +51,23 @@ const MoviesCardList = ({
           </>
         )
       ) : (
-        <ul className='movies__list'>
-          {(isSavedMoviesChecked ? shortSavedFilms : filteredSavedMovies).slice(0, countRenderMovies).map((card, i) => (
-            <MoviesCard
-              card={card}
-              key={card._id}
-              handleRemoveButton={handleRemoveButton}
-              savedMovies={savedMovies}
-            />
-          ))}
-        </ul>
+        <>
+          {(filteredSavedMovies.length === 0 || (isSavedMoviesChecked && shortSavedFilms.length === 0)) && (
+            <h2 className='movies__not-found'>Ничего не найдено</h2>
+          )}
+          <ul className='movies__list'>
+            {(isSavedMoviesChecked ? shortSavedFilms : filteredSavedMovies)
+              .slice(0, countRenderMovies)
+              .map((card, i) => (
+                <MoviesCard
+                  card={card}
+                  key={card._id}
+                  handleRemoveButton={handleRemoveButton}
+                  savedMovies={savedMovies}
+                />
+              ))}
+          </ul>
+        </>
       )}
     </section>
   );

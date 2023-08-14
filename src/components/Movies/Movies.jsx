@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import SearchForm from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
+import './Movies.css';
 
 const Movies = ({
   movies,
@@ -18,7 +19,7 @@ const Movies = ({
   savedMovies,
 }) => {
   return (
-    <>
+    <div className='movies-main'>
       <Header />
       <main>
         <SearchForm
@@ -39,7 +40,7 @@ const Movies = ({
         />
       </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
