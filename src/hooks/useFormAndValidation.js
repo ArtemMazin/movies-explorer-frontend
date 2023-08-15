@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { REG_EXP_EMAIL } from '../utils/constants';
 
 export function useFormAndValidation() {
   const [values, setValues] = useState({});
@@ -13,6 +14,13 @@ export function useFormAndValidation() {
     //записываем имя инпута и проверку валидности в объект, чтобы использовать подсветку невалидного инпута
     setInputsValid({ ...inputsValid, [e.target.name]: e.target.checkValidity() });
     setValues({ ...values, [e.target.name]: e.target.value });
+  }
+
+  function handleEmail(e) {
+    REG_EXP_EMAIL.test(e.target.value)
+      ? e.target.setCustomValidity('')
+      : e.target.setCustomValidity(e.target.validationMessage || 'Введите корректный email');
+    handleChangeValidation(e);
   }
 
   const resetForm = useCallback(
@@ -35,5 +43,6 @@ export function useFormAndValidation() {
     resetForm,
     values,
     setValues,
+    handleEmail,
   };
 }

@@ -1,6 +1,9 @@
 export const { BASE_MOVIES_URL = 'https://api.nomoreparties.co' } = process.env;
 export const { BASE_URL = 'https://api.diplom.mazinartem.nomoredomains.xyz' } = process.env;
 
+export const REG_EXP_EMAIL =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/i;
+
 export function filterShortMovies(movies) {
   return movies.filter((film) => {
     return film.duration <= 40;

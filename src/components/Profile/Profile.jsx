@@ -6,8 +6,17 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 
 const Profile = ({ handleUpdateUser, handleLogout }) => {
-  const { isFormValid, errors, handleChangeValidation, inputsValid, setInputsValid, values, resetForm, setValues } =
-    useFormAndValidation();
+  const {
+    isFormValid,
+    errors,
+    handleChangeValidation,
+    inputsValid,
+    setInputsValid,
+    values,
+    resetForm,
+    setValues,
+    handleEmail,
+  } = useFormAndValidation();
   const { email, name } = values;
 
   const currentUser = useContext(CurrentUserContext);
@@ -23,7 +32,6 @@ const Profile = ({ handleUpdateUser, handleLogout }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     handleUpdateUser(values);
   }
 
@@ -68,7 +76,7 @@ const Profile = ({ handleUpdateUser, handleLogout }) => {
                   required
                   placeholder='Введите e-mail'
                   className={`profile__input ${!inputsValid.email ? 'profile__input_error' : ''}`}
-                  onChange={handleChangeValidation}
+                  onChange={handleEmail}
                 />
               </div>
               <span className='profile__error-message'>{errors.email}</span>
