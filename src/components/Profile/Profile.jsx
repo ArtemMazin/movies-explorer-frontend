@@ -4,19 +4,11 @@ import Header from '../Header/Header';
 import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import { REG_EXP_EMAIL, REG_EXP_NAME, messages } from '../../utils/constants';
 
-const Profile = ({ handleUpdateUser, handleLogout }) => {
-  const {
-    isFormValid,
-    errors,
-    handleChangeValidation,
-    inputsValid,
-    setInputsValid,
-    values,
-    resetForm,
-    setValues,
-    handleEmail,
-  } = useFormAndValidation();
+const Profile = ({ handleUpdateUser, handleLogout, isLoading }) => {
+  const { isFormValid, errors, inputsValid, setInputsValid, values, resetForm, setValues, handleInput } =
+    useFormAndValidation();
   const { email, name } = values;
 
   const currentUser = useContext(CurrentUserContext);
@@ -61,7 +53,7 @@ const Profile = ({ handleUpdateUser, handleLogout }) => {
                   minLength={2}
                   maxLength={30}
                   required
-                  onChange={handleChangeValidation}
+                  onChange={(e) => handleInput(e, REG_EXP_NAME, messages.INPUT_NAME)}
                 />
               </div>
               <span className='profile__error-message'>{errors.name}</span>
@@ -76,7 +68,7 @@ const Profile = ({ handleUpdateUser, handleLogout }) => {
                   required
                   placeholder='Введите e-mail'
                   className={`profile__input ${!inputsValid.email ? 'profile__input_error' : ''}`}
-                  onChange={handleEmail}
+                  onChange={(e) => handleInput(e, REG_EXP_EMAIL, messages.INPUT_EMAIL)}
                 />
               </div>
               <span className='profile__error-message'>{errors.email}</span>
@@ -85,8 +77,8 @@ const Profile = ({ handleUpdateUser, handleLogout }) => {
           <div className='profile__buttons'>
             <button
               type='submit'
-              className={`profile__submit-button ${!isFormValid ? 'profile__submit-button_disabled' : ''}`}
-              disabled={!isFormValid || checkDuplicate()}>
+              className={`profile__submit-button ${!isFormValid || isLoading ? 'profile__submit-button_disabled' : ''}`}
+              disabled={!isFormValid || checkDuplicate() || isLoading}>
               Редактировать
             </button>
             <Link

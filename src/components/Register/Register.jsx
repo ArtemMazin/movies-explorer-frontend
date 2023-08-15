@@ -4,9 +4,11 @@ import FormLabel from '../FormAuth/FormLabel/FormLabel';
 import FormButtons from '../FormAuth/FormButtons/FormButtons';
 import FormHeader from '../FormAuth/FormHeader/FormHeader';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import { REG_EXP_EMAIL, REG_EXP_NAME, messages } from '../../utils/constants';
 
-const Register = ({ handleSubmitRegistration }) => {
-  const { isFormValid, errors, handleChangeValidation, inputsValid, setInputsValid, values } = useFormAndValidation();
+const Register = ({ handleSubmitRegistration, isLoading }) => {
+  const { isFormValid, errors, handleChangeValidation, inputsValid, setInputsValid, values, handleInput } =
+    useFormAndValidation();
   const { name, email, password } = values;
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const Register = ({ handleSubmitRegistration }) => {
               placeholder='Введите имя'
               message={errors.name || ''}
               inputsValid={inputsValid.name}
-              handleChangeValidation={handleChangeValidation}
+              handleChangeValidation={(e) => handleInput(e, REG_EXP_NAME, messages.INPUT_NAME)}
             />
             <FormLabel
               value={email || ''}
@@ -43,7 +45,7 @@ const Register = ({ handleSubmitRegistration }) => {
               placeholder='Введите e-mail'
               inputsValid={inputsValid.email}
               message={errors.email || ''}
-              handleChangeValidation={handleChangeValidation}
+              handleChangeValidation={(e) => handleInput(e, REG_EXP_EMAIL, messages.INPUT_EMAIL)}
             />
             <FormLabel
               type='text'
@@ -57,7 +59,10 @@ const Register = ({ handleSubmitRegistration }) => {
               handleChangeValidation={handleChangeValidation}
             />
           </div>
-          <FormButtons isFormValid={isFormValid} />
+          <FormButtons
+            isFormValid={isFormValid}
+            isLoading={isLoading}
+          />
         </form>
       </main>
     </div>

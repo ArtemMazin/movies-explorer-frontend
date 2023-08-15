@@ -4,9 +4,11 @@ import FormLabel from '../FormAuth/FormLabel/FormLabel';
 import FormHeader from '../FormAuth/FormHeader/FormHeader';
 import './Login.css';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import { REG_EXP_EMAIL, messages } from '../../utils/constants';
 
-const Login = ({ handleSubmitLogin }) => {
-  const { isFormValid, errors, handleChangeValidation, inputsValid, setInputsValid, values } = useFormAndValidation();
+const Login = ({ handleSubmitLogin, isLoading }) => {
+  const { isFormValid, errors, handleChangeValidation, inputsValid, setInputsValid, values, handleInput } =
+    useFormAndValidation();
   const { email, password } = values;
 
   useEffect(() => {
@@ -31,7 +33,7 @@ const Login = ({ handleSubmitLogin }) => {
               placeholder='Введите e-mail'
               inputsValid={inputsValid.email}
               message={errors.email || ''}
-              handleChangeValidation={handleChangeValidation}
+              handleChangeValidation={(e) => handleInput(e, REG_EXP_EMAIL, messages.INPUT_EMAIL)}
             />
             <FormLabel
               type='text'
@@ -45,7 +47,10 @@ const Login = ({ handleSubmitLogin }) => {
               handleChangeValidation={handleChangeValidation}
             />
           </div>
-          <FormButtons isFormValid={isFormValid} />
+          <FormButtons
+            isFormValid={isFormValid}
+            isLoading={isLoading}
+          />
         </form>
       </main>
     </div>

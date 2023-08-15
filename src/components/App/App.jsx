@@ -90,7 +90,7 @@ function App() {
 
   async function handleSubmitRegistration(e, name, email, password) {
     e.preventDefault();
-
+    setIsLoading(true);
     try {
       await register(name, email, password, setMessage);
       await handleSubmitLogin(e, email, password);
@@ -100,12 +100,14 @@ function App() {
     } catch (err) {
       console.error(err);
       setNotificationIsOpen(true);
+    } finally {
+      setIsLoading(false);
     }
   }
 
   async function handleSubmitLogin(e, email, password) {
     e.preventDefault();
-
+    setIsLoading(true);
     try {
       await login(email, password, setMessage);
       setLoggedIn(true);
@@ -115,6 +117,8 @@ function App() {
     } catch (err) {
       console.error(err);
       setNotificationIsOpen(true);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -264,6 +268,7 @@ function App() {
   }
 
   async function handleUpdateUser(user) {
+    setIsLoading(true);
     try {
       const updated = await updateProfile(user, setMessage);
       setCurrentUser(updated.data);
@@ -272,6 +277,8 @@ function App() {
     } catch (err) {
       console.error(err);
       setNotificationIsOpen(true);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -332,16 +339,27 @@ function App() {
                   loggedIn={loggedIn}
                   handleUpdateUser={handleUpdateUser}
                   handleLogout={handleLogout}
+                  isLoading={isLoading}
                 />
               }
             />
             <Route
               path='/signin'
-              element={<Login handleSubmitLogin={handleSubmitLogin} />}
+              element={
+                <Login
+                  handleSubmitLogin={handleSubmitLogin}
+                  isLoading={isLoading}
+                />
+              }
             />
             <Route
               path='/signup'
-              element={<Register handleSubmitRegistration={handleSubmitRegistration} />}
+              element={
+                <Register
+                  handleSubmitRegistration={handleSubmitRegistration}
+                  isLoading={isLoading}
+                />
+              }
             />
             <Route
               path='*'
