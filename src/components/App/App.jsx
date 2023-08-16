@@ -209,7 +209,7 @@ function App() {
 
   function handleCheckbox(e) {
     try {
-      if (valueInputMovie.length !== 0) {
+      if (initialMovies.length !== 0) {
         setIsChecked(e.target.checked);
         const filteredMovies = getFilteredMovies(initialMovies, valueInputMovie);
         updateAndSaveMovies(e.target.checked, filteredMovies);
