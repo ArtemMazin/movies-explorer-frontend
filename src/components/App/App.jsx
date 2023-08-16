@@ -26,7 +26,7 @@ import './App.css';
 import Notification from '../Notification/Notification';
 
 function App() {
-  const [movies, setMovies] = useState([]);
+  const [initialMovies, setInitialMovies] = useState([]);
   const [findedMovies, setFindedMovies] = useState([]);
   const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
@@ -51,8 +51,9 @@ function App() {
     const localStorageData = JSON.parse(localStorage.getItem('savedData'));
 
     if (localStorageData) {
-      const { movies, text, checkbox } = localStorageData;
+      const { movies, initialMovies, text, checkbox } = localStorageData;
       setFindedMovies(movies);
+      setInitialMovies(initialMovies);
       setValueInputMovie(text);
       setIsChecked(checkbox);
       setShortFilms(filterShortMovies(movies));
@@ -207,8 +208,17 @@ function App() {
   }
 
   function handleCheckbox(e) {
-    valueInputMovie.length !== 0 && setIsChecked(e.target.checked);
-    handleSubmitSearchMovies(e, e.target.checked);
+    try {
+      if (valueInputMovie.length !== 0) {
+        setIsChecked(e.target.checked);
+        const filteredMovies = getFilteredMovies(initialMovies, valueInputMovie);
+        updateAndSaveMovies(e.target.checked, filteredMovies);
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage(messages.SERVER_ERROR);
+      setNotificationIsOpen(true);
+    }
   }
 
   function handleSavedMoviesCheckbox(e) {
@@ -230,29 +240,14 @@ function App() {
       if (valueInputMovie.length === 0) {
         throw new Error(messages.KEY_WORD);
       }
-      if (findedMovies.length === 0) {
+      if (initialMovies.length === 0) {
         const arrayMovies = await getMovies();
-        setMovies(arrayMovies);
+        setInitialMovies(arrayMovies);
         const filteredMovies = getFilteredMovies(arrayMovies, valueInputMovie);
-
-        setShortFilms(filterShortMovies(filteredMovies));
-        checkIsMoviesNotFound(filteredMovies);
-        setFindedMovies(filteredMovies);
-
-        localStorage.setItem(
-          'savedData',
-          JSON.stringify({ checkbox: valueCheckbox, text: valueInputMovie, movies: filteredMovies })
-        );
+        updateAndSaveMovies(valueCheckbox, filteredMovies);
       } else {
-        const filteredMovies = getFilteredMovies(movies, valueInputMovie);
-        setShortFilms(filterShortMovies(filteredMovies));
-        checkIsMoviesNotFound(filteredMovies);
-        setFindedMovies(filteredMovies);
-
-        localStorage.setItem(
-          'savedData',
-          JSON.stringify({ checkbox: valueCheckbox, text: valueInputMovie, movies: filteredMovies })
-        );
+        const filteredMovies = getFilteredMovies(initialMovies, valueInputMovie);
+        updateAndSaveMovies(valueCheckbox, filteredMovies);
       }
     } catch (err) {
       if (err.message === messages.KEY_WORD) {
@@ -266,6 +261,17 @@ function App() {
     } finally {
       setIsLoading(false);
     }
+  }
+
+  function updateAndSaveMovies(checkbox, movies) {
+    setShortFilms(filterShortMovies(movies));
+    checkIsMoviesNotFound(movies);
+    setFindedMovies(movies);
+
+    localStorage.setItem(
+      'savedData',
+      JSON.stringify({ checkbox: checkbox, text: valueInputMovie, movies: movies, initialMovies: initialMovies })
+    );
   }
 
   function handleSubmitSearchSavedMovies(e) {
