@@ -3,7 +3,6 @@ import './FormButtons.css';
 import { Link, useLocation } from 'react-router-dom';
 
 const FormButtons = ({ isFormValid, isLoading }) => {
-  console.log(isLoading);
   const location = useLocation();
   return (
     <div className='form-buttons'>

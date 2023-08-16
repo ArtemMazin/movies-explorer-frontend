@@ -17,8 +17,11 @@ const SavedMovies = ({
   handleSubmitSearchSavedMovies,
   setIsSavedMoviesChecked,
   setFilteredSavedMovies,
+  isSavedMoviesNotFound,
+  setIsSavedMoviesNotFound,
 }) => {
   useEffect(() => setFilteredSavedMovies(savedMovies), [savedMovies]);
+  useEffect(() => setIsSavedMoviesNotFound(false), []);
   return (
     <div className='saved-movies'>
       <Header />
@@ -37,6 +40,8 @@ const SavedMovies = ({
           shortSavedFilms={shortSavedFilms}
           isSavedMoviesChecked={isSavedMoviesChecked}
           handleRemoveButton={handleRemoveButton}
+          isSavedMoviesNotFound={isSavedMoviesNotFound}
+          setIsSavedMoviesNotFound={setIsSavedMoviesNotFound}
         />
       </main>
       <Footer />

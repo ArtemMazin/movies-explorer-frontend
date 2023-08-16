@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { IsLoggedContext } from '../../contexts/IsLoggedContext';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Movies from '../Movies/Movies';
@@ -41,8 +41,10 @@ function App() {
   const [message, setMessage] = useState('');
   const [notificationIsOpen, setNotificationIsOpen] = useState(false);
   const [isMoviesNotFound, setIsMoviesNotFound] = useState(false);
+  const [isSavedMoviesNotFound, setIsSavedMoviesNotFound] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const localStorageData = JSON.parse(localStorage.getItem('savedData'));
@@ -61,6 +63,7 @@ function App() {
   }, [loggedIn]);
 
   async function checkToken() {
+    const path = location.pathname;
     try {
       const token = localStorage.getItem('token');
 
@@ -69,7 +72,9 @@ function App() {
         // авторизуем пользователя
         setCurrentUser(profileData.data);
         setLoggedIn(true);
-        navigate('/movies', { replace: true });
+        if (path !== '/signin') {
+          navigate(path);
+        }
         //показываем сохраненные фильмы
         const savedMovies = await getSavedMovies();
         updateSavedMovies(savedMovies.data);
@@ -94,7 +99,6 @@ function App() {
     try {
       await register(name, email, password, setMessage);
       await handleSubmitLogin(e, email, password);
-      navigate('/movies', { replace: true });
       setMessage(messages.SUCCESS_REGISTRATION);
       setNotificationIsOpen(true);
     } catch (err) {
@@ -197,6 +201,9 @@ function App() {
   function checkIsMoviesNotFound(filteredMovies) {
     filteredMovies.length === 0 ? setIsMoviesNotFound(true) : setIsMoviesNotFound(false);
   }
+  function checkIsSavedMoviesNotFound(filteredSavedMovies) {
+    filteredSavedMovies.length === 0 ? setIsSavedMoviesNotFound(true) : setIsSavedMoviesNotFound(false);
+  }
 
   function handleCheckbox(e) {
     valueInputMovie.length !== 0 && setIsChecked(e.target.checked);
@@ -262,6 +269,7 @@ function App() {
       const filteredSavedMovies = getFilteredMovies(savedMovies, valueInputSavedMovie);
       setFilteredSavedMovies(filteredSavedMovies);
       setShortSavedFilms(filterShortMovies(filteredSavedMovies));
+      checkIsSavedMoviesNotFound(filteredSavedMovies);
     } catch (err) {
       console.error(err);
     }
@@ -328,6 +336,8 @@ function App() {
                   handleSubmitSearchSavedMovies={handleSubmitSearchSavedMovies}
                   setIsSavedMoviesChecked={setIsSavedMoviesChecked}
                   setFilteredSavedMovies={setFilteredSavedMovies}
+                  isSavedMoviesNotFound={isSavedMoviesNotFound}
+                  setIsSavedMoviesNotFound={setIsSavedMoviesNotFound}
                 />
               }
             />

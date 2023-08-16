@@ -12,6 +12,7 @@ const MoviesCardList = ({
   isChecked,
   shortFilms,
   isMoviesNotFound,
+  isSavedMoviesNotFound,
   handleLikeMovie,
   savedMovies,
   shortSavedFilms,
@@ -52,7 +53,7 @@ const MoviesCardList = ({
         )
       ) : (
         <>
-          {(filteredSavedMovies.length === 0 || (isSavedMoviesChecked && shortSavedFilms.length === 0)) && (
+          {(isSavedMoviesNotFound || (isSavedMoviesChecked && shortSavedFilms.length === 0)) && (
             <h2 className='movies__not-found'>Ничего не найдено</h2>
           )}
           <ul className='movies__list'>
