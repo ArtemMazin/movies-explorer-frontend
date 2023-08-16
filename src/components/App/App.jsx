@@ -26,6 +26,7 @@ import './App.css';
 import Notification from '../Notification/Notification';
 
 function App() {
+  const [movies, setMovies] = useState([]);
   const [findedMovies, setFindedMovies] = useState([]);
   const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
@@ -229,17 +230,30 @@ function App() {
       if (valueInputMovie.length === 0) {
         throw new Error(messages.KEY_WORD);
       }
-      const arrayMovies = await getMovies();
-      const filteredMovies = getFilteredMovies(arrayMovies, valueInputMovie);
+      if (findedMovies.length === 0) {
+        const arrayMovies = await getMovies();
+        setMovies(arrayMovies);
+        const filteredMovies = getFilteredMovies(arrayMovies, valueInputMovie);
 
-      setShortFilms(filterShortMovies(filteredMovies));
-      checkIsMoviesNotFound(filteredMovies);
-      setFindedMovies(filteredMovies);
+        setShortFilms(filterShortMovies(filteredMovies));
+        checkIsMoviesNotFound(filteredMovies);
+        setFindedMovies(filteredMovies);
 
-      localStorage.setItem(
-        'savedData',
-        JSON.stringify({ checkbox: valueCheckbox, text: valueInputMovie, movies: filteredMovies })
-      );
+        localStorage.setItem(
+          'savedData',
+          JSON.stringify({ checkbox: valueCheckbox, text: valueInputMovie, movies: filteredMovies })
+        );
+      } else {
+        const filteredMovies = getFilteredMovies(movies, valueInputMovie);
+        setShortFilms(filterShortMovies(filteredMovies));
+        checkIsMoviesNotFound(filteredMovies);
+        setFindedMovies(filteredMovies);
+
+        localStorage.setItem(
+          'savedData',
+          JSON.stringify({ checkbox: valueCheckbox, text: valueInputMovie, movies: filteredMovies })
+        );
+      }
     } catch (err) {
       if (err.message === messages.KEY_WORD) {
         setMessage(messages.KEY_WORD);
