@@ -36,7 +36,7 @@ const Login = ({ handleSubmitLogin, isLoading }) => {
               handleChangeValidation={(e) => handleInput(e, REG_EXP_EMAIL, messages.INPUT_EMAIL)}
             />
             <FormLabel
-              type='text'
+              type='password'
               value={password || ''}
               name='password'
               span='Пароль'

@@ -32,7 +32,7 @@
   height: 44px;
   flex-shrink: 0;
   border: none;
-  background: url(../../../images/search-icon.svg);
+  background: url(../../images/search-icon.svg);
   cursor: pointer;
   transition: var(--transition);
 }

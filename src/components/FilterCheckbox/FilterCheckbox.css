@@ -12,12 +12,12 @@
   margin: 0 12px 0 0;
   width: 36px;
   height: 20px;
-  background: url('../../../images/checkbox-off.svg') no-repeat;
+  background: url('../../images/checkbox-off.svg') no-repeat;
   transition: var(--transition);
   cursor: pointer;
 }
 .filter-checkbox__input:checked {
-  background: url('../../../images/checkbox.svg') no-repeat;
+  background: url('../../images/checkbox.svg') no-repeat;
 }
 .filter-checkbox__text {
   display: flex;

@@ -38,14 +38,14 @@
   -moz-appearance: none;
   width: 18px;
   height: 18px;
-  background: url('../../../images/favorite-checkbox.svg') no-repeat;
+  background: url('../../images/favorite-checkbox.svg') no-repeat;
   background-position: 50% 30%;
   border-radius: 50%;
   transition: var(--transition);
   cursor: pointer;
 }
 .card__checkbox:checked {
-  background: url('../../../images/favorite-checkbox-active.svg') no-repeat;
+  background: url('../../images/favorite-checkbox-active.svg') no-repeat;
   background-position: 50% 30%;
 }
 .card__delete-btn {
@@ -53,7 +53,7 @@
   width: 16px;
   height: 16px;
   border: none;
-  background: url('../../../images/delete-btn.svg') no-repeat;
+  background: url('../../images/delete-btn.svg') no-repeat;
   cursor: pointer;
 }
 @media (max-width: 990px) {

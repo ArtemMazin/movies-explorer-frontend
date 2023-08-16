@@ -1,10 +1,10 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { useLocation } from 'react-router-dom';
-import useScreenOrientation from '../../../hooks/useScreenOrientation';
+import useScreenOrientation from '../../hooks/useScreenOrientation';
 import Preloader from '../Preloader/Preloader';
 import MoreMoviesButton from './MoreMoviesButton/MoreMoviesButton';
-import useCountMovies from '../../../hooks/useCountMovies';
+import useCountMovies from '../../hooks/useCountMovies';
 
 const MoviesCardList = ({
   movies,

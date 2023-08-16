@@ -1,7 +1,7 @@
 import React from 'react';
 import './MoviesCard.css';
 import { Link, useLocation } from 'react-router-dom';
-import { BASE_MOVIES_URL } from '../../../utils/constants';
+import { BASE_MOVIES_URL } from '../../utils/constants';
 
 const MoviesCard = ({ card, handleLikeMovie, handleRemoveButton, savedMovies }) => {
   const location = useLocation();
