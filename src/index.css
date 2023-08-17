@@ -17,11 +17,11 @@
   --opacity-button: 0.8;
 }
 
-html {
+html,
+body {
   scroll-behavior: smooth;
   scroll-padding-top: 20px;
-}
-.body {
+  scrollbar-gutter: stable;
   background-color: var(--bg-main-color);
   color: var(--main-color);
   height: 100%;

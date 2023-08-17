@@ -17,6 +17,15 @@
 .form-buttons__submit:hover {
   opacity: var(--opacity-button);
 }
+.form-buttons__submit_disabled {
+  color: #c2c2c2;
+  background: #f8f8f8;
+  cursor: default;
+}
+.form-buttons__submit_disabled:hover {
+  cursor: default;
+  opacity: 1;
+}
 .form-buttons__nav {
   text-align: center;
 }

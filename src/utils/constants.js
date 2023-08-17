@@ -1,100 +1,41 @@
-export const initialCards = [
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-1.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-2.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-3.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-4.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-5.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-6.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-7.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-8.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-9.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-10.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-11.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-12.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-13.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-14.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-15.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-16.png',
-  },
-];
+export const { BASE_MOVIES_URL = 'https://api.nomoreparties.co' } = process.env;
+export const { BASE_URL = 'https://api.diplom.mazinartem.nomoredomains.xyz' } = process.env;
 
-export const favoriteCards = [
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-1.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-2.png',
-  },
-  {
-    duration: '1ч42м',
-    nameRU: '33 слова о дизайне',
-    image: '../movies/movie-3.png',
-  },
-];
+export const REG_EXP_EMAIL =
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-z\-0-9]+\.)+[a-z]{2,}))$/i;
+
+export const REG_EXP_NAME = /^[А-ЯA-Zё\s-]+$/imu;
+
+export function filterShortMovies(movies) {
+  return movies.filter((film) => {
+    return film.duration <= 40;
+  });
+}
+
+export function getFilteredMovies(arrayMovies, value) {
+  return Array.from(arrayMovies).filter((item) => {
+    return (
+      item.nameRU.toLowerCase().trim().includes(value.toLowerCase().trim()) ||
+      item.nameEN.toLowerCase().trim().includes(value.toLowerCase().trim())
+    );
+  });
+}
+
+export function filterSavedMovies(movies, movieID) {
+  return movies.filter((newCard) => {
+    return newCard._id !== movieID;
+  });
+}
+
+export const messages = {
+  SUCCESS_REGISTRATION: 'Регистрация прошла успешно',
+  SUCCESS_LOGIN: 'Вы вошли в аккаунт',
+  LOGOUT_SUCCESS: 'Вы вышли из аккаунта',
+  SERVER_ERROR: 'На сервере произошла ошибка',
+  ADD_MOVIE: 'Фильм добавлен в избранные',
+  REMOVE_MOVIE: 'Фильм удален из избранных',
+  KEY_WORD: 'Нужно ввести ключевое слово',
+  UPDATE_PROFILE: 'Профиль сохранён',
+  INPUT_EMAIL: 'Неверный формат почты',
+  INPUT_NAME: 'Имя может содержать только латиницу, кириллицу, пробел или дефис',
+};

@@ -25,3 +25,7 @@
   font-weight: 500;
   background-color: var(--bg-input-color);
 }
+.label__input:focus {
+  outline: none;
+  border: 1px solid var(--border-color);
+}
