@@ -14,7 +14,10 @@ export function filterShortMovies(movies) {
 
 export function getFilteredMovies(arrayMovies, value) {
   return Array.from(arrayMovies).filter((item) => {
-    return item.nameRU.toLowerCase().includes(value) || item.nameEN.toLowerCase().includes(value);
+    return (
+      item.nameRU.toLowerCase().trim().includes(value.toLowerCase().trim()) ||
+      item.nameEN.toLowerCase().trim().includes(value.toLowerCase().trim())
+    );
   });
 }
 
